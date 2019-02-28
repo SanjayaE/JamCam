@@ -5,9 +5,11 @@
   "dependencies": {
     "@tensorflow-models/posenet": "^0.2.3",
     "@tensorflow/tfjs": "^0.15.3",
+    "ml5": "^0.2.1",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "tone": "^13.4.9"
   },
   "scripts": {
     "start": "react-scripts start",
