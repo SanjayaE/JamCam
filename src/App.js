@@ -1,9 +1,16 @@
-import React, { Component} from 'react';
+import React, {
+  Component
+} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import * as posenet from '@tensorflow-models/posenet';
+import Webcam from "react-webcam";
+
 
 class App extends Component {
+  handleUserMedia = () => {
+    const stream = this.webcam.stream;
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -13,12 +20,22 @@ class App extends Component {
 
   async componentDidMount() {
     const net = await posenet.load();
-    this.setState({net})
+    this.setState({
+      net
+    })
   }
 
   render() {
     console.log(posenet)
-    return (<div> root</div>);
+    return ( <
+      Webcam ref = {
+        e => this.webcam = e
+      }
+      onUserMedia = {
+        this.handleUserMedia
+      }
+      />
+    );
   }
 }
 export default App;
