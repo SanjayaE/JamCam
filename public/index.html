@@ -29,10 +29,10 @@
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
-  <img id='img1' src='goddess-pose-deviasana.png ' />
-  <img id='img2' src='anatomy_287_3321_bjkforsacrum.jpg' />
-  <img id='img3' src='billy-porter-variety-facetime-portrait.jpg ' />
-  <img id='img4' src='daniela-malasana-pose.jpg' />
+  <img id='img1' src='/images/anatomy_287_3321_bjkforsacrum.jpg' />
+  <img id='img2' src='/images/billy-porter-variety-facetime-portrait.jpg' />
+  <img id='img3' src='/images/daniela-malasana-pose.jpg' />
+  <img id='img4' src='/images/goddess-pose-deviasana.png' />
   <div id="root"></div>
   <!--
       This HTML file is a template.
@@ -52,10 +52,10 @@
   var outputStride = 16;
   var flipHorizontal = false;
 
-  var imageElement = document.getElementById('img1');
+  // var imageElement = document.getElementById('img1');
   var imageElement = document.getElementById('img2');
-  var imageElement = document.getElementById('img3');
-  var imageElement = document.getElementById('img4');
+  // var imageElement = document.getElementById('img3');
+  // var imageElement = document.getElementById('img4');
 
   posenet.load().then(function (net) {
     return net.estimateSinglePose(imageElement, imageScaleFactor, flipHorizontal, outputStride)
