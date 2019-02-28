@@ -1,16 +1,24 @@
-import React, {
-  Component
-} from 'react';
+import React, { Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import * as posenet from '@tensorflow-models/posenet';
-// const net = await posenet.load();
 
 class App extends Component {
-  async render() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      net: {}
+    }
+  }
+
+  async componentDidMount() {
     const net = await posenet.load();
-    console.log(net);
+    this.setState({net})
+  }
+
+  render() {
+    console.log(posenet)
     return (<div> root</div>);
   }
 }
-      export default App;
+export default App;
