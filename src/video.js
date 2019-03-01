@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as ml5 from "ml5";
 
 class Video extends Component {
     componentDidMount() {
@@ -11,5 +12,6 @@ class Video extends Component {
         );
     }
 }
+
 
 export default Video;

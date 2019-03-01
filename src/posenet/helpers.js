@@ -9,3 +9,4 @@ export const getImagePosition = async (image) => {
     console.log(pose)
     return pose;
 }
+
