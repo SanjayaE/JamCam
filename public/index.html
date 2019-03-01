@@ -4,10 +4,6 @@
 <head>
   <meta charset="utf-8" />
   <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-  <!-- Load TensorFlow.js -->
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.13.3"></script>
-  <!-- Load Posenet -->
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet@0.2.3"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="theme-color" content="#000000" />
   <!--
@@ -29,10 +25,10 @@
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
-  <img id='img1' src='/images/anatomy_287_3321_bjkforsacrum.jpg' />
+  <!-- <img id='img1' src='/images/anatomy_287_3321_bjkforsacrum.jpg' />
   <img id='img2' src='/images/billy-porter-variety-facetime-portrait.jpg' />
   <img id='img3' src='/images/daniela-malasana-pose.jpg' />
-  <img id='img4' src='/images/goddess-pose-deviasana.png' />
+  <img id='img4' src='/images/goddess-pose-deviasana.png' /> -->
   <div id="root"></div>
   <!--
       This HTML file is a template.
@@ -47,21 +43,5 @@
 </body>
 
 <!-- Place your code in the script tag below. You can also use an external .js file -->
-<script>
-  var imageScaleFactor = 0.5;
-  var outputStride = 16;
-  var flipHorizontal = false;
-
-  // var imageElement = document.getElementById('img1');
-  var imageElement = document.getElementById('img2');
-  // var imageElement = document.getElementById('img3');
-  // var imageElement = document.getElementById('img4');
-
-  posenet.load().then(function (net) {
-    return net.estimateSinglePose(imageElement, imageScaleFactor, flipHorizontal, outputStride)
-  }).then(function (pose) {
-    console.log(pose);
-  })
-</script>
 
 </html>

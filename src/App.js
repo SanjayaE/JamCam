@@ -1,24 +1,30 @@
-import React, { Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import * as posenet from '@tensorflow-models/posenet';
+import React, { Component } from 'react';
+
+import { getImagePosition } from './posenet/helpers.js';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      net: {}
+      net: {},
+      posenetArray: []
     }
   }
 
-  async componentDidMount() {
-    const net = await posenet.load();
-    this.setState({net})
+  componentDidMount() {
+    console.log("did mount")
+    var imageElement = document.getElementById('img1');
+    console.log(imageElement)
+    getImagePosition(imageElement)
   }
 
   render() {
-    console.log(posenet)
-    return (<div> root</div>);
+    return (
+      <div>
+        <h1>Jam Cam</h1>
+        <img id='img1' src='/images/anatomy_287_3321_bjkforsacrum.jpg' alt="yoga" />
+      </div>
+    );
   }
 }
 export default App;
