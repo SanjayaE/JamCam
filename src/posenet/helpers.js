@@ -10,3 +10,5 @@ export const getImagePosition = async (image) => {
     return pose;
 }
 
+
+
