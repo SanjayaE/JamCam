@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import * as posenet from '@tensorflow-models/posenet';
+
+import { getImagePosition } from './posenet/helpers.js';
 // import { Tone } from 'tone';
 const context = new AudioContext();
 const Tone = require('tone');
@@ -28,42 +30,65 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      net: {}
+      net: {},
+      posenetArray: []
     };
   }
 
-  async componentDidMount() {
-    let net = await posenet.load(1.01);
-    this.setState({ net });
+  componentDidMount = async () => {
+    console.log('did mount');
+    var imageElement = document.getElementById('img1');
+    console.log(imageElement);
 
-    const mediaStream = await navigator.mediaDevices.getUserMedia({
-      audio: false,
-      video: {
-        height: 600,
-        width: 600,
-        facingMode: 'user'
-      }
-    });
+    const video = await this.setupCamera(this.videoElement);
+    getImagePosition(video);
+    video.play();
+  };
 
-    const videoElement = document.getElementById('video-stream');
+  setupCamera = async videoElement => {
+    videoElement.width = 300;
+    videoElement.height = 300;
 
-    // If the below two lines are missed out, the error appears!
-    // videoElement.width = 600;
-    // videoElement.height = 600;
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: false,
+        video: {
+          facingMode: 'user',
+          width: 300,
+          height: 300
+        }
+      });
+      videoElement.srcObject = stream;
 
-    videoElement.srcObject = mediaStream;
-    videoElement = await new Promise((resolve, reject) => {
-      videoElement.onloadedmetadata = () => resolve(videoElement);
-    });
-    videoElement.play();
+      return new Promise(resolve => {
+        videoElement.onloadedmetadata = () => {
+          resolve(videoElement);
+        };
+      });
+    } else {
+      const errorMessage =
+        'This browser does not support video capture, or this device does not have a camera';
+      alert(errorMessage);
+      return Promise.reject(errorMessage);
+    }
+  };
 
-    // The next line throws if the object does not have `width` and `height` explicitly set!
-    const pose = await net.estimateSinglePose(videoElement);
-  }
+  setRef = async videoElement => {
+    this.videoElement = videoElement;
+  };
 
   render() {
-    console.log(posenet);
-    return <div> root</div>;
+    return (
+      <div>
+        <h1>Jam Cam</h1>
+        <img
+          id="img1"
+          src="/images/anatomy_287_3321_bjkforsacrum.jpg"
+          alt="yoga"
+        />
+        <video className="video" playsInline ref={this.setRef} />
+      </div>
+    );
   }
 }
 
