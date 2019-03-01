@@ -4,7 +4,7 @@ import './App.css';
 import * as posenet from '@tensorflow-models/posenet';
 
 import { getImagePosition } from './posenet/helpers.js';
-// import { Tone } from 'tone';
+
 const context = new AudioContext();
 const Tone = require('tone');
 var synth = new Tone.AMSynth().toMaster();
@@ -46,8 +46,8 @@ class App extends Component {
   };
 
   setupCamera = async videoElement => {
-    videoElement.width = 300;
-    videoElement.height = 300;
+    videoElement.width = 800;
+    videoElement.height = 800;
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -81,11 +81,7 @@ class App extends Component {
     return (
       <div>
         <h1>Jam Cam</h1>
-        <img
-          id="img1"
-          src="/images/anatomy_287_3321_bjkforsacrum.jpg"
-          alt="yoga"
-        />
+
         <video className="video" playsInline ref={this.setRef} />
       </div>
     );
