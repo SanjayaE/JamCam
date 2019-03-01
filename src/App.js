@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import * as posenet from '@tensorflow-models/posenet';
+
+import { getImagePosition } from './posenet/helpers.js';
 
 class App extends Component {
   constructor(props) {
@@ -7,25 +8,13 @@ class App extends Component {
     this.state = {
       net: {}
     }
-    this.getImagePosition = this.getImagePosition.bind(this);
-  }
-  async getImagePosition(image) {
-    var imageScaleFactor = 0.5;
-    var outputStride = 16;
-    var flipHorizontal = false;
-    console.log("Posnet gonna load");
-    const net = posenet.load().then(whatever => {
-      console.log("Posnet loaded");
-    });
-    //const pose = await net.estimateSinglePose(image, imageScaleFactor, flipHorizontal, outputStride);
-    //console.log(pose)
   }
 
   componentDidMount() {
     console.log("did mount")
     var imageElement = document.getElementById('img1');
     console.log(imageElement)
-    this.getImagePosition(imageElement)
+    getImagePosition(imageElement)
   }
 
   render() {
