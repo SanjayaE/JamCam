@@ -1,36 +1,43 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import * as posenet from "@tensorflow-models/posenet";
 
-import { getImagePosition } from './posenet/helpers.js';
+import { getImagePosition } from "./posenet/helpers.js";
+
+const MILLISECONDS = 100;
+
+const flipHorizontal = true;
+const maxVideoSize = 300;
+const weight = 0.5;
+const initialPosition = 40;
 
 class App extends Component {
   constructor(props) {
     super(props);
+    this.video = {};
     this.state = {
       net: {},
       posenetArray: []
-    }
+    };
   }
 
   componentDidMount = async () => {
-    console.log("did mount")
-    var imageElement = document.getElementById('img1');
-    console.log(imageElement)
+    console.log("did mount");
 
+    this.video = await this.setupCamera(this.videoElement);
+    getImagePosition(this.video);
+    this.video.play();
+    this.initCapture();
+  };
 
-    const video = await this.setupCamera(this.videoElement);
-    getImagePosition(video)
-    video.play();
-  }
-
-  setupCamera = async (videoElement) => {
+  setupCamera = async videoElement => {
     videoElement.width = 300;
     videoElement.height = 300;
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       const stream = await navigator.mediaDevices.getUserMedia({
-        'audio': false,
-        'video': {
-          facingMode: 'user',
+        audio: false,
+        video: {
+          facingMode: "user",
           width: 300,
           height: 300
         }
@@ -43,22 +50,78 @@ class App extends Component {
         };
       });
     } else {
-      const errorMessage = "This browser does not support video capture, or this device does not have a camera";
+      const errorMessage =
+        "This browser does not support video capture, or this device does not have a camera";
       alert(errorMessage);
       return Promise.reject(errorMessage);
     }
-  }
+  };
 
-  setRef = async (videoElement) => {
+  setRef = async videoElement => {
     this.videoElement = videoElement;
-  }
+  };
 
+  initCapture = () => {
+    this.timeout = setTimeout(this.capture, MILLISECONDS);
+  };
+
+  capture = async () => {
+    // alert("line 95");
+    let pose;
+    // alert("line 95");
+
+    // if (!this.videoElement || !this.net) {
+    //   this.initCapture();
+    //   return;
+    // }
+
+    // if (!this.video && this.videoElement) {
+    //   this.video = await this.loadVideo(this.videoElement);
+    // }
+    pose = await getImagePosition(this.video);
+    // const poses = await this.net.estimateSinglePose(
+    //this.video,
+    //   imageScaleFactor,
+    //   flipHorizontal,
+    //   outputStride
+    // );
+
+    // if (poses && poses.keypoints) {
+    //   nose = poses.keypoints.filter(keypoint => keypoint.part === "nose")[0];
+    // }
+    // if (nose) {
+    //   this.setState({
+    //     top: (nose.position.y * 100) / maxVideoSize,
+    //     left: (nose.position.x * 100) / maxVideoSize,
+    //     oldTop: this.state.top,
+    //     oldLeft: this.state.left
+    //   });
+    // }
+
+    //console.log(pose.keypoints[0].position.y);
+    let nY = pose.keypoints[0].position.y;
+    let eX = pose.keypoints[0].position.x;
+    console.log("nose position Y:", nY);
+    console.log("nose position X:", eX);
+    this.initCapture();
+  };
+
+  // function draw() {
+  //   image(video, 0, 0);
+
+  //   // let d = dist(noseX, noseY, eyelX, eyelY);
+
+  //   fill(255, 0, 0);
+  //   ellipse(nY, eX);
+  //   //fill(0,0,255);
+  //   ellipse(eyelX, eyelY, 50);
+
+  // }
 
   render() {
     return (
       <div>
         <h1>Jam Cam</h1>
-        <img id='img1' src='/images/anatomy_287_3321_bjkforsacrum.jpg' alt="yoga" />
         <video className="video" playsInline ref={this.setRef} />
       </div>
     );
