@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-
-import { getImagePosition } from './posenet/helpers.js';
+import { getImagePositions } from './posenet/helpers.js';
+// import { keep } from '@tensorflow/tfjs';
 
 class App extends Component {
   constructor(props) {
@@ -12,16 +12,22 @@ class App extends Component {
   }
 
   componentDidMount = async () => {
-    console.log("did mount")
-    var imageElement = document.getElementById('img1');
-    console.log(imageElement)
+    if (!this.video) {
+      this.video = await this.setupCamera(this.videoElement);
+      this.video.play();
+    }
+    this.initCapture()
 
-
-    const video = await this.setupCamera(this.videoElement);
-    getImagePosition(video)
-    video.play();
   }
 
+  initCapture = () => {
+    this.timeout = setTimeout(() => {
+      getImagePositions(this.video)
+      this.initCapture()
+    }, 300);
+  }
+
+  // video camera set up on site load
   setupCamera = async (videoElement) => {
     videoElement.width = 300;
     videoElement.height = 300;
@@ -58,7 +64,6 @@ class App extends Component {
     return (
       <div>
         <h1>Jam Cam</h1>
-        <img id='img1' src='/images/anatomy_287_3321_bjkforsacrum.jpg' alt="yoga" />
         <video className="video" playsInline ref={this.setRef} />
       </div>
     );
