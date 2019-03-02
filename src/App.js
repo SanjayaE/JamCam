@@ -3,34 +3,15 @@ import * as posenet from '@tensorflow-models/posenet';
 
 import { getImagePosition } from './posenet/helpers.js';
 
-const MILLISECONDS = 1000;
+const MILLISECONDS = 500;
+const Tone = require('tone');
+var synth = new Tone.AMSynth().toMaster();
+const context = new AudioContext();
 
 const flipHorizontal = true;
 const maxVideoSize = 300;
 const weight = 0.5;
 const initialPosition = 40;
-
-const context = new AudioContext();
-const Tone = require('tone');
-var synth = new Tone.AMSynth().toMaster();
-
-//attach a listener to all of the buttons
-document.querySelectorAll('button').forEach(function(button) {
-  button.addEventListener('click', function(e) {
-    context.resume();
-
-    //play the note on mouse down
-
-    // if (e.currentTarget.classList.contains('active')) {
-    //   e.currentTarget.classList.remove('active');
-    //   synth.triggerRelease();
-    // } else {
-    //   e.currentTarget.classList.add('active');
-    //   synth.triggerAttack(e.target.textContent);
-    // }
-  });
-});
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -43,6 +24,16 @@ class App extends Component {
 
   componentDidMount = async () => {
     console.log('did mount');
+
+    // document.querySelectorAll('button').forEach(function(button) {
+    //   button.addEventListener('click', function(e) {
+    //     context.resume();
+
+    //     //play the note on mouse down
+
+    //     synth.triggerAttackRelease('c4', '8n');
+    //   });
+    // });
 
     this.video = await this.setupCamera(this.videoElement);
     getImagePosition(this.video);
@@ -121,10 +112,27 @@ class App extends Component {
 
     //console.log(pose.keypoints[0].position.y);
     let nY = pose.keypoints[0].position.y;
-    let eX = pose.keypoints[0].position.x;
-    console.log('nose position Y:', nY);
-    console.log('nose position X:', eX);
-    this.initCapture();
+    let nX = pose.keypoints[0].position.x;
+    // console.log('nose position Y:', nY);
+    // console.log('nose position X:', eX);
+    if (nY <= 50 && nX <= 50) {
+      console.log('Note A');
+      context.resume();
+      synth.triggerAttackRelease('c1', '8n');
+    } else if (nY <= 50 && nX >= 250) {
+      console.log('Note B');
+      context.resume();
+      synth.triggerAttackRelease('c2', '8n');
+    } else if (nY >= 250 && nX <= 50) {
+      console.log('Note C');
+      context.resume();
+      synth.triggerAttackRelease('c3', '8n');
+    } else if (nY >= 250 && nX >= 250) {
+      console.log('Note D');
+      context.resume();
+      synth.triggerAttackRelease('c4', '8n');
+    }
+    // this.initCapture();
   };
 
   // function draw() {
@@ -143,7 +151,10 @@ class App extends Component {
     return (
       <div>
         <h1>Jam Cam</h1>
-        <video className="video" playsInline ref={this.setRef} />
+        <div>
+          <canvas id="overlayer1" width="300" height="300" />
+          <video className="video" playsInline ref={this.setRef} />
+        </div>
       </div>
     );
   }
