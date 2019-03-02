@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 // import { getImagePosition } from "./posenet/helpers.js";
 import * as posenet from "@tensorflow-models/posenet";
-// import * as ml5 from "ml5";
 
 class App extends Component {
   constructor(props) {
@@ -51,6 +50,7 @@ class App extends Component {
     }
   };
 
+  //initialized video element
   setRef = async videoElement => {
     this.videoElement = videoElement;
   };
@@ -64,7 +64,7 @@ class App extends Component {
   capture = async () => {
     var imageScaleFactor = 0.5;
     var outputStride = 8;
-    var flipHorizontal = false;
+    var flipHorizontal = true;
 
     const pose = await this.net.estimateSinglePose(
       this.video,
