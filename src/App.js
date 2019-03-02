@@ -1,36 +1,37 @@
-import React, { Component } from 'react';
-
-import { getImagePosition } from './posenet/helpers.js';
+import React, { Component } from "react";
+// import { getImagePosition } from "./posenet/helpers.js";
+import * as posenet from "@tensorflow-models/posenet";
+// import * as ml5 from "ml5";
 
 class App extends Component {
   constructor(props) {
     super(props);
+    this.video = {};
     this.state = {
       net: {},
       posenetArray: []
-    }
+    };
   }
 
   componentDidMount = async () => {
-    console.log("did mount")
-    var imageElement = document.getElementById('img1');
-    console.log(imageElement)
+    console.log("did mount");
+    this.video = await this.setupCamera(this.videoElement);
+    this.net = await posenet.load();
+    this.video.play();
+    this.initCapture();
+  };
 
 
-    const video = await this.setupCamera(this.videoElement);
-    getImagePosition(video)
-    video.play();
-  }
-
-  setupCamera = async (videoElement) => {
+  //load video camera
+  setupCamera = async videoElement => {
     videoElement.width = 300;
     videoElement.height = 300;
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       const stream = await navigator.mediaDevices.getUserMedia({
-        'audio': false,
-        'video': {
-          facingMode: 'user',
+        audio: false,
+        video: {
+          facingMode: "user",
           width: 300,
           height: 300
         }
@@ -43,22 +44,47 @@ class App extends Component {
         };
       });
     } else {
-      const errorMessage = "This browser does not support video capture, or this device does not have a camera";
+      const errorMessage =
+        "This browser does not support video capture, or this device does not have a camera";
       alert(errorMessage);
       return Promise.reject(errorMessage);
     }
-  }
+  };
 
-  setRef = async (videoElement) => {
+  setRef = async videoElement => {
     this.videoElement = videoElement;
-  }
+  };
 
+  //capture body position
+  initCapture = () => {
+    this.capture()
+  };
+
+  //locate and log nose position
+  capture = async () => {
+    var imageScaleFactor = 0.5;
+    var outputStride = 8;
+    var flipHorizontal = false;
+
+    const pose = await this.net.estimateSinglePose(
+      this.video,
+      imageScaleFactor,
+      flipHorizontal,
+      outputStride
+    );
+
+    //console.log(pose.keypoints[0].position.y);
+    let nY = pose.keypoints[0].position.y;
+    let eX = pose.keypoints[0].position.x;
+    console.log("nose position Y:", nY);
+    console.log("nose position X:", eX);
+    this.initCapture();
+  };
 
   render() {
     return (
       <div>
         <h1>Jam Cam</h1>
-        <img id='img1' src='/images/anatomy_287_3321_bjkforsacrum.jpg' alt="yoga" />
         <video className="video" playsInline ref={this.setRef} />
       </div>
     );
