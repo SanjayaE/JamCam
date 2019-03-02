@@ -113,8 +113,10 @@ class App extends Component {
       <div>
         <h1>Jam Cam</h1>
         <div id="overlay_container">
-          <canvas id="overlay" height="300" width="300" />
-
+          <div id="overlay_1" />
+          <div id="overlay_2" />
+          <div id="overlay_3" />
+          <div id="overlay_4" />
           <video className="video" playsInline ref={this.setRef} />
         </div>
       </div>
