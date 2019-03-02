@@ -3,13 +3,16 @@ import * as posenet from "@tensorflow-models/posenet";
 
 import { getImagePosition } from "./posenet/helpers.js";
 
-const MILLISECONDS = 100;
+const MILLISECONDS = 500;
+const Tone = require("tone");
+var synth = new Tone.AMSynth().toMaster();
+const context = new AudioContext();
 
 const flipHorizontal = true;
 const maxVideoSize = 300;
 const weight = 0.5;
 const initialPosition = 40;
-
+let testo = false;
 class App extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +25,16 @@ class App extends Component {
 
   componentDidMount = async () => {
     console.log("did mount");
+
+    document.querySelectorAll("button").forEach(function(button) {
+      button.addEventListener("click", function(e) {
+        context.resume();
+
+        //play the note on mouse down
+
+        synth.triggerAttackRelease("c4", "8n");
+      });
+    });
 
     this.video = await this.setupCamera(this.videoElement);
     getImagePosition(this.video);
@@ -103,6 +116,12 @@ class App extends Component {
     let eX = pose.keypoints[0].position.x;
     console.log("nose position Y:", nY);
     console.log("nose position X:", eX);
+    if (nY >= 150) {
+      testo = true;
+      console.log("Testo baby!");
+      context.resume();
+      synth.triggerAttackRelease("c4", "8n");
+    }
     this.initCapture();
   };
 
@@ -123,6 +142,7 @@ class App extends Component {
       <div>
         <h1>Jam Cam</h1>
         <video className="video" playsInline ref={this.setRef} />
+        <button type="button">play sound</button>
       </div>
     );
   }
