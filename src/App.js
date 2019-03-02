@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
+// import { getImagePosition } from "./posenet/helpers.js";
 import * as posenet from '@tensorflow-models/posenet';
-
-import { getImagePosition } from './posenet/helpers.js';
-
-const MILLISECONDS = 500;
+// import * as ml5 from "ml5";
+const context = new AudioContext();
 const Tone = require('tone');
 var synth = new Tone.AMSynth().toMaster();
-const context = new AudioContext();
 
-const flipHorizontal = true;
-const maxVideoSize = 300;
-const weight = 0.5;
-const initialPosition = 40;
 class App extends Component {
   constructor(props) {
     super(props);
@@ -24,23 +18,20 @@ class App extends Component {
 
   componentDidMount = async () => {
     console.log('did mount');
-
-    // document.querySelectorAll('button').forEach(function(button) {
-    //   button.addEventListener('click', function(e) {
-    //     context.resume();
-
-    //     //play the note on mouse down
-
-    //     synth.triggerAttackRelease('c4', '8n');
-    //   });
-    // });
-
     this.video = await this.setupCamera(this.videoElement);
-    getImagePosition(this.video);
+    this.net = await posenet.load();
     this.video.play();
     this.initCapture();
+    var c = document.getElementById('overlay');
+    var ctx = c.getContext('2d');
+    ctx.fillStyle = '#FF0000';
+    ctx.fillRect(0, 0, 50, 50);
+    ctx.fillRect(0, 250, 50, 50);
+    ctx.fillRect(250, 250, 50, 50);
+    ctx.fillRect(250, 0, 50, 50);
   };
 
+  //load video camera
   setupCamera = async videoElement => {
     videoElement.width = 300;
     videoElement.height = 300;
@@ -73,86 +64,57 @@ class App extends Component {
     this.videoElement = videoElement;
   };
 
+  //capture body position
   initCapture = () => {
-    this.timeout = setTimeout(this.capture, MILLISECONDS);
+    this.capture();
   };
 
+  //locate and log nose position
   capture = async () => {
-    // alert("line 95");
-    let pose;
-    // alert("line 95");
+    var imageScaleFactor = 0.5;
+    var outputStride = 8;
+    var flipHorizontal = false;
 
-    // if (!this.videoElement || !this.net) {
-    //   this.initCapture();
-    //   return;
-    // }
-
-    // if (!this.video && this.videoElement) {
-    //   this.video = await this.loadVideo(this.videoElement);
-    // }
-    pose = await getImagePosition(this.video);
-    // const poses = await this.net.estimateSinglePose(
-    //this.video,
-    //   imageScaleFactor,
-    //   flipHorizontal,
-    //   outputStride
-    // );
-
-    // if (poses && poses.keypoints) {
-    //   nose = poses.keypoints.filter(keypoint => keypoint.part === "nose")[0];
-    // }
-    // if (nose) {
-    //   this.setState({
-    //     top: (nose.position.y * 100) / maxVideoSize,
-    //     left: (nose.position.x * 100) / maxVideoSize,
-    //     oldTop: this.state.top,
-    //     oldLeft: this.state.left
-    //   });
-    // }
+    const pose = await this.net.estimateSinglePose(
+      this.video,
+      imageScaleFactor,
+      flipHorizontal,
+      outputStride
+    );
 
     //console.log(pose.keypoints[0].position.y);
     let nY = pose.keypoints[0].position.y;
     let nX = pose.keypoints[0].position.x;
-    // console.log('nose position Y:', nY);
-    // console.log('nose position X:', eX);
+    console.log('nose position Y:', nY);
+    console.log('nose position X:', nX);
+    context.resume();
     if (nY <= 50 && nX <= 50) {
       console.log('Note A');
-      context.resume();
+
       synth.triggerAttackRelease('c1', '8n');
     } else if (nY <= 50 && nX >= 250) {
       console.log('Note B');
-      context.resume();
+
       synth.triggerAttackRelease('c2', '8n');
     } else if (nY >= 250 && nX <= 50) {
       console.log('Note C');
-      context.resume();
+
       synth.triggerAttackRelease('c3', '8n');
     } else if (nY >= 250 && nX >= 250) {
       console.log('Note D');
-      context.resume();
+
       synth.triggerAttackRelease('c4', '8n');
     }
-    // this.initCapture();
+    this.initCapture();
   };
-
-  // function draw() {
-  //   image(video, 0, 0);
-
-  //   // let d = dist(noseX, noseY, eyelX, eyelY);
-
-  //   fill(255, 0, 0);
-  //   ellipse(nY, eX);
-  //   //fill(0,0,255);
-  //   ellipse(eyelX, eyelY, 50);
-
-  // }
 
   render() {
     return (
       <div>
         <h1>Jam Cam</h1>
-        <div>
-          <canvas id="overlayer1" width="300" height="300" />
+        <div id="overlay_container">
+          <canvas id="overlay" height="300" width="300" />
+
           <video className="video" playsInline ref={this.setRef} />
         </div>
       </div>

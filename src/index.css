@@ -12,16 +12,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-overlayer1 {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 1;
-}
-video {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 1;
-}

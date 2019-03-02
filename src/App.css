@@ -31,3 +31,14 @@
     transform: rotate(360deg);
   }
 }
+#overlay {
+}
+
+#overlay_container {
+  position: absolute;
+  z-index: 5;
+}
+
+#video_container {
+  position: absolute;
+}
