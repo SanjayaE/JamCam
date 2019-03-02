@@ -1,14 +1,7 @@
 import React, { Component } from "react";
+// import { getImagePosition } from "./posenet/helpers.js";
 import * as posenet from "@tensorflow-models/posenet";
-
-import { getImagePosition } from "./posenet/helpers.js";
-
-const MILLISECONDS = 100;
-
-const flipHorizontal = true;
-const maxVideoSize = 300;
-const weight = 0.5;
-const initialPosition = 40;
+// import * as ml5 from "ml5";
 
 class App extends Component {
   constructor(props) {
@@ -22,13 +15,14 @@ class App extends Component {
 
   componentDidMount = async () => {
     console.log("did mount");
-
     this.video = await this.setupCamera(this.videoElement);
-    getImagePosition(this.video);
+    this.net = await posenet.load();
     this.video.play();
     this.initCapture();
   };
 
+
+  //load video camera
   setupCamera = async videoElement => {
     videoElement.width = 300;
     videoElement.height = 300;
@@ -61,42 +55,23 @@ class App extends Component {
     this.videoElement = videoElement;
   };
 
+  //capture body position
   initCapture = () => {
-    this.timeout = setTimeout(this.capture, MILLISECONDS);
+    this.capture()
   };
 
+  //locate and log nose position
   capture = async () => {
-    // alert("line 95");
-    let pose;
-    // alert("line 95");
+    var imageScaleFactor = 0.5;
+    var outputStride = 8;
+    var flipHorizontal = false;
 
-    // if (!this.videoElement || !this.net) {
-    //   this.initCapture();
-    //   return;
-    // }
-
-    // if (!this.video && this.videoElement) {
-    //   this.video = await this.loadVideo(this.videoElement);
-    // }
-    pose = await getImagePosition(this.video);
-    // const poses = await this.net.estimateSinglePose(
-    //this.video,
-    //   imageScaleFactor,
-    //   flipHorizontal,
-    //   outputStride
-    // );
-
-    // if (poses && poses.keypoints) {
-    //   nose = poses.keypoints.filter(keypoint => keypoint.part === "nose")[0];
-    // }
-    // if (nose) {
-    //   this.setState({
-    //     top: (nose.position.y * 100) / maxVideoSize,
-    //     left: (nose.position.x * 100) / maxVideoSize,
-    //     oldTop: this.state.top,
-    //     oldLeft: this.state.left
-    //   });
-    // }
+    const pose = await this.net.estimateSinglePose(
+      this.video,
+      imageScaleFactor,
+      flipHorizontal,
+      outputStride
+    );
 
     //console.log(pose.keypoints[0].position.y);
     let nY = pose.keypoints[0].position.y;
@@ -105,18 +80,6 @@ class App extends Component {
     console.log("nose position X:", eX);
     this.initCapture();
   };
-
-  // function draw() {
-  //   image(video, 0, 0);
-
-  //   // let d = dist(noseX, noseY, eyelX, eyelY);
-
-  //   fill(255, 0, 0);
-  //   ellipse(nY, eX);
-  //   //fill(0,0,255);
-  //   ellipse(eyelX, eyelY, 50);
-
-  // }
 
   render() {
     return (
