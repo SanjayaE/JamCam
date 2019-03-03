@@ -75,42 +75,30 @@ class App extends Component {
       outputStride
     );
 
-    //console.log(pose.keypoints[0].position.y);
-    let mY = pose.keypoints[9].position.y;
-    let mX = pose.keypoints[9].position.x;
-    let nY = pose.keypoints[10].position.y;
-    let nX = pose.keypoints[10].position.x;
-    console.log('Right wrist position Y:', nY, 'X: ', nX);
-
     context.resume();
-    //play Synth notes based on right-wrist position
-    if (nY >= 0 && nY <= 50 && nX <= 50 && nX >= 0) {
-      console.log('Note A');
-      synth.triggerAttackRelease('c1', '8n');
-    } else if (nY >= 0 && nY <= 50 && nX >= 250) {
-      console.log('Note B');
-      synth.triggerAttackRelease('c2', '8n');
-    } else if (nY < 300 && nY >= 250 && nX <= 50 && nX >= 0) {
-      console.log('Note C');
-      synth.triggerAttackRelease('c3', '8n');
-    } else if (nY < 300 && nY >= 250 && nX >= 250 && nX <= 300) {
-      console.log('Note D');
-      synth.triggerAttackRelease('c4', '8n');
-    }
 
-    if (mY >= 0 && mY <= 50 && mX <= 50 && mX >= 0) {
-      console.log('Note A');
-      synth.triggerAttackRelease('c1', '8n');
-    } else if (mY >= 0 && mY <= 50 && mX >= 250) {
-      console.log('Note B');
-      synth.triggerAttackRelease('c2', '8n');
-    } else if (mY < 300 && mY >= 250 && mX <= 50 && mX >= 0) {
-      console.log('Note C');
-      synth.triggerAttackRelease('c3', '8n');
-    } else if (mY < 300 && mY >= 250 && mX >= 250 && mX <= 300) {
-      console.log('Note D');
-      synth.triggerAttackRelease('c4', '8n');
+    //play Synth notes based on key-point (partNum) position
+
+    function bodyPos(partNum) {
+      let Y = pose.keypoints[partNum].position.y;
+      let X = pose.keypoints[partNum].position.x;
+      if (Y >= 0 && Y <= 50 && X <= 50 && X >= 0) {
+        console.log('Note A');
+        synth.triggerAttackRelease('c1', '8n');
+      } else if (Y >= 0 && Y <= 50 && X >= 250 && X <= 300) {
+        console.log('Note B');
+        synth.triggerAttackRelease('c2', '8n');
+      } else if (Y < 300 && Y >= 250 && X <= 50 && X >= 0) {
+        console.log('Note C');
+        synth.triggerAttackRelease('c3', '8n');
+      } else if (Y < 300 && Y >= 250 && X >= 250 && X <= 300) {
+        console.log('Note D');
+        synth.triggerAttackRelease('c4', '8n');
+      }
     }
+    bodyPos(9);
+    bodyPos(10);
+
     this.initCapture();
   };
 
