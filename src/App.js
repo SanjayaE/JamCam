@@ -71,7 +71,7 @@ class App extends Component {
   capture = async () => {
     var imageScaleFactor = 0.5;
     var outputStride = 8;
-    var flipHorizontal = true;
+    var flipHorizontal = false;
 
     const pose = await this.net.estimateSinglePose(
       this.video,
