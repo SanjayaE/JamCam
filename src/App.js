@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { drawSkeleton } from "./posenet/helpers.js";
+import { drawKeypoints, drawSkeleton } from "./posenet/helpers.js";
 import * as posenet from "@tensorflow-models/posenet";
-const videoWidth = 800;
-const videoHeight = 800;
+const videoWidth = 600;
+const videoHeight = 500;
 
 class App extends Component {
   constructor(props) {
@@ -20,13 +20,9 @@ class App extends Component {
     this.net = await posenet.load();
     this.video.play();
     this.initCapture();
-    var c = document.getElementById("overlay");
-    var ctx = c.getContext("2d");
-    ctx.fillStyle = "#FF0000";
-    let poses = [];
-    let minPoseConfidence = 0.1;
-    let minPartConfidence = 0.5;
-    ctx.drawImage(this.video, 0, 0, videoWidth, videoHeight);
+    const canvas = this.canvas;
+    canvas.width = videoWidth;
+    canvas.height = videoHeight;
   };
 
   //load video camera
@@ -62,6 +58,10 @@ class App extends Component {
     this.videoElement = videoElement;
   };
 
+  getCanvas = cv => {
+    this.canvas = cv;
+  };
+
   //capture body position
   initCapture = () => {
     this.capture();
@@ -71,7 +71,7 @@ class App extends Component {
   capture = async () => {
     var imageScaleFactor = 0.5;
     var outputStride = 8;
-    var flipHorizontal = false;
+    var flipHorizontal = true;
 
     const pose = await this.net.estimateSinglePose(
       this.video,
@@ -81,17 +81,27 @@ class App extends Component {
     );
     let poses = [];
     poses.push(pose);
-    //console.log(pose.keypoints[0].position.y);
-    let nY = pose.keypoints[0].position.y;
-    let eX = pose.keypoints[0].position.x;
-    // console.log("nose position Y:", nY);
-    // console.log("nose position X:", eX);
-    var c = document.getElementById("overlay");
-    var ctx = c.getContext("2d");
-    ctx.drawImage(this.video, 0, 0, videoWidth, videoHeight);
+
+    var canvas = document.getElementById("overlay");
+    var ctx = canvas.getContext("2d");
+    canvas.width = this.video.videoWidth;
+    canvas.height = this.video.videoHeight;
+    ctx.clearRect(0, 0, this.video.videoWidth, this.video.videoHeight);
+    ctx.save();
+    ctx.scale(-1, 1);
+    ctx.translate(-this.video.videoWidth, 0);
+    ctx.drawImage(
+      this.video,
+      0,
+      0,
+      this.video.videoWidth,
+      this.video.videoHeight
+    );
+    ctx.restore();
 
     poses.forEach(({ score, keypoints }) => {
-      if (score >= 0.1) {
+      if (score >= 0.2) {
+        drawKeypoints(keypoints, 0.5, ctx);
         drawSkeleton(keypoints, 0.5, ctx);
       }
     });
@@ -103,8 +113,8 @@ class App extends Component {
     return (
       <div className="container">
         <h1>Jam Cam</h1>
-        <video className="video" playsInline ref={this.setRef} />
-        <canvas className="canvas" id="overlay" />
+        <video id="video" playsInline ref={this.setRef} />
+        <canvas id="overlay" ref={this.getCanvas} />
       </div>
     );
   }

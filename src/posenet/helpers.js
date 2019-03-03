@@ -1,7 +1,8 @@
 import * as posenet from "@tensorflow-models/posenet";
 
+//setting colours for skeleton
 const color = "aqua";
-const boundingBoxColor = "red";
+const color2 = "red";
 const lineWidth = 2;
 
 function toTuple({ y, x }) {
@@ -10,7 +11,7 @@ function toTuple({ y, x }) {
 
 export const getImagePosition = async image => {
   var imageScaleFactor = 0.5;
-  var outputStride = 8;
+  var outputStride = 16;
   var flipHorizontal = false;
   const net = await posenet.load();
   const pose = await net.estimateSinglePose(
@@ -24,7 +25,22 @@ export const getImagePosition = async image => {
 };
 
 /**
- * Draws a line on a canvas, i.e. a joint
+ * Draws a points on a canvas
+ */
+export function drawKeypoints(keypoints, skeletonColor, ctx, scale = 1) {
+  keypoints.forEach(keypoint => {
+    if (keypoint.score >= 0.2) {
+      const { y, x } = keypoint.position;
+      ctx.beginPath();
+      ctx.arc(x * scale, y * scale, 3, 0, 2 * Math.PI);
+      ctx.fillStyle = color2;
+      ctx.fill();
+    }
+  });
+}
+
+/**
+ * Draws a line on a canvas
  */
 export function drawSegment([ay, ax], [by, bx], color, scale, ctx) {
   ctx.beginPath();
