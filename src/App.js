@@ -79,25 +79,38 @@ class App extends Component {
 
     //play Synth notes based on key-point (partNum) position
 
-    function bodyPos(partNum) {
+    function keyBoard(partNum) {
       let Y = pose.keypoints[partNum].position.y;
       let X = pose.keypoints[partNum].position.x;
-      if (Y >= 0 && Y <= 50 && X <= 50 && X >= 0) {
-        console.log('Note A');
-        synth.triggerAttackRelease('c1', '8n');
-      } else if (Y >= 0 && Y <= 50 && X >= 250 && X <= 300) {
-        console.log('Note B');
-        synth.triggerAttackRelease('c2', '8n');
-      } else if (Y < 300 && Y >= 250 && X <= 50 && X >= 0) {
+      let withinKy = function() {
+        return X >= 0 && X <= 300 && Y >= 0 && Y <= 100;
+      };
+      if (withinKy && Y <= 42) {
         console.log('Note C');
         synth.triggerAttackRelease('c3', '8n');
-      } else if (Y < 300 && Y >= 250 && X >= 250 && X <= 300) {
+      } else if (withinKy && Y <= 84 && X >= 43) {
         console.log('Note D');
-        synth.triggerAttackRelease('c4', '8n');
+        synth.triggerAttackRelease('d3', '8n');
+      } else if (withinKy && Y <= 126 && X >= 85) {
+        console.log('Note E');
+        synth.triggerAttackRelease('e3', '8n');
+      } else if (withinKy && Y <= 168 && X >= 127) {
+        console.log('Note F');
+        synth.triggerAttackRelease('f3', '8n');
+      } else if (withinKy && Y <= 210 && X >= 69) {
+        console.log('Note G');
+        synth.triggerAttackRelease('g3', '8n');
+      } else if (withinKy && Y <= 252 && X >= 211) {
+        console.log('Note A');
+        synth.triggerAttackRelease('a3', '8n');
+      } else if (withinKy && Y <= 294 && X >= 253) {
+        console.log('Note B');
+        synth.triggerAttackRelease('b3', '8n');
       }
     }
-    bodyPos(9);
-    bodyPos(10);
+    // keyBoard(0); //nose
+    keyBoard(9); //left wrist
+    keyBoard(10); //right wrist
 
     this.initCapture();
   };
@@ -107,10 +120,14 @@ class App extends Component {
       <div>
         <h1>Jam Cam</h1>
         <div id="overlay_container">
-          <div id="overlay_1" />
-          <div id="overlay_2" />
-          <div id="overlay_3" />
-          <div id="overlay_4" />
+          <div class="overlay_C">C</div>
+          <div class="overlay_D">D</div>
+          <div class="overlay_E">E</div>
+          <div class="overlay_F">F</div>
+          <div class="overlay_G">G</div>
+          <div class="overlay_A">A</div>
+          <div class="overlay_B">B</div>
+
           <video id="video" playsInline ref={this.setRef} />
         </div>
       </div>

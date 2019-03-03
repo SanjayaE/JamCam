@@ -16,44 +16,66 @@ code {
   position: absolute;
 }
 
-#overlay_1 {
+.overlay_C {
   position: absolute;
-  top: 37px;
-  width: 50px;
-  height: 50px;
-  opacity: 0.5;
-  background-color: #ff0000;
+  width: 100px;
+  height: 42px;
+  opacity: 0.25;
+  background-color: #ff004c;
   z-index: 3;
 }
-#overlay_2 {
+.overlay_D {
   position: absolute;
-  top: 37px;
-  left: 250px;
-  width: 50px;
-  height: 50px;
-  opacity: 0.5;
-  background-color: #ff0000;
+  top: 43px;
+  width: 100px;
+  height: 42px;
+  opacity: 0.25;
+  background-color: #ff7b00;
   z-index: 3;
 }
-
-#overlay_3 {
+.overlay_E {
   position: absolute;
-  bottom: 42px;
-  width: 50px;
-  height: 50px;
-  opacity: 0.5;
-  background-color: #ff0000;
+  top: 127px;
+  width: 100px;
+  height: 42px;
+  opacity: 0.25;
+  background-color: #eeff00;
   z-index: 3;
 }
-
-#overlay_4 {
+.overlay_F {
   position: absolute;
-  bottom: 42px;
-  left: 250px;
-  width: 50px;
-  height: 50px;
-  opacity: 0.5;
-  background-color: #ff0000;
+  top: 169px;
+  width: 100px;
+  height: 42px;
+  opacity: 0.25;
+  background-color: #48ff00;
+  z-index: 3;
+}
+.overlay_G {
+  position: absolute;
+  top: 169px;
+  width: 100px;
+  height: 42px;
+  opacity: 0.25;
+  background-color: #00f7ff;
+  z-index: 3;
+}
+.overlay_A {
+  position: absolute;
+  top: 211px;
+  width: 100px;
+  height: 42px;
+  opacity: 0.25;
+  background-color: #002fff;
+  z-index: 3;
+}
+.overlay_B {
+  position: absolute;
+  top: 253px;
+  width: 100px;
+  height: 42px;
+  opacity: 0.25;
+  background-color: #8c00ff;
   z-index: 3;
 }
 
