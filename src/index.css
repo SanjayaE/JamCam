@@ -17,6 +17,9 @@ code {
 }
 
 .overlay_C {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
   position: absolute;
   width: 100px;
   height: 42px;
@@ -25,8 +28,11 @@ code {
   z-index: 3;
 }
 .overlay_D {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
   position: absolute;
-  top: 43px;
+  top: 42px;
   width: 100px;
   height: 42px;
   opacity: 0.25;
@@ -34,8 +40,11 @@ code {
   z-index: 3;
 }
 .overlay_E {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
   position: absolute;
-  top: 127px;
+  top: 84px;
   width: 100px;
   height: 42px;
   opacity: 0.25;
@@ -43,8 +52,11 @@ code {
   z-index: 3;
 }
 .overlay_F {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
   position: absolute;
-  top: 169px;
+  top: 126px;
   width: 100px;
   height: 42px;
   opacity: 0.25;
@@ -52,8 +64,11 @@ code {
   z-index: 3;
 }
 .overlay_G {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
   position: absolute;
-  top: 169px;
+  top: 168px;
   width: 100px;
   height: 42px;
   opacity: 0.25;
@@ -61,8 +76,11 @@ code {
   z-index: 3;
 }
 .overlay_A {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
   position: absolute;
-  top: 211px;
+  top: 210px;
   width: 100px;
   height: 42px;
   opacity: 0.25;
@@ -70,8 +88,11 @@ code {
   z-index: 3;
 }
 .overlay_B {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
   position: absolute;
-  top: 253px;
+  top: 252px;
   width: 100px;
   height: 42px;
   opacity: 0.25;
