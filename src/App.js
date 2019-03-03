@@ -22,13 +22,6 @@ class App extends Component {
     this.net = await posenet.load();
     this.video.play();
     this.initCapture();
-    var c = document.getElementById('overlay');
-    var ctx = c.getContext('2d');
-    ctx.fillStyle = '#FF0000';
-    ctx.fillRect(0, 0, 50, 50);
-    ctx.fillRect(0, 250, 50, 50);
-    ctx.fillRect(250, 250, 50, 50);
-    ctx.fillRect(250, 0, 50, 50);
   };
 
   //load video camera
@@ -83,26 +76,39 @@ class App extends Component {
     );
 
     //console.log(pose.keypoints[0].position.y);
-    let nY = pose.keypoints[0].position.y;
-    let nX = pose.keypoints[0].position.x;
-    console.log('nose position Y:', nY);
-    console.log('nose position X:', nX);
+    let mY = pose.keypoints[9].position.y;
+    let mX = pose.keypoints[9].position.x;
+    let nY = pose.keypoints[10].position.y;
+    let nX = pose.keypoints[10].position.x;
+    console.log('Right wrist position Y:', nY, 'X: ', nX);
+
     context.resume();
-    if (nY <= 50 && nX <= 50) {
+    //play Synth notes based on right-wrist position
+    if (nY >= 0 && nY <= 50 && nX <= 50 && nX >= 0) {
       console.log('Note A');
-
       synth.triggerAttackRelease('c1', '8n');
-    } else if (nY <= 50 && nX >= 250) {
+    } else if (nY >= 0 && nY <= 50 && nX >= 250) {
       console.log('Note B');
-
       synth.triggerAttackRelease('c2', '8n');
-    } else if (nY >= 250 && nX <= 50) {
+    } else if (nY < 300 && nY >= 250 && nX <= 50 && nX >= 0) {
       console.log('Note C');
-
       synth.triggerAttackRelease('c3', '8n');
-    } else if (nY >= 250 && nX >= 250) {
+    } else if (nY < 300 && nY >= 250 && nX >= 250 && nX <= 300) {
       console.log('Note D');
+      synth.triggerAttackRelease('c4', '8n');
+    }
 
+    if (mY >= 0 && mY <= 50 && mX <= 50 && mX >= 0) {
+      console.log('Note A');
+      synth.triggerAttackRelease('c1', '8n');
+    } else if (mY >= 0 && mY <= 50 && mX >= 250) {
+      console.log('Note B');
+      synth.triggerAttackRelease('c2', '8n');
+    } else if (mY < 300 && mY >= 250 && mX <= 50 && mX >= 0) {
+      console.log('Note C');
+      synth.triggerAttackRelease('c3', '8n');
+    } else if (mY < 300 && mY >= 250 && mX >= 250 && mX <= 300) {
+      console.log('Note D');
       synth.triggerAttackRelease('c4', '8n');
     }
     this.initCapture();
@@ -117,7 +123,7 @@ class App extends Component {
           <div id="overlay_2" />
           <div id="overlay_3" />
           <div id="overlay_4" />
-          <video className="video" playsInline ref={this.setRef} />
+          <video id="video" playsInline ref={this.setRef} />
         </div>
       </div>
     );

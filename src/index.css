@@ -60,3 +60,11 @@ code {
 #video_container {
   position: absolute;
 }
+
+#overlay_active {
+  background-color: green;
+}
+#video {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
