@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-// import { getImagePosition } from "./posenet/helpers.js";
+import { drawSkeleton } from "./posenet/helpers.js";
 import * as posenet from "@tensorflow-models/posenet";
-// import * as ml5 from "ml5";
+const videoWidth = 800;
+const videoHeight = 800;
 
 class App extends Component {
   constructor(props) {
@@ -19,8 +20,14 @@ class App extends Component {
     this.net = await posenet.load();
     this.video.play();
     this.initCapture();
+    var c = document.getElementById("overlay");
+    var ctx = c.getContext("2d");
+    ctx.fillStyle = "#FF0000";
+    let poses = [];
+    let minPoseConfidence = 0.1;
+    let minPartConfidence = 0.5;
+    ctx.drawImage(this.video, 0, 0, videoWidth, videoHeight);
   };
-
 
   //load video camera
   setupCamera = async videoElement => {
@@ -57,14 +64,14 @@ class App extends Component {
 
   //capture body position
   initCapture = () => {
-    this.capture()
+    this.capture();
   };
 
   //locate and log nose position
   capture = async () => {
     var imageScaleFactor = 0.5;
     var outputStride = 8;
-    var flipHorizontal = false;
+    var flipHorizontal = true;
 
     const pose = await this.net.estimateSinglePose(
       this.video,
@@ -72,20 +79,32 @@ class App extends Component {
       flipHorizontal,
       outputStride
     );
-
+    let poses = [];
+    poses.push(pose);
     //console.log(pose.keypoints[0].position.y);
     let nY = pose.keypoints[0].position.y;
     let eX = pose.keypoints[0].position.x;
-    console.log("nose position Y:", nY);
-    console.log("nose position X:", eX);
+    // console.log("nose position Y:", nY);
+    // console.log("nose position X:", eX);
+    var c = document.getElementById("overlay");
+    var ctx = c.getContext("2d");
+    ctx.drawImage(this.video, 0, 0, videoWidth, videoHeight);
+
+    poses.forEach(({ score, keypoints }) => {
+      if (score >= 0.1) {
+        drawSkeleton(keypoints, 0.5, ctx);
+      }
+    });
+
     this.initCapture();
   };
 
   render() {
     return (
-      <div>
+      <div className="container">
         <h1>Jam Cam</h1>
         <video className="video" playsInline ref={this.setRef} />
+        <canvas className="canvas" id="overlay" />
       </div>
     );
   }

@@ -31,3 +31,25 @@
     transform: rotate(360deg);
   }
 }
+
+.container {
+  margin: 0 auto;
+  position: relative;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.canvas {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
