@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import capture from "./services/capture.js";
-import * as posenet from '@tensorflow-models/posenet';
-const context = new AudioContext();
-const Tone = require('tone');
-var synth = new Tone.AMSynth().toMaster();
+// import * as posenet from '@tensorflow-models/posenet';
+// const context = new AudioContext();
+// const Tone = require('tone');
+// var synth = new Tone.AMSynth().toMaster();
 
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.video = {};
-    this.state = {
-    };
+    this.state = {};
   }
 
   componentDidMount = async () => {
@@ -19,6 +18,8 @@ class App extends Component {
     console.log("did mount");
     capture();
   };
+
+
 
   render() {
     return (
