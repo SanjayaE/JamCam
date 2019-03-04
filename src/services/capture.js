@@ -16,11 +16,9 @@ const Capture = async () => {
   const imageScaleFactor = 0.5;
   const outputStride = 16;
   const flipHorizontal = false;
-  //   console.log("videoh", video.height);
   const net = await posenet.load();
 
   while (video.height > 0 && video.width > 0) {
-    //console.log("ttt");
     const p = await net.estimateSinglePose(
       video,
       imageScaleFactor,
@@ -28,8 +26,6 @@ const Capture = async () => {
       outputStride
     );
     pose.set(p);
-    //     let poses = [];
-    //     poses.push(pose);
     console.log(pose);
     ctx.drawImage(video, 0, 0, video.width, video.height);
 
