@@ -31,8 +31,25 @@
     transform: rotate(360deg);
   }
 }
-#overlay {
+
+.container {
+  margin: 0 auto;
+  position: relative;
 }
+
+#video {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  display: none;
+}
+
+.canvas {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
 
 #overlay_container {
   position: absolute;
@@ -41,4 +58,5 @@
 
 #video_container {
   position: absolute;
+
 }
