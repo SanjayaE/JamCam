@@ -20,23 +20,23 @@ class App extends Component {
     this.net = await posenet.load();
     this.video.play();
     this.initCapture();
-    const canvas = this.canvas;
+    const canvas = document.getElementById("overlay");
     canvas.width = videoWidth;
     canvas.height = videoHeight;
   };
 
   //load video camera
   setupCamera = async videoElement => {
-    videoElement.width = 300;
-    videoElement.height = 300;
+    videoElement.width = 600;
+    videoElement.height = 500;
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       const stream = await navigator.mediaDevices.getUserMedia({
         audio: false,
         video: {
           facingMode: "user",
-          width: 300,
-          height: 300
+          width: 600,
+          height: 500
         }
       });
       videoElement.srcObject = stream;
@@ -67,7 +67,7 @@ class App extends Component {
     this.capture();
   };
 
-  //locate and log nose position
+  //send video to posenet and estimate poses
   capture = async () => {
     var imageScaleFactor = 0.5;
     var outputStride = 8;
@@ -113,7 +113,7 @@ class App extends Component {
     return (
       <div className="container">
         <h1>Jam Cam</h1>
-        <video id="video" playsInline ref={this.setRef} />
+        <video id="video" ref={this.setRef} />
         <canvas id="overlay" ref={this.getCanvas} />
       </div>
     );
