@@ -1,19 +1,18 @@
 {
-  "name": "musicapp",
+  "name": "JamCam",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@tensorflow-models/posenet": "^0.2.3",
     "@tensorflow/tfjs": "^0.13.5",
-    "ml5": "^0.2.1",
-    "p5": "^0.7.3",
+    "min": "^0.2.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-scripts": "2.1.5",
     "tone": "^13.4.9"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3006 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
