@@ -56,6 +56,10 @@
   position: absolute;
   z-index: 5;
 }
+#overlay {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
 
 #video_container {
   position: absolute;
