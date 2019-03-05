@@ -10,7 +10,6 @@ const Capture = async () => {
   camera(); // camera module
   const canvas = document.getElementById('overlay');
   const video = document.getElementById('video');
-  //console.log(video);
   const ctx = canvas.getContext('2d');
   canvas.setAttribute('width', `${video.width}`);
   canvas.setAttribute('height', `${video.height}`);

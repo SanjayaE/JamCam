@@ -17,6 +17,11 @@ class App extends Component {
       noteA: 'inactive',
       noteB: 'inactive'
     };
+    this.keyBoardPress = this.keyBoardPress.bind(this);
+  }
+
+  keyBoardPress(note) {
+    console.log('okey doey');
   }
 
   componentDidMount = async () => {
