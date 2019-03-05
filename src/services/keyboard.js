@@ -1,4 +1,4 @@
-const Tone = require("tone");
+const Tone = require('tone');
 var synth = new Tone.AMSynth().toMaster();
 
 /* *****play Synth notes based on key-point (partNum) position ***** */
@@ -9,31 +9,31 @@ export function keyboard(number, pose) {
     return pose.score >= 0.4;
   };
   let withinKy = function() {
-    return X >= 0 && X >= 100 && (Y >= 0 && Y <= 300) && accurate();
+    return X >= 320 && X <= 640 && (Y >= 90 && Y <= 385) && accurate();
   };
 
   // console.log(X, Y);
-  if (withinKy && Y <= 42) {
-    console.log("Note C");
-    synth.triggerAttackRelease("c3", "8n");
-  } else if (withinKy() && Y <= 84 && Y >= 43) {
-    console.log("Note D");
-    synth.triggerAttackRelease("d3", "8n");
-  } else if (withinKy() && Y <= 126 && Y >= 85) {
-    console.log("Note E");
-    synth.triggerAttackRelease("e3", "8n");
-  } else if (withinKy() && Y <= 168 && Y >= 127) {
-    console.log("Note F");
-    synth.triggerAttackRelease("f3", "8n");
-  } else if (withinKy() && Y <= 210 && Y >= 69) {
-    console.log("Note G");
-    synth.triggerAttackRelease("g3", "8n");
-  } else if (withinKy() && Y <= 252 && Y >= 211) {
-    console.log("Note A");
-    synth.triggerAttackRelease("a3", "8n");
-  } else if (withinKy() && Y <= 294 && Y >= 253) {
-    console.log("Note B");
-    synth.triggerAttackRelease("b3", "8n");
+  if (withinKy() && Y <= 132) {
+    console.log('Note C');
+    synth.triggerAttackRelease('c3', '8n');
+  } else if (withinKy() && Y <= 174 && Y >= 133) {
+    console.log('Note D');
+    synth.triggerAttackRelease('d3', '8n');
+  } else if (withinKy() && Y <= 216 && Y >= 175) {
+    console.log('Note E');
+    synth.triggerAttackRelease('e3', '8n');
+  } else if (withinKy() && Y <= 258 && Y >= 217) {
+    console.log('Note F');
+    synth.triggerAttackRelease('f3', '8n');
+  } else if (withinKy() && Y <= 300 && Y >= 259) {
+    console.log('Note G');
+    synth.triggerAttackRelease('g3', '8n');
+  } else if (withinKy() && Y <= 342 && Y >= 301) {
+    console.log('Note A');
+    synth.triggerAttackRelease('a3', '8n');
+  } else if (withinKy() && Y <= 384 && Y >= 343) {
+    console.log('Note B');
+    synth.triggerAttackRelease('b3', '8n');
   }
 }
 
