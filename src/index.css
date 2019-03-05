@@ -12,3 +12,91 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.keyboard_C {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  position: absolute;
+  width: 100px;
+  height: 42px;
+  opacity: 0.25;
+  background-color: #ff004c;
+  z-index: 3;
+}
+.keyboard_D {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  position: absolute;
+  top: 42px;
+  width: 100px;
+  height: 42px;
+  opacity: 0.25;
+  background-color: #ff7b00;
+  z-index: 3;
+}
+.keyboard_E {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  position: absolute;
+  top: 84px;
+  width: 100px;
+  height: 42px;
+  opacity: 0.25;
+  background-color: #eeff00;
+  z-index: 3;
+}
+.keyboard_F {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  position: absolute;
+  top: 126px;
+  width: 100px;
+  height: 42px;
+  opacity: 0.25;
+  background-color: #48ff00;
+  z-index: 3;
+}
+.keyboard_G {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  position: absolute;
+  top: 168px;
+  width: 100px;
+  height: 42px;
+  opacity: 0.25;
+  background-color: #00f7ff;
+  z-index: 3;
+}
+.keyboard_A {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  position: absolute;
+  top: 210px;
+  width: 100px;
+  height: 42px;
+  opacity: 0.25;
+  background-color: #002fff;
+  z-index: 3;
+}
+.keyboard_B {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  position: absolute;
+  top: 252px;
+  width: 100px;
+  height: 42px;
+  opacity: 0.25;
+  background-color: #8c00ff;
+  z-index: 3;
+}
+
+#keyboard_container {
+  position: absolute;
+}
