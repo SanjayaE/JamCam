@@ -28,24 +28,19 @@ class App extends Component {
     return (
       <div className="container">
         <h1>Jam Cam</h1>
-
         <div id="keyboard_container">
-          <div className="keyboard_C">C</div>
-          <div className="keyboard_D">D</div>
-          <div className="keyboard_E">E</div>
-          <div className="keyboard_F">F</div>
-          <div className="keyboard_G">G</div>
-          <div className="keyboard_A">A</div>
-          <div className="keyboard_B">B</div>
-
-          <video id="video" width="640" height="480" controls autoPlay />
-          <canvas id="overlay" />
+          <div id="keyboard">
+            <div className="keyboard_C">C</div>
+            <div className="keyboard_D">D</div>
+            <div className="keyboard_E">E</div>
+            <div className="keyboard_F">F</div>
+            <div className="keyboard_G">G</div>
+            <div className="keyboard_A">A</div>
+            <div className="keyboard_B">B</div>
+            <video id="video" width="640" height="480" controls autoPlay />
+            <canvas id="overlay" />
+          </div>
         </div>
-        {/* <div id="overlay_container">
-          <canvas id="overlay" height="300" width="300" />
-
-        <video className="video" playsInline ref={this.setRef} />
-        </div> */}
       </div>
     );
   }

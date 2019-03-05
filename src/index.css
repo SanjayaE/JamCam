@@ -17,6 +17,7 @@ code {
   text-align: center;
   font-weight: bold;
   font-size: 2rem;
+  top: 90px;
   position: absolute;
   width: 100px;
   height: 42px;
@@ -29,7 +30,7 @@ code {
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 42px;
+  top: 132px;
   width: 100px;
   height: 42px;
   opacity: 0.25;
@@ -41,7 +42,7 @@ code {
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 84px;
+  top: 174px;
   width: 100px;
   height: 42px;
   opacity: 0.25;
@@ -53,7 +54,7 @@ code {
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 126px;
+  top: 216px;
   width: 100px;
   height: 42px;
   opacity: 0.25;
@@ -65,7 +66,7 @@ code {
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 168px;
+  top: 258px;
   width: 100px;
   height: 42px;
   opacity: 0.25;
@@ -77,7 +78,7 @@ code {
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 210px;
+  top: 300px;
   width: 100px;
   height: 42px;
   opacity: 0.25;
@@ -89,7 +90,7 @@ code {
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 252px;
+  top: 342px;
   width: 100px;
   height: 42px;
   opacity: 0.25;
@@ -99,4 +100,5 @@ code {
 
 #keyboard_container {
   position: absolute;
+  align-items: center;
 }
