@@ -40,15 +40,10 @@ class App extends Component {
   // };
 
   recieveKeyBoardPress = key => {
-    console.log('passing them keys');
     if (key == 'none') {
     } else {
-      let keys = this.state.keys;
-      for (var notes in keys) {
-        if ((notes = key)) {
-          keys.notes = true;
-        }
-      }
+      let keys = { ...this.state.keys };
+      keys[key].active = true;
       this.setState({ keys });
     }
   };
@@ -59,7 +54,6 @@ class App extends Component {
     camera(); // camera module
     //NOTE: Start Capture and Provide Callback
     capture(this.receiveNewBodyPartLocation);
-    
   };
   // componentDidUpdate(prevProps, prevState, snapshot) {
   //   console.log('testhing this here ----->', this.state);
@@ -77,14 +71,21 @@ class App extends Component {
   // }
 
   receiveNewBodyPartLocation = bodyPartLocation => {
-    console.log('Updating Body Part Location');
-
-    this.setState({
-      bodyPartLocation,
-    }, ()=>{
-        keyboard(this.state.bodyPartLocation.leftWrist, this.recieveKeyBoardPress);
-        keyboard(this.state.bodyPartLocation.rightWrist, this.recieveKeyBoardPress);
-    });
+    this.setState(
+      {
+        bodyPartLocation
+      },
+      () => {
+        keyboard(
+          this.state.bodyPartLocation.leftWrist,
+          this.recieveKeyBoardPress
+        );
+        // keyboard(
+        //   this.state.bodyPartLocation.rightWrist,
+        //   this.recieveKeyBoardPress
+        // );
+      }
+    );
   };
 
   render() {

@@ -3,17 +3,19 @@
 
 /* *****play Synth notes based on key-point (partNum) position ***** */
 const keyboard = async (pose, cb) => {
-  let Y = pose.x;
-  let X = pose.y;
-  console.log('keyboard debug ', pose);
+  let Y = pose.y;
+  let X = pose.x;
+  // console.log('keyboard debug ', pose);
   // let accurate = function() {
   //   return pose.score >= 0.4;
   // };
+
+  //only trigger within region of keyboard
   let withinKy = function() {
-    return X >= 320 && X <= 640 && (Y >= 90 && Y <= 385);
+    return X >= 540 && X <= 640 && (Y >= 90 && Y <= 385);
   };
 
-  // console.log(X, Y);
+  console.log(X, Y);
   if (withinKy() && Y <= 132) {
     console.log('Note C');
     cb('C');
