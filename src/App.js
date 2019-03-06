@@ -56,16 +56,16 @@ class App extends Component {
   receiveNewBodyPartLocation = bodyPartLocation => {
     console.log('Updateing Body Part Location');
 
-    const note = determineNote(
-      bodyPartLocation.leftWrist,
-      bodyPartLocation.rightWrist
-    );
+    // const note = determineNote(
+    //   bodyPartLocation.leftWrist,
+    //   bodyPartLocation.rightWrist
+    // );
     this.setState({
-      bodyPartLocation,
-      note
+      bodyPartLocation
+      // note
     });
-    keyboard(note);
-    keyboard(bodyPartLocation.leftWrist, bodyPartLocation.rightWrist);
+    // keyboard(note);
+    // keyboard(bodyPartLocation.leftWrist, bodyPartLocation.rightWrist);
   };
   //           <Key className="keyboard_C" active={this.state.keys.C.active}>
   // C
