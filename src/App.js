@@ -32,14 +32,14 @@ class App extends Component {
     };
   }
 
-  setActive = note => {
-    const keys = { ...this.state.keys };
-    keys[note].active = true;
+  // setActive = note => {
+  //   const keys = { ...this.state.keys };
+  //   keys[note].active = true;
 
-    this.setState({ keys });
-  };
+  //   this.setState({ keys });
+  // };
 
-  recieveKeyBoardPress(key) {
+  recieveKeyBoardPress = key => {
     console.log('passing them keys');
     if (key == 'none') {
     } else {
@@ -51,7 +51,7 @@ class App extends Component {
       }
       this.setState({ keys });
     }
-  }
+  };
 
   componentDidMount = async () => {
     console.log('did mount');
@@ -59,19 +59,31 @@ class App extends Component {
     camera(); // camera module
     //NOTE: Start Capture and Provide Callback
     capture(this.receiveNewBodyPartLocation);
-    keyboard(this.state.bodyPartLocation.leftWrist, this.recieveKeyBoardPress);
-    keyboard(this.state.bodyPartLocation.rightWrist, this.recieveKeyBoardPress);
+    
   };
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    keyboard(this.state.bodyPartLocation.leftWrist, this.recieveKeyBoardPress);
-    keyboard(this.state.bodyPartLocation.rightWrist, this.recieveKeyBoardPress);
-  }
+  // componentDidUpdate(prevProps, prevState, snapshot) {
+  //   console.log('testhing this here ----->', this.state);
+  //   if (this.state !== prevState) {
+  //     keyboard(
+  //       this.state.bodyPartLocation.leftWrist,
+  //       this.recieveKeyBoardPress
+  //     );
+  //     keyboard(
+  //       this.state.bodyPartLocation.rightWrist,
+  //       this.recieveKeyBoardPress
+  //     );
+  //     console.log('its not the same!');
+  //   }
+  // }
 
   receiveNewBodyPartLocation = bodyPartLocation => {
     console.log('Updating Body Part Location');
 
     this.setState({
-      bodyPartLocation
+      bodyPartLocation,
+    }, ()=>{
+        keyboard(this.state.bodyPartLocation.leftWrist, this.recieveKeyBoardPress);
+        keyboard(this.state.bodyPartLocation.rightWrist, this.recieveKeyBoardPress);
     });
   };
 
