@@ -16,6 +16,7 @@ export function keyboard(number, pose) {
   if (withinKy() && Y <= 132) {
     console.log('Note C');
     synth.triggerAttackRelease('c3', '8n');
+    // TODO: Update Color of the C key on the DOM
   } else if (withinKy() && Y <= 174 && Y >= 133) {
     console.log('Note D');
     synth.triggerAttackRelease('d3', '8n');

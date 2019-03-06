@@ -102,3 +102,10 @@ code {
   position: absolute;
   align-items: center;
 }
+
+.bodypart-info {
+  background: purple;
+  color: white;
+  min-width: 500px;
+  min-height: 50px;
+}
