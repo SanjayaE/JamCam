@@ -3,7 +3,6 @@ import * as tensorflow from '@tensorflow/tfjs';
 import { drawKeypoints, drawSkeleton } from './helpers.js';
 import camera from './camera.js';
 import pose from './pose.js';
-import keyboard from './keyboard.js';
 
 const LEFT_WRIST_KEYPOINT = 9;
 const RIGHT_WRIST_KEYPOINT = 10;
@@ -33,7 +32,6 @@ const Capture = async cb => {
     // We want to update App.js with new body location
 
     pose.set(p);
-    // console.log(pose);
     ctx.drawImage(video, 0, 0, video.width, video.height);
 
     drawKeypoints(pose.get().keypoints, 0.5, ctx);

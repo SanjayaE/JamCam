@@ -2,47 +2,55 @@ import React, { Component } from 'react';
 import capture from './services/capture.js';
 import camera from './services/camera.js';
 import keyboard from './services/keyboard.js';
-
-// import * as posenet from '@tensorflow-models/posenet';
-// const context = new AudioContext();
-//const Tone = require("tone");
-// var synth = new Tone.AMSynth().toMaster();
+const Tone = require('tone');
+var synth = new Tone.AMSynth().toMaster();
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.video = {};
     this.state = {
-      noteC: 'inactive',
-      noteD: 'inactive',
-      noteE: 'inactive',
-      noteF: 'inactive',
-      noteA: 'inactive',
-      noteB: 'inactive',
-      bodyPartLocation: null
+      keys: {
+        C: { synth: 'c3', active: false },
+        D: { synth: 'd3', active: false },
+        E: { synth: 'e3', active: false },
+        F: { synth: 'f3', active: false },
+        G: { synth: 'g3', active: false },
+        A: { synth: 'a3', active: false },
+        B: { synth: 'b3', active: false }
+      },
+      bodyPartLocation: {
+        leftWrist: {
+          x: 0,
+          y: 0
+        },
+        rightWrist: {
+          x: 0,
+          y: 0
+        }
+      }
     };
-    // this.state = {
-    //   keys: {
-    //   //   C: {synth: 'c3', active: false },
-    //   //   D: {synth: 'd3', active: false },
-    //   //   { note: 'C', synth: 'c3', class: 'keyboard_C', active: false },
-    //   //   { note: 'C', synth: 'c3', class: 'keyboard_C', active: false },
-    //   //   { note: 'C', synth: 'c3', class: 'keyboard_C', active: false },
-    //   //   { note: 'C', synth: 'c3', class: 'keyboard_C', active: false },
-    //   //   { note: 'C', synth: 'c3', class: 'keyboard_C', active: false },
-    //   // ]
-    // };
-    // this.keyBoardPress = this.keyBoardPress.bind(this);
   }
 
   setActive = note => {
     const keys = { ...this.state.keys };
     keys[note].active = true;
+
     this.setState({ keys });
   };
 
-  keyBoardPress(note) {
-    console.log('okey doey');
+  recieveKeyBoardPress(key) {
+    console.log('passing them keys');
+    if (key == 'none') {
+    } else {
+      let keys = this.state.keys;
+      for (var notes in keys) {
+        if ((notes = key)) {
+          keys.notes = true;
+        }
+      }
+      this.setState({ keys });
+    }
   }
 
   componentDidMount = async () => {
@@ -51,25 +59,22 @@ class App extends Component {
     camera(); // camera module
     //NOTE: Start Capture and Provide Callback
     capture(this.receiveNewBodyPartLocation);
+    keyboard(this.state.bodyPartLocation.leftWrist, this.recieveKeyBoardPress);
+    keyboard(this.state.bodyPartLocation.rightWrist, this.recieveKeyBoardPress);
   };
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    keyboard(this.state.bodyPartLocation.leftWrist, this.recieveKeyBoardPress);
+    keyboard(this.state.bodyPartLocation.rightWrist, this.recieveKeyBoardPress);
+  }
 
   receiveNewBodyPartLocation = bodyPartLocation => {
-    console.log('Updateing Body Part Location');
+    console.log('Updating Body Part Location');
 
-    // const note = determineNote(
-    //   bodyPartLocation.leftWrist,
-    //   bodyPartLocation.rightWrist
-    // );
     this.setState({
       bodyPartLocation
-      // note
     });
-    // keyboard(note);
-    // keyboard(bodyPartLocation.leftWrist, bodyPartLocation.rightWrist);
   };
-  //           <Key className="keyboard_C" active={this.state.keys.C.active}>
-  // C
-  //           </Key>
+
   render() {
     return (
       <div className="container">
