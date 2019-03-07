@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import capture from './services/capture.js';
-import camera from './services/camera.js';
-import keyboard from './services/keyboard.js';
-import loopsSection from './services/loops.js';
-import { playOnce, startLoop } from './tone_manager.js';
+import React, { Component } from "react";
+import capture from "./services/capture.js";
+import camera from "./services/camera.js";
+import keyboard from "./services/keyboard.js";
+import loopsSection from "./services/loops.js";
+import { playOnce, startLoop } from "./tone_manager.js";
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class App extends Component {
         clap: { active: false },
         hat: { active: false },
         perc: { active: false },
-        vocal: { active: false },
+        vocal: { active: false }
       },
       bodyPartLocation: {
         leftWrist: {
@@ -46,7 +46,7 @@ class App extends Component {
 
   //REWORK THIS
   receiveKeyBoardPress = key => {
-    if (key === 'none') {
+    if (key === "none") {
     } else {
       let keys = { ...this.state.keys };
       playOnce(key);
@@ -56,17 +56,17 @@ class App extends Component {
   };
 
   receiveLoopPress = loop => {
-    if (loop === 'none') {
+    if (loop === "none") {
     } else {
       let loops = { ...this.state.loops };
       startLoop(loop);
       loops[loop].active = true;
       this.setState({ loops });
     }
-  }
+  };
 
   componentDidMount = async () => {
-    console.log('did mount');
+    console.log("did mount");
     //Start Camera
     camera();
     //Start Capture and Provide Callback
@@ -102,7 +102,6 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <h1>Jam Cam</h1>
         <div className="bodypart-info">
           <p>Current Body Part Location</p>
           {this.state.bodyPartLocation ? (
@@ -113,8 +112,8 @@ class App extends Component {
               <p>Right Wrist - Y {this.state.bodyPartLocation.rightWrist.y}</p>
             </div>
           ) : (
-              <p>This is no body data at the moment, go dance</p>
-            )}
+            <p>This is no body data at the moment, go dance</p>
+          )}
         </div>
         <div id="keyboard_container">
           <div id="keyboard">
