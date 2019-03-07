@@ -43,6 +43,7 @@ class App extends Component {
   //   this.setState({ keys });
   // };
 
+  //REWORK THIS
   receiveKeyBoardPress = key => {
     if (key === 'none') {
     } else {
@@ -93,23 +94,23 @@ class App extends Component {
               <p>Right Wrist - Y {this.state.bodyPartLocation.rightWrist.y}</p>
             </div>
           ) : (
-            <p>This is no body data at the moment, go dance</p>
-          )}
+              <p>This is no body data at the moment, go dance</p>
+            )}
         </div>
         <div id="keyboard_container">
           <div id="keyboard">
-            <div className="keyboard_1">1</div>
-            <div className="keyboard_2">2</div>
-            <div className="keyboard_3">3</div>
-            <div className="keyboard_4">4</div>
+            <div className="chord1">1</div>
+            <div className="chord2">2</div>
+            <div className="chord3">3</div>
+            <div className="chord4">4</div>
 
             <div id="loops_container">
-              <div className="loop_1">1</div>
-              <div className="loop_2">2</div>
-              <div className="loop_3">3</div>
-              <div className="loop_4">4</div>
-              <div className="loop_5">5</div>
-              <div className="loop_6">6</div>
+              <div className="loop1">1</div>
+              <div className="loop2">2</div>
+              <div className="loop3">3</div>
+              <div className="loop4">4</div>
+              <div className="loop5">5</div>
+              <div className="loop6">6</div>
             </div>
             <video id="video" width="640" height="480" controls autoPlay />
             <canvas id="overlay" />

@@ -23,7 +23,6 @@ var synth = new Tone.Synth().toMaster().oscillator.type = 'sine';
 loops.get('bass').volume.value = -8;
 loops.get('hat').volume.value = -4;
 
-
 //starts the beat counter
 function go() {
     Tone.Transport.scheduleRepeat(function (time) {
@@ -43,6 +42,7 @@ function startLoop(name) {
         loops.get(name).start(Tone.Transport.nextSubdivision("1n"))
     }
 }
+
 //plays sound once on beat
 export function playOnce(name) {
 
