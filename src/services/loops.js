@@ -1,11 +1,11 @@
-/* *****play Synth notes based on key-point (partNum) position ***** */
+// play loops based on key-point (partNum) position
 const loopsSection = async (pose, cb) => {
 
   console.log("callback is : ", cb)
   let Y = pose.y;
   let X = pose.x;
 
-  //only trigger within region of keyboard
+  //only trigger within region of loops section
   let within = function () {
     return X >= 1 && X <= 100 && (Y >= 40 && Y <= 442);
   };

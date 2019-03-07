@@ -93,7 +93,7 @@ class App extends Component {
         );
         loopsSection(
           this.state.bodyPartLocation.rightWrist,
-          this.receieveLoopPress
+          this.receiveLoopPress
         );
       }
     );
