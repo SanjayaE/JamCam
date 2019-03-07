@@ -8,7 +8,6 @@ import { playOnce, startLoop } from './tone_manager.js';
 class App extends Component {
   constructor(props) {
     super(props);
-    // this.video = {};
     this.state = {
       keys: {
         chord1: { active: false },
@@ -33,35 +32,30 @@ class App extends Component {
           x: 0,
           y: 0
         }
-      }
+      },
+      view: "default",
+      previousChordKey: "none",
+      previousLoopKey: "none"
     };
   }
 
-  // setActive = note => {
-  //   const keys = { ...this.state.keys };
-  //   keys[note].active = true;
-
-  //   this.setState({ keys });
-  // };
-
   //REWORK THIS
   receiveKeyBoardPress = key => {
-    if (key === 'none') {
-    } else {
+    if (key !== 'none' && this.state.previousChordKey !== key) {
       let keys = { ...this.state.keys };
       playOnce(key);
       keys[key].active = true;
-      this.setState({ keys });
+      this.setState({ previousChordKey: key, keys });
     }
   };
 
   receiveLoopPress = loop => {
-    if (loop === 'none') {
+    if (loop !== 'none' && this.state.previousLoopKey !== loop) {
     } else {
       let loops = { ...this.state.loops };
       startLoop(loop);
       loops[loop].active = true;
-      this.setState({ loops });
+      this.setState({ previousLoopKey: loop, loops });
     }
   }
 
@@ -98,10 +92,15 @@ class App extends Component {
       }
     );
   };
-
+  //onclick "this.setState.view = "mode2""
   render() {
     return (
       <div className="container">
+        {this.state.view === "default2" && (<div id="test">hello world
+
+        </div>)}
+
+        {this.state.view === "default" && (<h1>werwersdfds</h1>)}
         <h1>Jam Cam</h1>
         <div className="bodypart-info">
           <p>Current Body Part Location</p>
@@ -135,6 +134,7 @@ class App extends Component {
             <canvas id="overlay" />
           </div>
         </div>
+
       </div>
     );
   }

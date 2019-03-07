@@ -1,4 +1,4 @@
-//play Synth notes based on key-point (partNum) position
+// play Synth notes based on key-point (partNum) position
 
 const keyboard = async (pose, cb) => {
   let Y = pose.y;

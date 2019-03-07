@@ -1,7 +1,5 @@
 // play loops based on key-point (partNum) position
 const loopsSection = async (pose, cb) => {
-
-  console.log("callback is : ", cb)
   let Y = pose.y;
   let X = pose.x;
 

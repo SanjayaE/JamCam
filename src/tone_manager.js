@@ -13,7 +13,7 @@ var loops = new Tone.Players({
     clap: "./camjam_samples/drum_loop_claps120.wav",
     hat: "./camjam_samples/newhatloop_120.wav",
     perc: "./camjam_samples/percloop_grainy120.wav",
-    vocal: "./camjam_samples/vocals_let_me_see_you_move120.wav"
+    vocal: "./camjam_samples/vocals_let_me_see_you_move120.wav",
 }, go).toMaster();
 
 //custom synth sound
