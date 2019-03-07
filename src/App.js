@@ -73,6 +73,10 @@ class App extends Component {
     capture(this.receiveNewBodyPartLocation);
   };
 
+  componentWillUnmount = () => {
+    //find a way to stop capturing and tone.js
+  };
+
   receiveNewBodyPartLocation = bodyPartLocation => {
     this.setState(
       {
