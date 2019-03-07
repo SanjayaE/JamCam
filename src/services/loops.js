@@ -5,7 +5,12 @@ const loopsSection = async (pose, cb) => {
 
   //only trigger within region of loops section
   let within = function () {
-    return X >= 1 && X <= 100 && (Y >= 40 && Y <= 442);
+    if (X >= 1 && X <= 100 && (Y >= 40 && Y <= 442)) {
+      return true
+    }
+    else {
+      cb('moved-out')
+    }
   };
 
   if (within() && Y <= 108) {

@@ -50,11 +50,14 @@ class App extends Component {
   };
 
   receiveLoopPress = loop => {
-    if (loop !== 'none' && this.state.previousLoopKey !== loop) {
+    if (loop !== 'none' && loop !== 'moved-out' && this.state.previousLoopKey !== loop) {
       let loops = { ...this.state.loops };
       startLoop(loop);
       loops[loop].active = true;
       this.setState({ previousLoopKey: loop, loops });
+    }
+    else if (loop === 'moved-out') {
+      this.setState({ previousLoopKey: "none" })
     }
   }
 
