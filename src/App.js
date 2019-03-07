@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import capture from './services/capture.js';
 import camera from './services/camera.js';
 import keyboard from './services/keyboard.js';
+import loops from './services/loops.js';
 import { playOnce } from './tone_manager.js';
 
 class App extends Component {
@@ -64,6 +65,11 @@ class App extends Component {
           this.receiveKeyBoardPress
         );
         keyboard(
+          this.state.bodyPartLocation.rightWrist,
+          this.receiveKeyBoardPress
+        );
+        loops(this.state.bodyPartLocation.leftWrist, this.receiveKeyBoardPress);
+        loops(
           this.state.bodyPartLocation.rightWrist,
           this.receiveKeyBoardPress
         );
