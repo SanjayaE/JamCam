@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import capture from './services/capture.js';
-import camera from './services/camera.js';
-import keyboard from './services/keyboard.js';
-const Tone = require('tone');
+import React, { Component } from "react";
+import capture from "./services/capture.js";
+import camera from "./services/camera.js";
+import keyboard from "./services/keyboard.js";
+const Tone = require("tone");
 var synth = new Tone.AMSynth().toMaster();
 
 class App extends Component {
@@ -11,13 +11,13 @@ class App extends Component {
     this.video = {};
     this.state = {
       keys: {
-        C: { synth: 'c3', active: false },
-        D: { synth: 'd3', active: false },
-        E: { synth: 'e3', active: false },
-        F: { synth: 'f3', active: false },
-        G: { synth: 'g3', active: false },
-        A: { synth: 'a3', active: false },
-        B: { synth: 'b3', active: false }
+        C: { synth: "c3", active: false },
+        D: { synth: "d3", active: false },
+        E: { synth: "e3", active: false },
+        F: { synth: "f3", active: false },
+        G: { synth: "g3", active: false },
+        A: { synth: "a3", active: false },
+        B: { synth: "b3", active: false }
       },
       bodyPartLocation: {
         leftWrist: {
@@ -28,7 +28,8 @@ class App extends Component {
           x: 0,
           y: 0
         }
-      }
+      },
+      mode: "landing"
     };
   }
 
@@ -40,8 +41,8 @@ class App extends Component {
   // };
 
   recieveKeyBoardPress = key => {
-    console.log('passing them keys');
-    if (key == 'none') {
+    console.log("passing them keys");
+    if (key == "none") {
     } else {
       let keys = this.state.keys;
       for (var notes in keys) {
@@ -54,12 +55,11 @@ class App extends Component {
   };
 
   componentDidMount = async () => {
-    console.log('did mount');
+    console.log("did mount");
     // NOTE: Start Camera
     camera(); // camera module
     //NOTE: Start Capture and Provide Callback
     capture(this.receiveNewBodyPartLocation);
-    
   };
   // componentDidUpdate(prevProps, prevState, snapshot) {
   //   console.log('testhing this here ----->', this.state);
@@ -77,14 +77,23 @@ class App extends Component {
   // }
 
   receiveNewBodyPartLocation = bodyPartLocation => {
-    console.log('Updating Body Part Location');
+    console.log("Updating Body Part Location");
 
-    this.setState({
-      bodyPartLocation,
-    }, ()=>{
-        keyboard(this.state.bodyPartLocation.leftWrist, this.recieveKeyBoardPress);
-        keyboard(this.state.bodyPartLocation.rightWrist, this.recieveKeyBoardPress);
-    });
+    this.setState(
+      {
+        bodyPartLocation
+      },
+      () => {
+        keyboard(
+          this.state.bodyPartLocation.leftWrist,
+          this.recieveKeyBoardPress
+        );
+        keyboard(
+          this.state.bodyPartLocation.rightWrist,
+          this.recieveKeyBoardPress
+        );
+      }
+    );
   };
 
   render() {

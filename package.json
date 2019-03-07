@@ -8,11 +8,12 @@
     "min": "^0.2.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5",
     "tone": "^13.4.9"
   },
   "scripts": {
-    "start": "PORT=3000 react-scripts start",
+    "start": "PORT=3006 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
