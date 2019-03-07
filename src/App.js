@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import capture from './services/capture.js';
-import camera from './services/camera.js';
-import keyboard from './services/keyboard.js';
-import loopsSection from './services/loops.js';
-import { playOnce, startLoop } from './tone_manager.js';
+import React, { Component } from "react";
+import capture from "./services/capture.js";
+import camera from "./services/camera.js";
+import keyboard from "./services/keyboard.js";
+import loopsSection from "./services/loops.js";
+import { playOnce, startLoop } from "./tone_manager.js";
 
 class App extends Component {
   constructor(props) {
@@ -92,11 +92,18 @@ class App extends Component {
   };
 
   componentDidMount = async () => {
-    console.log('did mount');
+    console.log("did mount");
     //Start Camera
     camera();
     //Start Capture and Provide Callback
     capture(this.receiveNewBodyPartLocation);
+  };
+
+  componentWillUnmount = () => {
+    //find a way to stop capturing and tone.js
+    console.log("unmount");
+    //this will reload the homepage and stop process , not a great way to stop, temp fix.
+    window.location.reload();
   };
 
   receiveNewBodyPartLocation = bodyPartLocation => {
