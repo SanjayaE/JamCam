@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import capture from './services/capture.js';
 import camera from './services/camera.js';
 import keyboard from './services/keyboard.js';
-import { playOnce } from './tone_manager.js'
+import { playOnce } from './tone_manager.js';
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class App extends Component {
         chord1: { active: false },
         chord2: { active: false },
         chord3: { active: false },
-        chord4: { active: false },
+        chord4: { active: false }
       },
       loops: {
         loop1: { active: false },
@@ -47,7 +47,7 @@ class App extends Component {
     if (key === 'none') {
     } else {
       let keys = { ...this.state.keys };
-      playOnce(key)
+      playOnce(key);
       keys[key].active = true;
       this.setState({ keys });
     }
@@ -79,7 +79,6 @@ class App extends Component {
     );
   };
 
-
   render() {
     return (
       <div className="container">
@@ -94,17 +93,24 @@ class App extends Component {
               <p>Right Wrist - Y {this.state.bodyPartLocation.rightWrist.y}</p>
             </div>
           ) : (
-              <p>This is no body data at the moment, go dance</p>
-            )}
+            <p>This is no body data at the moment, go dance</p>
+          )}
         </div>
         <div id="keyboard_container">
           <div id="keyboard">
-            <div className="keyboard_D">D</div>
-            <div className="keyboard_E">E</div>
-            <div className="keyboard_F">F</div>
-            <div className="keyboard_G">G</div>
-            <div className="keyboard_A">A</div>
-            <div className="keyboard_B">B</div>
+            <div className="keyboard_1">1</div>
+            <div className="keyboard_2">2</div>
+            <div className="keyboard_3">3</div>
+            <div className="keyboard_4">4</div>
+
+            <div id="loops_container">
+              <div className="loop_1">1</div>
+              <div className="loop_2">2</div>
+              <div className="loop_3">3</div>
+              <div className="loop_4">4</div>
+              <div className="loop_5">5</div>
+              <div className="loop_6">6</div>
+            </div>
             <video id="video" width="640" height="480" controls autoPlay />
             <canvas id="overlay" />
           </div>

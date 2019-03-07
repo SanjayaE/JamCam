@@ -6,19 +6,20 @@ const keyboard = async (pose, cb) => {
 
   //only trigger within region of keyboard
   let withinKB = function () {
-    return X >= 540 && X <= 640 && (Y >= 90 && Y <= 385);
+    return X >= 540 && X <= 640 && (Y >= 40 && Y <= 440);
   };
 
-  if (withinKB() && Y <= 132) {
+  if (withinKB() && Y <= 140) {
     console.log('chord1');
     cb('chord1');
-  } else if (withinKB() && Y <= 174 && Y >= 133) {
+    // TODO: Update Color of the C key on the DOM
+  } else if (withinKB() && Y <= 240 && Y >= 141) {
     console.log('chord2');
     cb('chord2');
-  } else if (withinKB() && Y <= 216 && Y >= 175) {
+  } else if (withinKB() && Y <= 340 && Y >= 241) {
     console.log('chord3');
     cb('chord3');
-  } else if (withinKB() && Y <= 258 && Y >= 217) {
+  } else if (withinKB() && Y <= 440 && Y >= 341) {
     console.log('chord4');
     cb('chord4');
   } else {
