@@ -62,6 +62,13 @@ class App extends Component {
     }
   };
 
+  loopCheck = (loop, state) => {
+    let loops = { ...this.state.loops };
+    loops[loop].active = state;
+    this.setState({ loops });
+    console.log(this.state.loops);
+  };
+
   receiveLoopPress = loop => {
     if (
       loop !== 'none' &&
@@ -69,16 +76,15 @@ class App extends Component {
       this.state.previousLoopKey !== loop
     ) {
       let loops = { ...this.state.loops };
-      startLoop(loop);
-      loops[loop].active = true;
+      startLoop(loop, this.loopCheck);
       this.setState({ previousLoopKey: loop, loops });
     } else if (loop === 'movedOut') {
       this.setState({ previousLoopKey: 'none' });
     }
   };
 
-  defineClass = input => {
-    if (this.state.keys[input].active) {
+  defineClass = (type, input) => {
+    if (this.state[type][input].active) {
       return input + ' active';
     } else {
       return input + ' inactive';
@@ -141,18 +147,18 @@ class App extends Component {
         </div>
         <div id="keyboard_container">
           <div id="keyboard">
-            <div className={this.defineClass('chord1')}>1</div>
-            <div className={this.defineClass('chord2')}>2</div>
-            <div className={this.defineClass('chord3')}>3</div>
-            <div className={this.defineClass('chord4')}>4</div>
+            <div className={this.defineClass('keys', 'chord1')}>1</div>
+            <div className={this.defineClass('keys', 'chord2')}>2</div>
+            <div className={this.defineClass('keys', 'chord3')}>3</div>
+            <div className={this.defineClass('keys', 'chord4')}>4</div>
 
             <div id="loops_container">
-              <div className="kick">1</div>
-              <div className="bass">2</div>
-              <div className="clap">3</div>
-              <div className="hat">4</div>
-              <div className="perc">5</div>
-              <div className="vocal">6</div>
+              <div className={this.defineClass('loops', 'kick')}>Kick</div>
+              <div className={this.defineClass('loops', 'bass')}>Bass</div>
+              <div className={this.defineClass('loops', 'clap')}>Clap</div>
+              <div className={this.defineClass('loops', 'hat')}>Hat</div>
+              <div className={this.defineClass('loops', 'perc')}>Perc</div>
+              <div className={this.defineClass('loops', 'vocal')}>Vocal</div>
             </div>
             <video id="video" width="640" height="480" controls autoPlay />
             <canvas id="overlay" />
