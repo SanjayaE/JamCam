@@ -41,11 +41,14 @@ class App extends Component {
 
   //REWORK THIS
   receiveKeyBoardPress = key => {
-    if (key !== 'none' && this.state.previousChordKey !== key) {
+    if (key !== 'none' && key !== 'moved-out' && this.state.previousChordKey !== key) {
       let keys = { ...this.state.keys };
       playOnce(key);
       keys[key].active = true;
       this.setState({ previousChordKey: key, keys });
+    }
+    else if (key === 'moved-out') {
+      this.setState({ previousChordKey: 'none' })
     }
   };
 
@@ -57,7 +60,7 @@ class App extends Component {
       this.setState({ previousLoopKey: loop, loops });
     }
     else if (loop === 'moved-out') {
-      this.setState({ previousLoopKey: "none" })
+      this.setState({ previousLoopKey: 'none' })
     }
   }
 
