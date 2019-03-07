@@ -18,6 +18,7 @@ const Capture = async cb => {
   const flipHorizontal = false;
   const net = await posenet.load();
 
+  //start tracking after video has loaded
   while (video.height > 0 && video.width > 0) {
     const p = await net.estimateSinglePose(
       video,

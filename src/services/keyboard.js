@@ -12,7 +12,6 @@ const keyboard = async (pose, cb) => {
   if (withinKB() && Y <= 132) {
     console.log('chord1');
     cb('chord1');
-    // TODO: Update Color of the C key on the DOM
   } else if (withinKB() && Y <= 174 && Y >= 133) {
     console.log('chord2');
     cb('chord2');
