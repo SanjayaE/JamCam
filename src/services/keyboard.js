@@ -5,11 +5,17 @@ const keyboard = async (pose, cb) => {
   let X = pose.x;
 
   //only trigger within region of keyboard
-  let withinKB = function () {
+  let withinKB = function() {
     if (X >= 540 && X <= 640 && (Y >= 40 && Y <= 440)) {
+<<<<<<< HEAD
       return true
     } else {
       cb('moved-out')
+=======
+      return true;
+    } else {
+      cb('movedOut');
+>>>>>>> fa135855676f059541d2ed0521bf329b606b8c15
     }
   };
 
@@ -27,6 +33,7 @@ const keyboard = async (pose, cb) => {
     console.log('chord4');
     cb('chord4');
   } else {
+    // console.log('none');
     cb('none');
   }
 };
