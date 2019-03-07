@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import capture from './services/capture.js';
 import camera from './services/camera.js';
 import keyboard from './services/keyboard.js';
-import { playOnce } from './tone_manager.js';
+import loops from './services/loops.js';
+import { playOnce, startLoop } from './tone_manager.js';
 
 class App extends Component {
   constructor(props) {
@@ -54,6 +55,16 @@ class App extends Component {
     }
   };
 
+  receieveLoopPress = loop => {
+    if (loop === 'none') {
+    } else {
+      let loops = { ...this.state.loops };
+      startLoop(loop);
+      loops[loop].active = true;
+      this.setState({ loops });
+    }
+  }
+
   componentDidMount = async () => {
     console.log('did mount');
     //Start Camera
@@ -75,6 +86,14 @@ class App extends Component {
         keyboard(
           this.state.bodyPartLocation.rightWrist,
           this.receiveKeyBoardPress
+        );
+        loops(
+          this.state.bodyPartLocation.leftWrist,
+          this.receiveLoopPress
+        );
+        loops(
+          this.state.bodyPartLocation.rightWrist,
+          this.receieveLoopPress
         );
       }
     );

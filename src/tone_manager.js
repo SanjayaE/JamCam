@@ -31,7 +31,7 @@ function go() {
     Tone.Transport.start();
 }
 //loops wav files together on beat
-function startLoop(name) {
+export function startLoop(name) {
 
     if (loops.get(name).state === "started") {
         console.log('stop', name)
