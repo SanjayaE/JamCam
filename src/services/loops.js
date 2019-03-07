@@ -1,5 +1,7 @@
 /* *****play Synth notes based on key-point (partNum) position ***** */
-const loops = async (pose, cb) => {
+const loopsSection = async (pose, cb) => {
+
+  console.log("callback is : ", cb)
   let Y = pose.y;
   let X = pose.x;
 
@@ -9,26 +11,26 @@ const loops = async (pose, cb) => {
   };
 
   if (within() && Y <= 108) {
-    console.log('loop1');
-    cb('loop1');
+    console.log('kick');
+    cb('kick');
   } else if (within() && Y <= 175 && Y >= 109) {
-    console.log('loop2');
-    cb('loop2');
+    console.log('bass');
+    cb('bass');
   } else if (within() && Y <= 242 && Y >= 176) {
-    console.log('loop3');
-    cb('loop3');
+    console.log('clap');
+    cb('clap');
   } else if (within() && Y <= 309 && Y >= 243) {
-    console.log('loop4');
-    cb('loop4');
+    console.log('hat');
+    cb('hat');
   } else if (within() && Y <= 376 && Y >= 310) {
-    console.log('loop5');
-    cb('loop5');
+    console.log('perc');
+    cb('perc');
   } else if (within() && Y <= 442 && Y >= 377) {
-    console.log('loop6');
-    cb('loop6');
+    console.log('vocal');
+    cb('vocal');
   } else {
     cb('none');
   }
 };
 
-export default loops;
+export default loopsSection;

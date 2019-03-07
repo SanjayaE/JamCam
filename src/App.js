@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import capture from './services/capture.js';
 import camera from './services/camera.js';
 import keyboard from './services/keyboard.js';
-import loops from './services/loops.js';
+import loopsSection from './services/loops.js';
 import { playOnce, startLoop } from './tone_manager.js';
 
 class App extends Component {
@@ -17,12 +17,12 @@ class App extends Component {
         chord4: { active: false }
       },
       loops: {
-        loop1: { active: false },
-        loop2: { active: false },
-        loop3: { active: false },
-        loop4: { active: false },
-        loop5: { active: false },
-        loop6: { active: false },
+        kick: { active: false },
+        bass: { active: false },
+        clap: { active: false },
+        hat: { active: false },
+        perc: { active: false },
+        vocal: { active: false },
       },
       bodyPartLocation: {
         leftWrist: {
@@ -55,7 +55,7 @@ class App extends Component {
     }
   };
 
-  receieveLoopPress = loop => {
+  receiveLoopPress = loop => {
     if (loop === 'none') {
     } else {
       let loops = { ...this.state.loops };
@@ -87,11 +87,11 @@ class App extends Component {
           this.state.bodyPartLocation.rightWrist,
           this.receiveKeyBoardPress
         );
-        loops(
+        loopsSection(
           this.state.bodyPartLocation.leftWrist,
           this.receiveLoopPress
         );
-        loops(
+        loopsSection(
           this.state.bodyPartLocation.rightWrist,
           this.receieveLoopPress
         );
@@ -124,12 +124,12 @@ class App extends Component {
             <div className="chord4">4</div>
 
             <div id="loops_container">
-              <div className="loop1">1</div>
-              <div className="loop2">2</div>
-              <div className="loop3">3</div>
-              <div className="loop4">4</div>
-              <div className="loop5">5</div>
-              <div className="loop6">6</div>
+              <div className="kick">1</div>
+              <div className="bass">2</div>
+              <div className="clap">3</div>
+              <div className="hat">4</div>
+              <div className="perc">5</div>
+              <div className="vocal">6</div>
             </div>
             <video id="video" width="640" height="480" controls autoPlay />
             <canvas id="overlay" />
