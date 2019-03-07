@@ -7,13 +7,21 @@ import { playOnce } from './tone_manager.js'
 class App extends Component {
   constructor(props) {
     super(props);
-    this.video = {};
+    // this.video = {};
     this.state = {
       keys: {
         chord1: { active: false },
         chord2: { active: false },
         chord3: { active: false },
         chord4: { active: false },
+      },
+      loops: {
+        loop1: { active: false },
+        loop2: { active: false },
+        loop3: { active: false },
+        loop4: { active: false },
+        loop5: { active: false },
+        loop6: { active: false },
       },
       bodyPartLocation: {
         leftWrist: {

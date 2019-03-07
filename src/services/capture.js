@@ -6,7 +6,7 @@ import pose from './pose.js';
 const LEFT_WRIST_KEYPOINT = 9;
 const RIGHT_WRIST_KEYPOINT = 10;
 
-/* ***** send video to posenet and estimate poses ***** */
+//send video to posenet and estimate poses
 const Capture = async cb => {
   const canvas = document.getElementById('overlay');
   const video = document.getElementById('video');
@@ -26,16 +26,14 @@ const Capture = async cb => {
       outputStride
     );
 
-    // update the video
-    // update App.js with new body location
-
+    //continuously set poses through video and pass points into drawImage function
     pose.set(p);
     ctx.drawImage(video, 0, 0, video.width, video.height);
 
     drawKeypoints(pose.get().keypoints, 0.5, ctx);
     drawSkeleton(pose.get().keypoints, 0.5, ctx);
 
-    //play Synth notes based on key-point (partNum) position
+    //only track right/left wrist points if confidence is above 40%
     if (p.score >= 0.4) {
       const bodyPartLocation = {
         leftWrist: {

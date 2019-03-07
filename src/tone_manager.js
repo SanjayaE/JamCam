@@ -50,6 +50,7 @@ export function playOnce(name) {
     chords.get(name).start(Tone.Transport.nextSubdivision("1n"))
 }
 
+//start audio conext incase it stops to prevent chrome from stopping sounds
 function audioContext() {
     if (Tone.context.state !== 'running') Tone.context.resume();
 }
