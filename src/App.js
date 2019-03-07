@@ -22,7 +22,7 @@ class App extends Component {
         clap: { active: false },
         hat: { active: false },
         perc: { active: false },
-        vocal: { active: false },
+        vocal: { active: false }
       },
       bodyPartLocation: {
         leftWrist: {
@@ -63,7 +63,15 @@ class App extends Component {
       loops[loop].active = true;
       this.setState({ loops });
     }
-  }
+  };
+
+  defineClass = input => {
+    if (this.state.keys[input].active) {
+      return input + ' active';
+    } else {
+      return input + ' inactive';
+    }
+  };
 
   componentDidMount = async () => {
     console.log('did mount');
@@ -113,15 +121,15 @@ class App extends Component {
               <p>Right Wrist - Y {this.state.bodyPartLocation.rightWrist.y}</p>
             </div>
           ) : (
-              <p>This is no body data at the moment, go dance</p>
-            )}
+            <p>This is no body data at the moment, go dance</p>
+          )}
         </div>
         <div id="keyboard_container">
           <div id="keyboard">
-            <div className="chord1">1</div>
-            <div className="chord2">2</div>
-            <div className="chord3">3</div>
-            <div className="chord4">4</div>
+            <div className={this.defineClass('chord1')}>1</div>
+            <div className={this.defineClass('chord2')}>2</div>
+            <div className={this.defineClass('chord3')}>3</div>
+            <div className={this.defineClass('chord4')}>4</div>
 
             <div id="loops_container">
               <div className="kick">1</div>
