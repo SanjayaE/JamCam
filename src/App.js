@@ -75,6 +75,9 @@ class App extends Component {
 
   componentWillUnmount = () => {
     //find a way to stop capturing and tone.js
+    console.log("unmount");
+    //this will reload the homepage and stop process , not a great way to stop, temp fix.
+    window.location.reload();
   };
 
   receiveNewBodyPartLocation = bodyPartLocation => {
