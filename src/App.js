@@ -14,7 +14,8 @@ class App extends Component {
         chord2: { active: false },
         chord3: { active: false },
         chord4: { active: false },
-        none: { active: true }
+        none: { active: true },
+        movedOut: { active: false }
       },
       loops: {
         kick: { active: false },
@@ -22,7 +23,8 @@ class App extends Component {
         clap: { active: false },
         hat: { active: false },
         perc: { active: false },
-        vocal: { active: false }
+        vocal: { active: false },
+        none: { active: true }
       },
       bodyPartLocation: {
         leftWrist: {
@@ -48,18 +50,30 @@ class App extends Component {
     keys.chord3.active = false;
     keys.chord4.active = false;
     keys[key].active = true;
-    if (key !== 'none' && this.state.previousChordKey !== key) {
+    if (
+      key !== 'none' &&
+      key !== 'movedOut' &&
+      this.state.previousChordKey !== key
+    ) {
       playOnce(key);
       this.setState({ previousChordKey: key, keys });
+    } else if (key === 'movedOut') {
+      this.setState({ previousChordKey: 'none' });
     }
   };
 
   receiveLoopPress = loop => {
-    if (loop !== 'none' && this.state.previousLoopKey !== loop) {
+    if (
+      loop !== 'none' &&
+      loop !== 'movedOut' &&
+      this.state.previousLoopKey !== loop
+    ) {
       let loops = { ...this.state.loops };
       startLoop(loop);
       loops[loop].active = true;
       this.setState({ previousLoopKey: loop, loops });
+    } else if (loop === 'movedOut') {
+      this.setState({ previousLoopKey: 'none' });
     }
   };
 

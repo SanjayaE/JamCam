@@ -6,7 +6,11 @@ const keyboard = async (pose, cb) => {
 
   //only trigger within region of keyboard
   let withinKB = function() {
-    return X >= 540 && X <= 640 && (Y >= 40 && Y <= 440);
+    if (X >= 540 && X <= 640 && (Y >= 40 && Y <= 440)) {
+      return true;
+    } else {
+      cb('movedOut');
+    }
   };
 
   if (withinKB() && Y <= 140) {
