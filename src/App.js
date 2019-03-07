@@ -14,7 +14,8 @@ class App extends Component {
         chord1: { active: false },
         chord2: { active: false },
         chord3: { active: false },
-        chord4: { active: false }
+        chord4: { active: false },
+        none: { active: true }
       },
       loops: {
         kick: { active: false },
@@ -46,13 +47,18 @@ class App extends Component {
 
   //REWORK THIS
   receiveKeyBoardPress = key => {
-    if (key === 'none') {
-    } else {
-      let keys = { ...this.state.keys };
+    let keys = { ...this.state.keys };
+
+    keys.chord1.active = false;
+    keys.chord2.active = false;
+    keys.chord3.active = false;
+    keys.chord4.active = false;
+
+    if (key !== 'none') {
       playOnce(key);
-      keys[key].active = true;
-      this.setState({ keys });
     }
+    keys[key].active = true;
+    this.setState({ keys });
   };
 
   receiveLoopPress = loop => {
@@ -101,7 +107,7 @@ class App extends Component {
         );
         loopsSection(
           this.state.bodyPartLocation.rightWrist,
-          this.receieveLoopPress
+          this.receiveLoopPress
         );
       }
     );
