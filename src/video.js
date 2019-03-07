@@ -101,10 +101,10 @@ class Video extends Component {
   render() {
     return (
       <div className="container">
-        <h1>Jam Cam</h1>
-        <div>
+        {/* <h1>Jam Cam</h1> */}
+        {/* <div>
           <Nav />
-        </div>
+        </div> */}
         <div className="bodypart-info">
           <p>Current Body Part Location</p>
           {this.state.bodyPartLocation ? (
