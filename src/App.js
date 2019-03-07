@@ -3,7 +3,7 @@ import capture from "./services/capture.js";
 import camera from "./services/camera.js";
 import keyboard from "./services/keyboard.js";
 import loopsSection from "./services/loops.js";
-import { playOnce, startLoop } from "./tone_manager.js";
+import { playOnce, startLoop, stopAudio } from "./tone_manager.js";
 
 class App extends Component {
   constructor(props) {
@@ -42,7 +42,7 @@ class App extends Component {
     };
   }
 
-  //REWORK THIS
+  //Callback provided to Keyboard. Controls chord active states & calls playOnce function
   receiveKeyBoardPress = key => {
     let keys = { ...this.state.keys };
     keys.chord1.active = false;
@@ -62,13 +62,7 @@ class App extends Component {
     }
   };
 
-  loopCheck = (loop, state) => {
-    let loops = { ...this.state.loops };
-    loops[loop].active = state;
-    this.setState({ loops });
-    console.log(this.state.loops);
-  };
-
+  //Callback provided to LoopsSection. Controls loop active states & calls startLoop function
   receiveLoopPress = loop => {
     if (
       loop !== 'none' &&
@@ -83,6 +77,14 @@ class App extends Component {
     }
   };
 
+  //Checks if loop active state is true or false
+  loopCheck = (loop, state) => {
+    let loops = { ...this.state.loops };
+    loops[loop].active = state;
+    this.setState({ loops });
+  };
+
+  //Determines CSS for active or inactive states
   defineClass = (type, input) => {
     if (this.state[type][input].active) {
       return input + ' active';
@@ -106,6 +108,7 @@ class App extends Component {
     window.location.reload();
   };
 
+  //Takes in body part locations and maps to keyboard and loops
   receiveNewBodyPartLocation = bodyPartLocation => {
     this.setState(
       {
@@ -149,8 +152,8 @@ class App extends Component {
               <p>Right Wrist - Y {this.state.bodyPartLocation.rightWrist.y}</p>
             </div>
           ) : (
-            <p>This is no body data at the moment, go dance</p>
-          )}
+              <p>This is no body data at the moment, go dance</p>
+            )}
         </div>
         <div id="keyboard_container">
           <div id="keyboard">

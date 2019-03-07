@@ -15,6 +15,7 @@
  * =============================================================================
  */
 
+
 import * as posenet from "@tensorflow-models/posenet";
 
 //setting colours for skeleton
@@ -26,9 +27,7 @@ function toTuple({ y, x }) {
   return [y, x];
 }
 
-/**
- * Draws a points on a canvas
- */
+//Draws a points on a canvas
 export function drawKeypoints(keypoints, skeletonColor, ctx, scale = 1) {
   keypoints.forEach(keypoint => {
     if (keypoint.score >= 0.1) {
@@ -41,9 +40,7 @@ export function drawKeypoints(keypoints, skeletonColor, ctx, scale = 1) {
   });
 }
 
-/**
- * Draws a line on a canvas
- */
+//Draws a line on a canvas
 export function drawSegment([ay, ax], [by, bx], color, scale, ctx) {
   ctx.beginPath();
   ctx.moveTo(ax * scale, ay * scale);
@@ -53,9 +50,7 @@ export function drawSegment([ay, ax], [by, bx], color, scale, ctx) {
   ctx.stroke();
 }
 
-/**
- * Draws a pose skeleton by looking up all adjacent keypoints/joints
- */
+//Draws a pose skeleton by looking up all adjacent keypoints/joints
 export function drawSkeleton(keypoints, minConfidence, ctx, scale = 1) {
   const adjacentKeyPoints = posenet.getAdjacentKeyPoints(
     keypoints,
