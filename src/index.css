@@ -13,94 +13,140 @@ code {
     monospace;
 }
 
-.keyboard_C {
+.keyboard_1 {
   text-align: center;
   font-weight: bold;
   font-size: 2rem;
-  top: 90px;
+  top: 40px;
   position: absolute;
   width: 100px;
-  height: 42px;
+  height: 100px;
   opacity: 0.25;
   background-color: #ff004c;
   z-index: 3;
 }
-.keyboard_D {
+.keyboard_2 {
   text-align: center;
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 132px;
+  top: 140px;
   width: 100px;
-  height: 42px;
+  height: 100px;
   opacity: 0.25;
   background-color: #ff7b00;
   z-index: 3;
 }
-.keyboard_E {
+.keyboard_3 {
   text-align: center;
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 174px;
+  top: 240px;
   width: 100px;
-  height: 42px;
+  height: 100px;
   opacity: 0.25;
   background-color: #eeff00;
   z-index: 3;
 }
-.keyboard_F {
+.keyboard_4 {
   text-align: center;
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 216px;
+  top: 340px;
   width: 100px;
-  height: 42px;
+  height: 100px;
   opacity: 0.25;
   background-color: #48ff00;
-  z-index: 3;
-}
-.keyboard_G {
-  text-align: center;
-  font-weight: bold;
-  font-size: 2rem;
-  position: absolute;
-  top: 258px;
-  width: 100px;
-  height: 42px;
-  opacity: 0.25;
-  background-color: #00f7ff;
-  z-index: 3;
-}
-.keyboard_A {
-  text-align: center;
-  font-weight: bold;
-  font-size: 2rem;
-  position: absolute;
-  top: 300px;
-  width: 100px;
-  height: 42px;
-  opacity: 0.25;
-  background-color: #002fff;
-  z-index: 3;
-}
-.keyboard_B {
-  text-align: center;
-  font-weight: bold;
-  font-size: 2rem;
-  position: absolute;
-  top: 342px;
-  width: 100px;
-  height: 42px;
-  opacity: 0.25;
-  background-color: #8c00ff;
   z-index: 3;
 }
 
 #keyboard_container {
   position: absolute;
   align-items: center;
+}
+
+.loop_1 {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 40px;
+  left: 540px;
+  width: 100px;
+  height: 68px;
+  opacity: 0.25;
+  background-color: #ff004c;
+  z-index: 3;
+}
+.loop_2 {
+  color: white;
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 108px;
+  left: 540px;
+  width: 100px;
+  height: 67px;
+  opacity: 0.25;
+  background-color: #001488;
+  z-index: 3;
+}
+.loop_3 {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 175px;
+  left: 540px;
+  width: 100px;
+  height: 67px;
+  opacity: 0.25;
+  background-color: #ff004c;
+  z-index: 3;
+}
+.loop_4 {
+  color: white;
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 242px;
+  left: 540px;
+  width: 100px;
+  height: 67px;
+  opacity: 0.25;
+  background-color: #001488;
+  z-index: 3;
+}
+.loop_5 {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 309px;
+  left: 540px;
+  width: 100px;
+  height: 68px;
+  opacity: 0.25;
+  background-color: #ff004c;
+  z-index: 3;
+}
+.loop_6 {
+  color: white;
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 376px;
+  left: 540px;
+  width: 100px;
+  height: 67px;
+  opacity: 0.25;
+  background-color: #001488;
+  z-index: 3;
 }
 
 .bodypart-info {
