@@ -32,7 +32,6 @@ function go() {
 }
 //loops wav files together on beat
 export function startLoop(name) {
-
     if (loops.get(name).state === "started") {
         console.log('stop', name)
         loops.get(name).stop(Tone.Transport.nextSubdivision("1n"));
@@ -42,15 +41,19 @@ export function startLoop(name) {
         loops.get(name).start(Tone.Transport.nextSubdivision("1n"))
     }
 }
-
 //plays sound once on beat
 export function playOnce(name) {
-
     chords.get(name).volume.value = -6;
     chords.get(name).start(Tone.Transport.nextSubdivision("1n"))
 }
 
 //start audio conext incase it stops to prevent chrome from stopping sounds
-function audioContext() {
-    if (Tone.context.state !== 'running') Tone.context.resume();
+// function audioContext() {
+//     if (Tone.context.state !== 'running') Tone.context.resume();
+// }
+
+//noise kill switch
+export function stopAudio() {
+    loops.stopAll("8n")
+    chords.stopAll("8n")
 }

@@ -8,8 +8,7 @@ const keyboard = async (pose, cb) => {
   let withinKB = function () {
     if (X >= 540 && X <= 640 && (Y >= 40 && Y <= 440)) {
       return true
-    }
-    else {
+    } else {
       cb('moved-out')
     }
   };

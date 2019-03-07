@@ -3,7 +3,7 @@ import capture from './services/capture.js';
 import camera from './services/camera.js';
 import keyboard from './services/keyboard.js';
 import loopsSection from './services/loops.js';
-import { playOnce, startLoop } from './tone_manager.js';
+import { playOnce, startLoop, stopAudio } from './tone_manager.js';
 
 class App extends Component {
   constructor(props) {
@@ -101,8 +101,9 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        {this.state.view === "default2" && (<div id="test">hello world
-
+        {this.state.view === "default2" && (
+          <div id="test">
+            hello world
         </div>)}
 
         {this.state.view === "default" && (<h1>werwersdfds</h1>)}
