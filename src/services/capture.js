@@ -1,15 +1,13 @@
 import * as posenet from '@tensorflow-models/posenet';
 import * as tensorflow from '@tensorflow/tfjs';
 import { drawKeypoints, drawSkeleton } from './helpers.js';
-import camera from './camera.js';
 import pose from './pose.js';
 
 const LEFT_WRIST_KEYPOINT = 9;
 const RIGHT_WRIST_KEYPOINT = 10;
 
-/* ***** send video to posenet and estimate poses ***** */
+//send video to posenet and estimate poses
 const Capture = async cb => {
-  // camera(); // camera module
   const canvas = document.getElementById('overlay');
   const video = document.getElementById('video');
   const ctx = canvas.getContext('2d');
@@ -20,6 +18,7 @@ const Capture = async cb => {
   const flipHorizontal = false;
   const net = await posenet.load();
 
+  //start tracking after video has loaded
   while (video.height > 0 && video.width > 0) {
     const p = await net.estimateSinglePose(
       video,
@@ -28,18 +27,14 @@ const Capture = async cb => {
       outputStride
     );
 
-    // We want to update the video
-    // We want to update App.js with new body location
-
+    //continuously set poses through video and pass points into drawImage function
     pose.set(p);
     ctx.drawImage(video, 0, 0, video.width, video.height);
 
     drawKeypoints(pose.get().keypoints, 0.5, ctx);
     drawSkeleton(pose.get().keypoints, 0.5, ctx);
 
-    /* *****play Synth notes based on key-point (partNum) position ***** */
-    // const currentPose = pose.get();
-    // const significationMovement = false;
+    //only track right/left wrist points if confidence is above 40%
     if (p.score >= 0.4) {
       const bodyPartLocation = {
         leftWrist: {
@@ -54,21 +49,6 @@ const Capture = async cb => {
       cb(bodyPartLocation);
     }
 
-    // const bodyPartLocation = {
-    //   leftWrist: {
-    //     x: p.keypoints[LEFT_WRIST_KEYPOINT].position.x,
-    //     y: p.keypoints[LEFT_WRIST_KEYPOINT].position.y
-    //   },
-    //   rightWrist: {
-    //     x: p.keypoints[RIGHT_WRIST_KEYPOINT].position.x,
-    //     y: p.keypoints[RIGHT_WRIST_KEYPOINT].position.y
-    //   }
-    // };
-    // let Y = p.keypoints[number].position.y;
-    // let X = p.keypoints[number].position.x;
-    // cb(bodyPartLocation);
-    // keyboard(leftWristKeyPoint, pose.get()); //left wrist
-    // keyboard(rightWristKeypoint, pose.get()); //right wrist
     await tensorflow.nextFrame();
   }
 };

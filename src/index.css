@@ -1,106 +1,150 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-.keyboard_C {
+.chord1 {
   text-align: center;
   font-weight: bold;
   font-size: 2rem;
-  top: 90px;
+  top: 40px;
   position: absolute;
   width: 100px;
-  height: 42px;
+  height: 100px;
   opacity: 0.25;
   background-color: #ff004c;
   z-index: 3;
 }
-.keyboard_D {
+.chord2 {
   text-align: center;
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 132px;
+  top: 140px;
   width: 100px;
-  height: 42px;
+  height: 100px;
   opacity: 0.25;
   background-color: #ff7b00;
   z-index: 3;
 }
-.keyboard_E {
+.chord3 {
   text-align: center;
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 174px;
+  top: 240px;
   width: 100px;
-  height: 42px;
+  height: 100px;
   opacity: 0.25;
   background-color: #eeff00;
   z-index: 3;
 }
-.keyboard_F {
+.chord4 {
   text-align: center;
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 216px;
+  top: 340px;
   width: 100px;
-  height: 42px;
+  height: 100px;
   opacity: 0.25;
   background-color: #48ff00;
-  z-index: 3;
-}
-.keyboard_G {
-  text-align: center;
-  font-weight: bold;
-  font-size: 2rem;
-  position: absolute;
-  top: 258px;
-  width: 100px;
-  height: 42px;
-  opacity: 0.25;
-  background-color: #00f7ff;
-  z-index: 3;
-}
-.keyboard_A {
-  text-align: center;
-  font-weight: bold;
-  font-size: 2rem;
-  position: absolute;
-  top: 300px;
-  width: 100px;
-  height: 42px;
-  opacity: 0.25;
-  background-color: #002fff;
-  z-index: 3;
-}
-.keyboard_B {
-  text-align: center;
-  font-weight: bold;
-  font-size: 2rem;
-  position: absolute;
-  top: 342px;
-  width: 100px;
-  height: 42px;
-  opacity: 0.25;
-  background-color: #8c00ff;
   z-index: 3;
 }
 
 #keyboard_container {
   position: absolute;
   align-items: center;
+}
+
+.kick {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 40px;
+  left: 540px;
+  width: 100px;
+  height: 68px;
+  opacity: 0.25;
+  background-color: #ff004c;
+  z-index: 3;
+}
+.bass {
+  color: white;
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 108px;
+  left: 540px;
+  width: 100px;
+  height: 67px;
+  opacity: 0.25;
+  background-color: #001488;
+  z-index: 3;
+}
+.clap {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 175px;
+  left: 540px;
+  width: 100px;
+  height: 67px;
+  opacity: 0.25;
+  background-color: #ff004c;
+  z-index: 3;
+}
+.hat {
+  color: white;
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 242px;
+  left: 540px;
+  width: 100px;
+  height: 67px;
+  opacity: 0.25;
+  background-color: #001488;
+  z-index: 3;
+}
+.perc {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 309px;
+  left: 540px;
+  width: 100px;
+  height: 68px;
+  opacity: 0.25;
+  background-color: #ff004c;
+  z-index: 3;
+}
+.vocal {
+  color: white;
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 376px;
+  left: 540px;
+  width: 100px;
+  height: 67px;
+  opacity: 0.25;
+  background-color: #001488;
+  z-index: 3;
 }
 
 .bodypart-info {

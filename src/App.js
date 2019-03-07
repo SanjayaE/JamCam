@@ -2,22 +2,27 @@ import React, { Component } from 'react';
 import capture from './services/capture.js';
 import camera from './services/camera.js';
 import keyboard from './services/keyboard.js';
-const Tone = require('tone');
-var synth = new Tone.AMSynth().toMaster();
+import loopsSection from './services/loops.js';
+import { playOnce, startLoop } from './tone_manager.js';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.video = {};
+    // this.video = {};
     this.state = {
       keys: {
-        C: { synth: 'c3', active: false },
-        D: { synth: 'd3', active: false },
-        E: { synth: 'e3', active: false },
-        F: { synth: 'f3', active: false },
-        G: { synth: 'g3', active: false },
-        A: { synth: 'a3', active: false },
-        B: { synth: 'b3', active: false }
+        chord1: { active: false },
+        chord2: { active: false },
+        chord3: { active: false },
+        chord4: { active: false }
+      },
+      loops: {
+        kick: { active: false },
+        bass: { active: false },
+        clap: { active: false },
+        hat: { active: false },
+        perc: { active: false },
+        vocal: { active: false },
       },
       bodyPartLocation: {
         leftWrist: {
@@ -39,36 +44,34 @@ class App extends Component {
   //   this.setState({ keys });
   // };
 
-  recieveKeyBoardPress = key => {
-    if (key == 'none') {
+  //REWORK THIS
+  receiveKeyBoardPress = key => {
+    if (key === 'none') {
     } else {
       let keys = { ...this.state.keys };
+      playOnce(key);
       keys[key].active = true;
       this.setState({ keys });
     }
   };
 
+  receiveLoopPress = loop => {
+    if (loop === 'none') {
+    } else {
+      let loops = { ...this.state.loops };
+      startLoop(loop);
+      loops[loop].active = true;
+      this.setState({ loops });
+    }
+  }
+
   componentDidMount = async () => {
     console.log('did mount');
-    // NOTE: Start Camera
-    camera(); // camera module
-    //NOTE: Start Capture and Provide Callback
+    //Start Camera
+    camera();
+    //Start Capture and Provide Callback
     capture(this.receiveNewBodyPartLocation);
   };
-  // componentDidUpdate(prevProps, prevState, snapshot) {
-  //   console.log('testhing this here ----->', this.state);
-  //   if (this.state !== prevState) {
-  //     keyboard(
-  //       this.state.bodyPartLocation.leftWrist,
-  //       this.recieveKeyBoardPress
-  //     );
-  //     keyboard(
-  //       this.state.bodyPartLocation.rightWrist,
-  //       this.recieveKeyBoardPress
-  //     );
-  //     console.log('its not the same!');
-  //   }
-  // }
 
   receiveNewBodyPartLocation = bodyPartLocation => {
     this.setState(
@@ -78,12 +81,20 @@ class App extends Component {
       () => {
         keyboard(
           this.state.bodyPartLocation.leftWrist,
-          this.recieveKeyBoardPress
+          this.receiveKeyBoardPress
         );
-        // keyboard(
-        //   this.state.bodyPartLocation.rightWrist,
-        //   this.recieveKeyBoardPress
-        // );
+        keyboard(
+          this.state.bodyPartLocation.rightWrist,
+          this.receiveKeyBoardPress
+        );
+        loopsSection(
+          this.state.bodyPartLocation.leftWrist,
+          this.receiveLoopPress
+        );
+        loopsSection(
+          this.state.bodyPartLocation.rightWrist,
+          this.receiveLoopPress
+        );
       }
     );
   };
@@ -102,17 +113,24 @@ class App extends Component {
               <p>Right Wrist - Y {this.state.bodyPartLocation.rightWrist.y}</p>
             </div>
           ) : (
-            <p>This is no body data at the moment, go dance</p>
-          )}
+              <p>This is no body data at the moment, go dance</p>
+            )}
         </div>
         <div id="keyboard_container">
           <div id="keyboard">
-            <div className="keyboard_D">D</div>
-            <div className="keyboard_E">E</div>
-            <div className="keyboard_F">F</div>
-            <div className="keyboard_G">G</div>
-            <div className="keyboard_A">A</div>
-            <div className="keyboard_B">B</div>
+            <div className="chord1">1</div>
+            <div className="chord2">2</div>
+            <div className="chord3">3</div>
+            <div className="chord4">4</div>
+
+            <div id="loops_container">
+              <div className="kick">1</div>
+              <div className="bass">2</div>
+              <div className="clap">3</div>
+              <div className="hat">4</div>
+              <div className="perc">5</div>
+              <div className="vocal">6</div>
+            </div>
             <video id="video" width="640" height="480" controls autoPlay />
             <canvas id="overlay" />
           </div>

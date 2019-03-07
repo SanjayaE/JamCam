@@ -60,7 +60,7 @@ export function drawSkeleton(keypoints, minConfidence, ctx, scale = 1) {
   const adjacentKeyPoints = posenet.getAdjacentKeyPoints(
     keypoints,
     minConfidence
-    
+
   );
 
   adjacentKeyPoints.forEach(keypoints => {
