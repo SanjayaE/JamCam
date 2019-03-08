@@ -3,7 +3,7 @@ import capture from './services/capture.js';
 import camera from './services/camera.js';
 import keyboard from './services/keyboard.js';
 import loopsSection from './services/loops.js';
-import { playOnce, startLoop, stopAudio, playNote } from './tone_manager.js';
+import { playOnce, startLoop, stopAudio, playNote } from './services/tone_manager.js';
 import KeyBoard2 from './services/keyboard2.jsx';
 
 class App extends Component {
