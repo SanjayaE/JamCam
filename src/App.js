@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import capture from './services/capture.js';
 import camera from './services/camera.js';
 import keyboard from './services/keyboard.js';
+import keyboard2 from './services/keyboard2.js';
 import loopsSection from './services/loops.js';
-import { playOnce, startLoop, stopAudio, playNote } from './services/tone_manager.js';
+import {
+  playOnce,
+  startLoop,
+  stopAudio,
+  playNote
+} from './services/tone_manager.js';
 import KeyBoard2 from './services/keyboard2.jsx';
 
 class App extends Component {
@@ -57,7 +63,7 @@ class App extends Component {
   }
 
   //Callback provided to Keyboard. Controls chord active states & calls playOnce function
-  receiveKeyBoardPress = (key) => {
+  receiveKeyBoardPress = key => {
     let keys = { ...this.state.keys };
     keys.chord1.active = false;
     keys.chord2.active = false;
@@ -138,14 +144,27 @@ class App extends Component {
         bodyPartLocation
       },
       () => {
-        keyboard(
-          this.state.bodyPartLocation.leftWrist,
-          this.receiveKeyBoardPress
-        );
-        keyboard(
-          this.state.bodyPartLocation.rightWrist,
-          this.receiveKeyBoardPress
-        );
+        if (this.state.mode === 1) {
+          keyboard(
+            this.state.bodyPartLocation.leftWrist,
+            this.receiveKeyBoardPress
+          );
+          keyboard(
+            this.state.bodyPartLocation.rightWrist,
+            this.receiveKeyBoardPress
+          );
+          console.log(this.state.mode);
+        } else {
+          keyboard2(
+            this.state.bodyPartLocation.leftWrist,
+            this.receiveKeyBoardPress
+          );
+          keyboard2(
+            this.state.bodyPartLocation.rightWrist,
+            this.receiveKeyBoardPress
+          );
+          console.log(this.state.mode);
+        }
         loopsSection(
           this.state.bodyPartLocation.leftWrist,
           this.receiveLoopPress
@@ -164,19 +183,6 @@ class App extends Component {
 
         {this.state.view === 'default' && <h1>werwersdfds</h1>}
         <h1>Jam Cam</h1>
-        <div className="bodypart-info">
-          <p>Current Body Part Location</p>
-          {this.state.bodyPartLocation ? (
-            <div>
-              <p>Left Wrist - X {this.state.bodyPartLocation.leftWrist.x}</p>
-              <p>Left Wrist - Y {this.state.bodyPartLocation.leftWrist.y}</p>
-              <p>Right Wrist - X {this.state.bodyPartLocation.rightWrist.x}</p>
-              <p>Right Wrist - Y {this.state.bodyPartLocation.rightWrist.y}</p>
-            </div>
-          ) : (
-              <p>This is no body data at the moment, go dance</p>
-            )}
-        </div>
         <div id="keyboard_container">
           <div id="keyboard">
             {this.state.mode == 1 ? (
@@ -212,6 +218,23 @@ class App extends Component {
               <input type="checkbox" onClick={this.toggleMode} />
               <span className="slider round" />
             </label>
+          </div>
+          <div className="bodypart-info">
+            <p>Current Body Part Location</p>
+            {this.state.bodyPartLocation ? (
+              <div>
+                <p>Left Wrist - X {this.state.bodyPartLocation.leftWrist.x}</p>
+                <p>Left Wrist - Y {this.state.bodyPartLocation.leftWrist.y}</p>
+                <p>
+                  Right Wrist - X {this.state.bodyPartLocation.rightWrist.x}
+                </p>
+                <p>
+                  Right Wrist - Y {this.state.bodyPartLocation.rightWrist.y}
+                </p>
+              </div>
+            ) : (
+              <p>This is no body data at the moment, go dance</p>
+            )}
           </div>
         </div>
       </div>

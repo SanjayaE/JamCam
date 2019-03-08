@@ -1,6 +1,6 @@
 // play Synth notes based on key-point (partNum) position
 
-const keyboard = async (pose, cb) => {
+const keyboard2 = async (pose, cb) => {
   let Y = pose.y;
   let X = pose.x;
 
@@ -44,4 +44,4 @@ const keyboard = async (pose, cb) => {
   }
 };
 
-export default keyboard;
+export default keyboard2;
