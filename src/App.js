@@ -3,9 +3,11 @@ import capture from './services/capture.js';
 import camera from './services/camera.js';
 import keyboard from './services/keyboard.js';
 import keyboard2 from './services/keyboard2.js';
-import KeyBoard2 from './services/_keyboard2.jsx';
+import KeyBoard2 from './views/_keyboard2.jsx';
 import loopsSection from './services/loops.js';
-import Tracks from './services/_tracks.jsx';
+import Tracks from './views/_tracks.jsx';
+import tracks from './services/tracks.js';
+import Mode1 from './views/_mode1.jsx';
 
 import {
   playOnce,
@@ -126,7 +128,7 @@ class App extends Component {
 
   //Toggle between regular and mega-jam modes
   toggleMode = () => {
-    if (this.state.mode == 1) {
+    if (this.state.mode === 1) {
       this.setState({ mode: 2 });
     } else {
       this.setState({ mode: 1 });
@@ -190,31 +192,10 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        {this.state.view === 'default2' && <div id="test">hello world</div>}
-
-        {this.state.view === 'default' && <h1>werwersdfds</h1>}
-        <h1>Jam Cam</h1>
         <div id="keyboard_container">
           <div id="keyboard">
-            {this.state.mode == 1 ? (
-              <div>
-                <div>
-                  <div className={this.defineClass('keys', 'chord1')}>1</div>
-                  <div className={this.defineClass('keys', 'chord2')}>2</div>
-                  <div className={this.defineClass('keys', 'chord3')}>3</div>
-                  <div className={this.defineClass('keys', 'chord4')}>4</div>
-                </div>
-                <div id="loops_container">
-                  <div className={this.defineClass('loops', 'kick')}>Kick</div>
-                  <div className={this.defineClass('loops', 'bass')}>Bass</div>
-                  <div className={this.defineClass('loops', 'clap')}>Clap</div>
-                  <div className={this.defineClass('loops', 'hat')}>Hat</div>
-                  <div className={this.defineClass('loops', 'perc')}>Perc</div>
-                  <div className={this.defineClass('loops', 'vocal')}>
-                    Vocal
-                  </div>
-                </div>
-              </div>
+            {this.state.mode === 1 ? (
+              <Mode1 cb={this.defineClass} />
             ) : (
               <div>
                 <KeyBoard2 cb={this.defineClass} />
@@ -226,7 +207,7 @@ class App extends Component {
             <canvas id="overlay" />
             <br />
             <h3>
-              {this.state.mode == 1 ? (
+              {this.state.mode === 1 ? (
                 <p>ACTIVATE MEGA JAM</p>
               ) : (
                 <p> DE-ACTIVATE MEGA JAM</p>
@@ -237,7 +218,10 @@ class App extends Component {
               <span className="slider round" />
             </label>
           </div>
-          <div className="bodypart-info">
+
+          {/* >>>>>>> Debug info <<<<<<<<<< */}
+
+          {/* <div className="bodypart-info">
             <p>Current Body Part Location</p>
             {this.state.bodyPartLocation ? (
               <div>
@@ -253,7 +237,7 @@ class App extends Component {
             ) : (
               <p>This is no body data at the moment, go dance</p>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     );
