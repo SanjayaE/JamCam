@@ -42,6 +42,6 @@ const keyboard = async (pose, cb) => {
         // console.log('none');
         cb('none');
     }
-};
+  };
 
 export default keyboard;
