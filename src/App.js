@@ -4,6 +4,7 @@ import camera from "./services/camera.js";
 import keyboard from "./services/keyboard.js";
 import loopsSection from "./services/loops.js";
 import { playOnce, startLoop } from "./tone_manager.js";
+import Record from "./services/record";
 
 class App extends Component {
   constructor(props) {
@@ -139,6 +140,7 @@ class App extends Component {
             </div>
             <video id="video" width="640" height="480" controls autoPlay />
             <canvas id="overlay" />
+            <Record />
           </div>
         </div>
       </div>
