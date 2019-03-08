@@ -1,0 +1,92 @@
+.mega_chord1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 40px;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: #ff004c;
+  z-index: 3;
+}
+.mega_chord2 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  position: absolute;
+  top: 140px;
+  width: 100px;
+  height: 100px;
+  background-color: #ff7b00;
+  z-index: 3;
+}
+.mega_chord3 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  position: absolute;
+  top: 240px;
+  width: 100px;
+  height: 100px;
+  background-color: #eeff00;
+  z-index: 3;
+}
+.mega_chord4 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  position: absolute;
+  top: 340px;
+  width: 100px;
+  height: 100px;
+  background-color: #48ff00;
+  z-index: 3;
+}
+
+.mega_chord5 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  position: absolute;
+  top: 340px;
+  width: 100px;
+  height: 100px;
+  background-color: #48ff00;
+  z-index: 3;
+}
+
+.mega_chord6 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  position: absolute;
+  top: 340px;
+  width: 100px;
+  height: 100px;
+  background-color: #48ff00;
+  z-index: 3;
+}
+
+.mega_chord7 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  position: absolute;
+  top: 340px;
+  width: 100px;
+  height: 100px;
+  background-color: #48ff00;
+  z-index: 3;
+}
+
+.mega_chord8 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  position: absolute;
+  top: 340px;
+  width: 100px;
+  height: 100px;
+  background-color: #48ff00;
+  z-index: 3;
+}
