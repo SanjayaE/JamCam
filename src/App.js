@@ -4,7 +4,9 @@ import camera from './services/camera.js';
 import keyboard from './services/keyboard.js';
 import loopsSection from './services/loops.js';
 import { playOnce, startLoop, stopAudio, playNote } from './services/tone_manager.js';
-import KeyBoard2 from './services/keyboard2.jsx';
+import KeyBoard2 from './services/keyboard2.jsx'; //JSX FILE RENAME OR PUT TOGETHER
+import keyboard2 from './services/keyboard2.js';
+
 
 class App extends Component {
   constructor(props) {
@@ -50,7 +52,6 @@ class App extends Component {
         }
       },
       mode: 1,
-      view: 'default',
       previousChordKey: 'none',
       previousLoopKey: 'none'
     };
@@ -75,6 +76,20 @@ class App extends Component {
       this.setState({ previousChordKey: 'none' });
     }
   };
+
+  receiveKeyBoard2Press = (key) => {
+    let keys2 = { ...this.state.keys2 };
+    if (
+      key !== 'none' &&
+      key !== 'movedOut' &&
+      this.state.previousChordKey !== key
+    ) {
+      playNote(key);
+      this.setState({ previousChordKey: key, keys2 });
+    } else if (key === 'movedOut') {
+      this.setState({ previousChordKey: 'none' });
+    }
+  }
 
   //Callback provided to LoopsSection. Passes state to loopCheck & calls startLoop function
   receiveLoopPress = loop => {
@@ -128,7 +143,7 @@ class App extends Component {
     //find a way to stop capturing and tone.js
     console.log('unmount');
     //this will reload the homepage and stop process , not a great way to stop, temp fix.
-    window.location.reload();
+    // window.location.reload();
   };
 
   //Takes in body part locations and maps to keyboard and loops
@@ -138,22 +153,33 @@ class App extends Component {
         bodyPartLocation
       },
       () => {
-        keyboard(
-          this.state.bodyPartLocation.leftWrist,
-          this.receiveKeyBoardPress
-        );
-        keyboard(
-          this.state.bodyPartLocation.rightWrist,
-          this.receiveKeyBoardPress
-        );
-        loopsSection(
-          this.state.bodyPartLocation.leftWrist,
-          this.receiveLoopPress
-        );
-        loopsSection(
-          this.state.bodyPartLocation.rightWrist,
-          this.receiveLoopPress
-        );
+        if (this.state.mode === 1) {
+          keyboard(
+            this.state.bodyPartLocation.leftWrist,
+            this.receiveKeyBoardPress
+          );
+          keyboard(
+            this.state.bodyPartLocation.rightWrist,
+            this.receiveKeyBoardPress
+          );
+          loopsSection(
+            this.state.bodyPartLocation.leftWrist,
+            this.receiveLoopPress
+          );
+          loopsSection(
+            this.state.bodyPartLocation.rightWrist,
+            this.receiveLoopPress
+          );
+        } else {
+          keyboard2(
+            this.state.bodyPartLocation.leftWrist,
+            this.receiveKeyBoard2Press
+          );
+          keyboard2(
+            this.state.bodyPartLocation.rightWrist,
+            this.receiveKeyBoard2Press
+          );
+        }
       }
     );
   };

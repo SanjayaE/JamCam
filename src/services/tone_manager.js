@@ -14,9 +14,7 @@ export const chords = new Tone.Players(
         chord4:
             process.env.PUBLIC_URL +
             '/camjam_samples/chord_hits/4th_chord_fmin120.wav'
-    },
-    go
-).toMaster();
+    }, go).toMaster();
 
 export const loops = new Tone.Players(
     {
@@ -26,12 +24,11 @@ export const loops = new Tone.Players(
         hat: './camjam_samples/newhatloop_120.wav',
         perc: './camjam_samples/percloop_grainy120.wav',
         vocal: './camjam_samples/vocals_let_me_see_you_move120.wav'
-    },
-    go
-).toMaster();
+    }, go).toMaster();
 
 //custom synth sound
-export const synth = (new Tone.Synth().toMaster().oscillator.type = 'sine');
+var synth = new Tone.PolySynth(2, Tone.Synth).toMaster()
+// synth.oscillator.type = 'sine';
 
 //volume adjustments on individual clips
 loops.get('bass').volume.value = -8;
@@ -40,7 +37,7 @@ loops.get('hat').volume.value = -4;
 //starts the beat counter
 function go() {
     Tone.Transport.scheduleRepeat(function (time) {
-        console.log(time);
+        // console.log(time);
     }, '1m');
     Tone.Transport.start();
 }
