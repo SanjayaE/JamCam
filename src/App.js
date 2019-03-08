@@ -49,6 +49,7 @@ class App extends Component {
           y: 0
         }
       },
+      mode: 1,
       view: 'default',
       previousChordKey: 'none',
       previousLoopKey: 'none'
@@ -106,6 +107,15 @@ class App extends Component {
     }
   };
 
+  //Toggle between regular and mega-jam modes
+  toggleMode = () => {
+    if (this.state.mode == 1) {
+      this.setState({ mode: 2 });
+    } else {
+      this.setState({ mode: 1 });
+    }
+  };
+
   componentDidMount = async () => {
     console.log('did mount');
     //Start Camera
@@ -147,7 +157,6 @@ class App extends Component {
       }
     );
   };
-  //onclick "this.setState.view = "mode2""
   render() {
     return (
       <div className="container">
@@ -170,11 +179,16 @@ class App extends Component {
         </div>
         <div id="keyboard_container">
           <div id="keyboard">
-            {/* <div className={this.defineClass('keys', 'chord1')}>1</div>
-            <div className={this.defineClass('keys', 'chord2')}>2</div>
-            <div className={this.defineClass('keys', 'chord3')}>3</div>
-            <div className={this.defineClass('keys', 'chord4')}>4</div> */}
-            <KeyBoard2 cb={this.defineClass} />
+            {this.state.mode == 1 ? (
+              <div>
+                <div className={this.defineClass('keys', 'chord1')}>1</div>
+                <div className={this.defineClass('keys', 'chord2')}>2</div>
+                <div className={this.defineClass('keys', 'chord3')}>3</div>
+                <div className={this.defineClass('keys', 'chord4')}>4</div>
+              </div>
+            ) : (
+              <KeyBoard2 cb={this.defineClass} />
+            )}
 
             <div id="loops_container">
               <div className={this.defineClass('loops', 'kick')}>Kick</div>
@@ -186,6 +200,18 @@ class App extends Component {
             </div>
             <video id="video" width="640" height="480" controls autoPlay />
             <canvas id="overlay" />
+            <br />
+            <h3>
+              {this.state.mode == 1 ? (
+                <p>ACTIVATE MEGA JAM</p>
+              ) : (
+                <p> DE-ACTIVATE MEGA JAM</p>
+              )}
+            </h3>
+            <label className="switch">
+              <input type="checkbox" onClick={this.toggleMode} />
+              <span className="slider round" />
+            </label>
           </div>
         </div>
       </div>
