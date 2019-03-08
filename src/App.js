@@ -3,6 +3,7 @@ import capture from "./services/capture.js";
 import camera from "./services/camera.js";
 import keyboard from "./services/keyboard.js";
 import loopsSection from "./services/loops.js";
+import Record from "./services/record";
 import {
   playOnce,
   startLoop,
