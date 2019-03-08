@@ -3,7 +3,7 @@ import capture from './services/capture.js';
 import camera from './services/camera.js';
 import keyboard from './services/keyboard.js';
 import loopsSection from './services/loops.js';
-import { playOnce, startLoop, stopAudio } from './tone_manager.js';
+import { playOnce, startLoop, stopAudio, playNote } from './services/tone_manager.js';
 import KeyBoard2 from './services/keyboard2.jsx';
 
 class App extends Component {
@@ -19,14 +19,14 @@ class App extends Component {
         movedOut: { active: false }
       },
       keys2: {
-        mega_chord1: { active: false },
-        mega_chord2: { active: false },
-        mega_chord3: { active: false },
-        mega_chord4: { active: false },
-        mega_chord5: { active: false },
-        mega_chord6: { active: false },
-        mega_chord7: { active: false },
-        mega_chord8: { active: false },
+        a2: { active: false },
+        b2: { active: false },
+        c3: { active: false },
+        d3: { active: false },
+        e3: { active: false },
+        f3: { active: false },
+        g3: { active: false },
+        a3: { active: false },
         none: { active: true },
         movedOut: { active: false }
       },
@@ -56,7 +56,7 @@ class App extends Component {
   }
 
   //Callback provided to Keyboard. Controls chord active states & calls playOnce function
-  receiveKeyBoardPress = key => {
+  receiveKeyBoardPress = (key) => {
     let keys = { ...this.state.keys };
     keys.chord1.active = false;
     keys.chord2.active = false;
@@ -75,7 +75,7 @@ class App extends Component {
     }
   };
 
-  //Callback provided to LoopsSection. Controls loop active states & calls startLoop function
+  //Callback provided to LoopsSection. Passes state to loopCheck & calls startLoop function
   receiveLoopPress = loop => {
     if (
       loop !== 'none' &&
@@ -90,7 +90,7 @@ class App extends Component {
     }
   };
 
-  //Checks if loop active state is true or false
+  //Checks if loop active, then updates the state of loops
   loopCheck = (loop, state) => {
     let loops = { ...this.state.loops };
     loops[loop].active = state;
@@ -165,8 +165,8 @@ class App extends Component {
               <p>Right Wrist - Y {this.state.bodyPartLocation.rightWrist.y}</p>
             </div>
           ) : (
-            <p>This is no body data at the moment, go dance</p>
-          )}
+              <p>This is no body data at the moment, go dance</p>
+            )}
         </div>
         <div id="keyboard_container">
           <div id="keyboard">
