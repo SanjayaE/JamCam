@@ -1,0 +1,49 @@
+.chord1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 40px;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: #ff004c;
+  z-index: 3;
+}
+.chord2 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  position: absolute;
+  top: 140px;
+  width: 100px;
+  height: 100px;
+  background-color: #ff7b00;
+  z-index: 3;
+}
+.chord3 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  position: absolute;
+  top: 240px;
+  width: 100px;
+  height: 100px;
+  background-color: #eeff00;
+  z-index: 3;
+}
+.chord4 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  position: absolute;
+  top: 340px;
+  width: 100px;
+  height: 100px;
+  background-color: #48ff00;
+  z-index: 3;
+}
+
+#keyboard_container {
+  position: absolute;
+  align-items: center;
+}

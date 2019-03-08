@@ -1,12 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import "./App.css";
-import "./tone_manager";
-import Landing from "./landing";
-import * as serviceWorker from "./serviceWorker";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './styles/App.css';
+import './services/tone_manager';
+import Landing from './landing';
+import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<Landing />, document.getElementById("root"));
+ReactDOM.render(<Landing />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

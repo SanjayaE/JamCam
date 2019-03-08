@@ -1,13 +1,15 @@
 // play loops based on key-point (partNum) position
 const loopsSection = async (pose, cb) => {
-
-  console.log("callback is : ", cb)
   let Y = pose.y;
   let X = pose.x;
 
   //only trigger within region of loops section
-  let within = function () {
-    return X >= 1 && X <= 100 && (Y >= 40 && Y <= 442);
+  let within = function() {
+    if (X >= 1 && X <= 100 && (Y >= 40 && Y <= 442)) {
+      return true;
+    } else {
+      cb('movedOut');
+    }
   };
 
   if (within() && Y <= 108) {

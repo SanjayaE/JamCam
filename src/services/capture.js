@@ -34,8 +34,8 @@ const Capture = async cb => {
     drawKeypoints(pose.get().keypoints, 0.5, ctx);
     drawSkeleton(pose.get().keypoints, 0.5, ctx);
 
-    //only track right/left wrist points if confidence is above 40%
-    if (p.score >= 0.4) {
+    //only track right/left wrist points if confidence is above 50%
+    if (p.score >= 0.5) {
       const bodyPartLocation = {
         leftWrist: {
           x: p.keypoints[LEFT_WRIST_KEYPOINT].position.x,
