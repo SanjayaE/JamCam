@@ -13,29 +13,29 @@ const keyboard = async (pose, cb) => {
     }
   };
 
-  if (withinKB() && Y <= 80) {
+  if (withinKB() && Y <= 60) {
     console.log('mega_chord1');
     cb('mega_chord1');
     // TODO: Update Color of the C key on the DOM
-  } else if (withinKB() && Y <= 160 && Y >= 81) {
+  } else if (withinKB() && Y <= 120 && Y >= 61) {
     console.log('mega_chord2');
     cb('mega_chord2');
-  } else if (withinKB() && Y <= 240 && Y >= 161) {
+  } else if (withinKB() && Y <= 180 && Y >= 121) {
     console.log('mega_chord3');
     cb('mega_chord3');
-  } else if (withinKB() && Y <= 320 && Y >= 241) {
+  } else if (withinKB() && Y <= 240 && Y >= 181) {
     console.log('mega_chord4');
     cb('mega_chord4');
-  } else if (withinKB() && Y <= 400 && Y >= 321) {
+  } else if (withinKB() && Y <= 300 && Y >= 241) {
     console.log('mega_chord5');
     cb('mega_chord4');
-  } else if (withinKB() && Y <= 480 && Y >= 401) {
+  } else if (withinKB() && Y <= 360 && Y >= 301) {
     console.log('mega_chord6');
     cb('mega_chord4');
-  } else if (withinKB() && Y <= 560 && Y >= 481) {
+  } else if (withinKB() && Y <= 420 && Y >= 361) {
     console.log('mega_chord7');
     cb('mega_chord4');
-  } else if (withinKB() && Y <= 640 && Y >= 561) {
+  } else if (withinKB() && Y <= 480 && Y >= 421) {
     console.log('mega_chord8');
     cb('mega_chord4');
   } else {
