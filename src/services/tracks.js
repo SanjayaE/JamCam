@@ -15,19 +15,19 @@ const tracks = async (pose, cb) => {
   if (within() && Y <= 100) {
     console.log('button1');
     cb('button1');
-  } else if (within() && Y <= 175 && Y >= 109) {
+  } else if (within() && Y <= 160 && Y >= 101) {
     console.log('button2');
     cb('button2');
-  } else if (within() && Y <= 242 && Y >= 176) {
+  } else if (within() && Y <= 220 && Y >= 161) {
     console.log('button3');
     cb('button3');
-  } else if (within() && Y <= 309 && Y >= 243) {
+  } else if (within() && Y <= 340 && Y >= 281) {
     console.log('button4');
     cb('button4');
-  } else if (within() && Y <= 376 && Y >= 310) {
+  } else if (within() && Y <= 400 && Y >= 341) {
     console.log('button5');
     cb('button5');
-  } else if (within() && Y <= 442 && Y >= 377) {
+  } else if (within() && Y <= 460 && Y >= 401) {
     console.log('button6');
     cb('button6');
   } else {

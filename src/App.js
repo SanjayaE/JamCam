@@ -110,6 +110,8 @@ class App extends Component {
     }
   };
 
+  receiveTracksPress = track => {};
+
   //Checks if loop active, then updates the state of loops
   loopCheck = (loop, state) => {
     let loops = { ...this.state.loops };
@@ -166,7 +168,14 @@ class App extends Component {
             this.state.bodyPartLocation.rightWrist,
             this.receiveKeyBoardPress
           );
-          console.log(this.state.mode);
+          loopsSection(
+            this.state.bodyPartLocation.leftWrist,
+            this.receiveLoopPress
+          );
+          loopsSection(
+            this.state.bodyPartLocation.rightWrist,
+            this.receiveLoopPress
+          );
         } else {
           keyboard2(
             this.state.bodyPartLocation.leftWrist,
@@ -176,16 +185,16 @@ class App extends Component {
             this.state.bodyPartLocation.rightWrist,
             this.receiveKeyBoardPress
           );
-          console.log(this.state.mode);
+
+          tracks(
+            this.state.bodyPartLocation.leftWrist,
+            this.receiveTracksPress
+          );
+          tracks(
+            this.state.bodyPartLocation.rightWrist,
+            this.receiveTracksPress
+          );
         }
-        loopsSection(
-          this.state.bodyPartLocation.leftWrist,
-          this.receiveLoopPress
-        );
-        loopsSection(
-          this.state.bodyPartLocation.rightWrist,
-          this.receiveLoopPress
-        );
       }
     );
   };
