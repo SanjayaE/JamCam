@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import capture from "./services/capture.js";
-import camera from "./services/camera.js";
-import keyboard from "./services/keyboard.js";
-import loopsSection from "./services/loops.js";
-import { playOnce, startLoop, stopAudio } from "./tone_manager.js";
+import React, { Component } from 'react';
+import capture from './services/capture.js';
+import camera from './services/camera.js';
+import keyboard from './services/keyboard.js';
+import loopsSection from './services/loops.js';
+import { playOnce, startLoop, stopAudio } from './tone_manager.js';
+import KeyBoard2 from './services/keyboard2.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -14,6 +15,18 @@ class App extends Component {
         chord2: { active: false },
         chord3: { active: false },
         chord4: { active: false },
+        none: { active: true },
+        movedOut: { active: false }
+      },
+      keys2: {
+        mega_chord1: { active: false },
+        mega_chord2: { active: false },
+        mega_chord3: { active: false },
+        mega_chord4: { active: false },
+        mega_chord5: { active: false },
+        mega_chord6: { active: false },
+        mega_chord7: { active: false },
+        mega_chord8: { active: false },
         none: { active: true },
         movedOut: { active: false }
       },
@@ -94,7 +107,7 @@ class App extends Component {
   };
 
   componentDidMount = async () => {
-    console.log("did mount");
+    console.log('did mount');
     //Start Camera
     camera();
     //Start Capture and Provide Callback
@@ -103,7 +116,7 @@ class App extends Component {
 
   componentWillUnmount = () => {
     //find a way to stop capturing and tone.js
-    console.log("unmount");
+    console.log('unmount');
     //this will reload the homepage and stop process , not a great way to stop, temp fix.
     window.location.reload();
   };
@@ -152,15 +165,16 @@ class App extends Component {
               <p>Right Wrist - Y {this.state.bodyPartLocation.rightWrist.y}</p>
             </div>
           ) : (
-              <p>This is no body data at the moment, go dance</p>
-            )}
+            <p>This is no body data at the moment, go dance</p>
+          )}
         </div>
         <div id="keyboard_container">
           <div id="keyboard">
-            <div className={this.defineClass('keys', 'chord1')}>1</div>
+            {/* <div className={this.defineClass('keys', 'chord1')}>1</div>
             <div className={this.defineClass('keys', 'chord2')}>2</div>
             <div className={this.defineClass('keys', 'chord3')}>3</div>
-            <div className={this.defineClass('keys', 'chord4')}>4</div>
+            <div className={this.defineClass('keys', 'chord4')}>4</div> */}
+            <KeyBoard2 cb={this.defineClass} />
 
             <div id="loops_container">
               <div className={this.defineClass('loops', 'kick')}>Kick</div>

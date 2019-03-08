@@ -1,8 +1,8 @@
 @import './index.css';
 @import './keyboard.css';
 @import './loops.css';
-/* @import './keyboard2.css';
-@import 'loops2.css'; */
+@import './keyboard2.css';
+/* @import 'loops2.css'; */
 
 .App {
   text-align: center;

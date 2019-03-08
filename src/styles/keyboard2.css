@@ -2,10 +2,9 @@
   text-align: center;
   font-weight: bold;
   font-size: 2rem;
-  top: 40px;
   position: absolute;
   width: 100px;
-  height: 100px;
+  height: 60px;
   background-color: #ff004c;
   z-index: 3;
 }
@@ -14,9 +13,9 @@
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 140px;
+  top: 60px;
   width: 100px;
-  height: 100px;
+  height: 60px;
   background-color: #ff7b00;
   z-index: 3;
 }
@@ -25,9 +24,9 @@
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 240px;
+  top: 120px;
   width: 100px;
-  height: 100px;
+  height: 60px;
   background-color: #eeff00;
   z-index: 3;
 }
@@ -36,9 +35,9 @@
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 340px;
+  top: 180px;
   width: 100px;
-  height: 100px;
+  height: 60px;
   background-color: #48ff00;
   z-index: 3;
 }
@@ -48,9 +47,9 @@
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 340px;
+  top: 240px;
   width: 100px;
-  height: 100px;
+  height: 60px;
   background-color: #48ff00;
   z-index: 3;
 }
@@ -60,9 +59,9 @@
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 340px;
+  top: 300px;
   width: 100px;
-  height: 100px;
+  height: 60px;
   background-color: #48ff00;
   z-index: 3;
 }
@@ -72,9 +71,9 @@
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 340px;
+  top: 360px;
   width: 100px;
-  height: 100px;
+  height: 60px;
   background-color: #48ff00;
   z-index: 3;
 }
@@ -84,9 +83,9 @@
   font-weight: bold;
   font-size: 2rem;
   position: absolute;
-  top: 340px;
+  top: 420px;
   width: 100px;
-  height: 100px;
+  height: 60px;
   background-color: #48ff00;
   z-index: 3;
 }
