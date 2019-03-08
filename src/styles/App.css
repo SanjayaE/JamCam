@@ -2,7 +2,7 @@
 @import './keyboard.css';
 @import './loops.css';
 @import './keyboard2.css';
-/* @import 'loops2.css'; */
+@import './tracks.css';
 @import './slider.css';
 .App {
   text-align: center;

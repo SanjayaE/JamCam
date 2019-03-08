@@ -3,14 +3,16 @@ import capture from './services/capture.js';
 import camera from './services/camera.js';
 import keyboard from './services/keyboard.js';
 import keyboard2 from './services/keyboard2.js';
+import KeyBoard2 from './services/_keyboard2.jsx';
 import loopsSection from './services/loops.js';
+import Tracks from './services/_tracks.jsx';
+
 import {
   playOnce,
   startLoop,
   stopAudio,
   playNote
 } from './services/tone_manager.js';
-import KeyBoard2 from './services/keyboard2.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -43,6 +45,15 @@ class App extends Component {
         hat: { active: false },
         perc: { active: false },
         vocal: { active: false },
+        none: { active: true }
+      },
+      tracks: {
+        button1: { active: false },
+        button2: { active: false },
+        button3: { active: false },
+        button4: { active: false },
+        button5: { active: false },
+        button6: { active: false },
         none: { active: true }
       },
       bodyPartLocation: {
@@ -187,23 +198,30 @@ class App extends Component {
           <div id="keyboard">
             {this.state.mode == 1 ? (
               <div>
-                <div className={this.defineClass('keys', 'chord1')}>1</div>
-                <div className={this.defineClass('keys', 'chord2')}>2</div>
-                <div className={this.defineClass('keys', 'chord3')}>3</div>
-                <div className={this.defineClass('keys', 'chord4')}>4</div>
+                <div>
+                  <div className={this.defineClass('keys', 'chord1')}>1</div>
+                  <div className={this.defineClass('keys', 'chord2')}>2</div>
+                  <div className={this.defineClass('keys', 'chord3')}>3</div>
+                  <div className={this.defineClass('keys', 'chord4')}>4</div>
+                </div>
+                <div id="loops_container">
+                  <div className={this.defineClass('loops', 'kick')}>Kick</div>
+                  <div className={this.defineClass('loops', 'bass')}>Bass</div>
+                  <div className={this.defineClass('loops', 'clap')}>Clap</div>
+                  <div className={this.defineClass('loops', 'hat')}>Hat</div>
+                  <div className={this.defineClass('loops', 'perc')}>Perc</div>
+                  <div className={this.defineClass('loops', 'vocal')}>
+                    Vocal
+                  </div>
+                </div>
               </div>
             ) : (
-              <KeyBoard2 cb={this.defineClass} />
+              <div>
+                <KeyBoard2 cb={this.defineClass} />
+                <Tracks cb={this.defineClass} />
+              </div>
             )}
 
-            <div id="loops_container">
-              <div className={this.defineClass('loops', 'kick')}>Kick</div>
-              <div className={this.defineClass('loops', 'bass')}>Bass</div>
-              <div className={this.defineClass('loops', 'clap')}>Clap</div>
-              <div className={this.defineClass('loops', 'hat')}>Hat</div>
-              <div className={this.defineClass('loops', 'perc')}>Perc</div>
-              <div className={this.defineClass('loops', 'vocal')}>Vocal</div>
-            </div>
             <video id="video" width="640" height="480" controls autoPlay />
             <canvas id="overlay" />
             <br />
