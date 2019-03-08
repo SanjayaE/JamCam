@@ -50,7 +50,7 @@ class Record extends React.Component {
 
     mediaRecorder.onstop = function(evt) {
       // Make blob out of our blobs, and open it.
-      var blob = new Blob(chunks, { type: "audio/ogg; codecs=opus" });
+      var blob = new Blob(chunks, { type: "audio/mpeg-3" });
       document.querySelector("audio").src = URL.createObjectURL(blob);
     };
   }
