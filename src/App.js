@@ -56,7 +56,7 @@ class App extends Component {
   }
 
   //Callback provided to Keyboard. Controls chord active states & calls playOnce function
-  receiveKeyBoardPress = key => {
+  receiveKeyBoardPress = (key) => {
     let keys = { ...this.state.keys };
     keys.chord1.active = false;
     keys.chord2.active = false;
@@ -84,7 +84,7 @@ class App extends Component {
   //   this.setState({ keys })
   // }
 
-  //Callback provided to LoopsSection. Controls loop active states & calls startLoop function
+  //Callback provided to LoopsSection. Passes state to loopCheck & calls startLoop function
   receiveLoopPress = loop => {
     if (
       loop !== 'none' &&
@@ -99,7 +99,7 @@ class App extends Component {
     }
   };
 
-  //Checks if loop active state is true or false
+  //Checks if loop active, then updates the state of loops
   loopCheck = (loop, state) => {
     let loops = { ...this.state.loops };
     loops[loop].active = state;
