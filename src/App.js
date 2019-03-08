@@ -3,7 +3,7 @@ import capture from './services/capture.js';
 import camera from './services/camera.js';
 import keyboard from './services/keyboard.js';
 import loopsSection from './services/loops.js';
-import { playOnce, startLoop, playNote, stopAudio } from './services/tone_manager.js';
+import { playOnce, startLoop, stopAudio, playNote } from './tone_manager.js';
 import KeyBoard2 from './services/keyboard2.jsx';
 
 class App extends Component {
@@ -74,15 +74,6 @@ class App extends Component {
       this.setState({ previousChordKey: 'none' });
     }
   };
-
-  // changeKeyState = (keyboardType, key) => {
-  //   let keys = { ...this.state.keys };
-  //   for (let chordOrNote in keyboardType) {
-  //     keyboardType[chordOrNote].active = false
-  //   }
-  //   keys[keyboardType][key].active = true
-  //   this.setState({ keys })
-  // }
 
   //Callback provided to LoopsSection. Passes state to loopCheck & calls startLoop function
   receiveLoopPress = loop => {
