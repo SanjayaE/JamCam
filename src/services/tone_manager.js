@@ -68,13 +68,15 @@ export function playNote(note) {
     synth.triggerAttackRelease(note, '8n')
 }
 
-//start audio context incase it stops to prevent chrome from stopping sounds
-// function audioContext() {
-//     if (Tone.context.state !== 'running') Tone.context.resume();
-// }
-
 //noise kill switch
 export function stopAudio() {
     loops.stopAll("8n")
     chords.stopAll("8n")
 }
+
+
+//start audio context incase it stops to prevent chrome from stopping sounds
+// function audioContext() {
+//     if (Tone.context.state !== 'running') Tone.context.resume();
+// }
+
