@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/App.css';
-import './services/tone_manager';
+import './tone_manager';
 import Landing from './landing';
 import * as serviceWorker from './serviceWorker';
 

@@ -30,17 +30,17 @@ var loops = new Tone.Players(
     go
 ).toMaster();
 
+//custom synth sound
+var synth = (new Tone.Synth().toMaster().oscillator.type = 'sine');
+
 //volume adjustments on individual clips
 loops.get('bass').volume.value = -8;
 loops.get('hat').volume.value = -4;
 
-//custom polysynth for mode 2
-var synth = new Tone.PolySynth(2, Tone.Synth).toMaster()
-synth.oscillator.type = 'sine';
-
 //starts the beat counter
 function go() {
     Tone.Transport.scheduleRepeat(function (time) {
+        console.log(time);
     }, '1m');
     Tone.Transport.start();
 }
@@ -63,19 +63,13 @@ export function playOnce(name) {
     chords.get(name).start(Tone.Transport.nextSubdivision('1n'));
 }
 
-//play polysynth notes
-export function playNote(note) {
-    synth.triggerAttackRelease(note, '8n')
-}
+//start audio context incase it stops to prevent chrome from stopping sounds
+// function audioContext() {
+//     if (Tone.context.state !== 'running') Tone.context.resume();
+// }
 
 //noise kill switch
 export function stopAudio() {
     loops.stopAll("8n")
     chords.stopAll("8n")
 }
-
-//start audio context incase it stops to prevent chrome from stopping sounds
-// function audioContext() {
-//     if (Tone.context.state !== 'running') Tone.context.resume();
-// }
-

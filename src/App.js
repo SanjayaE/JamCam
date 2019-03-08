@@ -3,7 +3,7 @@ import capture from './services/capture.js';
 import camera from './services/camera.js';
 import keyboard from './services/keyboard.js';
 import loopsSection from './services/loops.js';
-import { playOnce, startLoop, playNote, stopAudio } from './services/tone_manager.js';
+import { playOnce, startLoop, stopAudio } from './tone_manager.js';
 import KeyBoard2 from './services/keyboard2.jsx';
 
 class App extends Component {
@@ -19,14 +19,14 @@ class App extends Component {
         movedOut: { active: false }
       },
       keys2: {
-        a2: { active: false },
-        b2: { active: false },
-        c3: { active: false },
-        d3: { active: false },
-        e3: { active: false },
-        f3: { active: false },
-        g3: { active: false },
-        a3: { active: false },
+        mega_chord1: { active: false },
+        mega_chord2: { active: false },
+        mega_chord3: { active: false },
+        mega_chord4: { active: false },
+        mega_chord5: { active: false },
+        mega_chord6: { active: false },
+        mega_chord7: { active: false },
+        mega_chord8: { active: false },
         none: { active: true },
         movedOut: { active: false }
       },
@@ -74,15 +74,6 @@ class App extends Component {
       this.setState({ previousChordKey: 'none' });
     }
   };
-
-  // changeKeyState = (keyboardType, key) => {
-  //   let keys = { ...this.state.keys };
-  //   for (let chordOrNote in keyboardType) {
-  //     keyboardType[chordOrNote].active = false
-  //   }
-  //   keys[keyboardType][key].active = true
-  //   this.setState({ keys })
-  // }
 
   //Callback provided to LoopsSection. Controls loop active states & calls startLoop function
   receiveLoopPress = loop => {
@@ -174,8 +165,8 @@ class App extends Component {
               <p>Right Wrist - Y {this.state.bodyPartLocation.rightWrist.y}</p>
             </div>
           ) : (
-              <p>This is no body data at the moment, go dance</p>
-            )}
+            <p>This is no body data at the moment, go dance</p>
+          )}
         </div>
         <div id="keyboard_container">
           <div id="keyboard">
