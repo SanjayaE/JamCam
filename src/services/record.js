@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { synth, chords } from "./tone_manager.js";
-import { NavLink } from "react-router-dom";
+import { stopAudio } from "./tone_manager.js";
 const Tone = require("tone");
 
 class Record extends React.Component {
@@ -15,6 +14,7 @@ class Record extends React.Component {
   componentDidMount() {
     // const a = document.getElementsByTagName("audio")[0];
     const b = document.querySelector("button");
+    const c = document.querySelector("button2");
     let clicked = false;
     const chunks = [];
     const actx = Tone.context;
@@ -36,6 +36,12 @@ class Record extends React.Component {
       }
     });
 
+    c.addEventListener("click", function(e) {
+      if (clicked) {
+        stopAudio();
+      }
+    });
+
     mediaRecorder.ondataavailable = evt => {
       console.info("Finished recording. Got blob:", evt.data);
       // push each chunk (blobs) in an array
@@ -53,8 +59,13 @@ class Record extends React.Component {
   render() {
     return (
       <div>
-        <button>Record</button>
-        <audio controls />
+        <div>
+          <button>Record</button>
+          <audio controls />
+        </div>
+        <div>
+          <button2 Stop />
+        </div>
       </div>
     );
   }
