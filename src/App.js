@@ -134,7 +134,7 @@ class App extends Component {
     //find a way to stop capturing and tone.js
     console.log("unmount");
     //this will reload the homepage and stop process , not a great way to stop, temp fix.
-    window.location.reload();
+    // window.location.reload();
   };
 
   //Takes in body part locations and maps to keyboard and loops
@@ -195,29 +195,31 @@ class App extends Component {
             ) : (
               <KeyBoard2 cb={this.defineClass} />
             )}
-
-            <div id="loops_container">
-              <div className={this.defineClass("loops", "kick")}>Kick</div>
-              <div className={this.defineClass("loops", "bass")}>Bass</div>
-              <div className={this.defineClass("loops", "clap")}>Clap</div>
-              <div className={this.defineClass("loops", "hat")}>Hat</div>
-              <div className={this.defineClass("loops", "perc")}>Perc</div>
-              <div className={this.defineClass("loops", "vocal")}>Vocal</div>
+            <div>
+              <div id="loops_container">
+                <div className={this.defineClass("loops", "kick")}>Kick</div>
+                <div className={this.defineClass("loops", "bass")}>Bass</div>
+                <div className={this.defineClass("loops", "clap")}>Clap</div>
+                <div className={this.defineClass("loops", "hat")}>Hat</div>
+                <div className={this.defineClass("loops", "perc")}>Perc</div>
+                <div className={this.defineClass("loops", "vocal")}>Vocal</div>
+              </div>
+              <video id="video" width="640" height="480" controls autoPlay />
+              <canvas id="overlay" />
+              <Record />
+              <br />
+              <h3>
+                {this.state.mode == 1 ? (
+                  <p>ACTIVATE MEGA JAM</p>
+                ) : (
+                  <p> DE-ACTIVATE MEGA JAM</p>
+                )}
+              </h3>
+              <label className="switch">
+                <input type="checkbox" onClick={this.toggleMode} />
+                <span className="slider round" />
+              </label>
             </div>
-            <video id="video" width="640" height="480" controls autoPlay />
-            <canvas id="overlay" />
-            <br />
-            <h3>
-              {this.state.mode == 1 ? (
-                <p>ACTIVATE MEGA JAM</p>
-              ) : (
-                <p> DE-ACTIVATE MEGA JAM</p>
-              )}
-            </h3>
-            <label className="switch">
-              <input type="checkbox" onClick={this.toggleMode} />
-              <span className="slider round" />
-            </label>
           </div>
         </div>
       </div>
