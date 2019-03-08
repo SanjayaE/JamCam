@@ -8,30 +8,30 @@ const loopsSection = async (pose, cb) => {
     if (X >= 1 && X <= 100 && (Y >= 40 && Y <= 442)) {
       return true;
     } else {
-      cb('movedOut');
+      cb("movedOut");
     }
   };
 
   if (within() && Y <= 108) {
-    console.log('kick');
-    cb('kick');
+    // console.log('kick');
+    cb("kick");
   } else if (within() && Y <= 175 && Y >= 109) {
-    console.log('bass');
-    cb('bass');
+    // console.log('bass');
+    cb("bass");
   } else if (within() && Y <= 242 && Y >= 176) {
-    console.log('clap');
-    cb('clap');
+    // console.log('clap');
+    cb("clap");
   } else if (within() && Y <= 309 && Y >= 243) {
-    console.log('hat');
-    cb('hat');
+    // console.log('hat');
+    cb("hat");
   } else if (within() && Y <= 376 && Y >= 310) {
-    console.log('perc');
-    cb('perc');
+    // console.log('perc');
+    cb("perc");
   } else if (within() && Y <= 442 && Y >= 377) {
-    console.log('vocal');
-    cb('vocal');
+    // console.log('vocal');
+    cb("vocal");
   } else {
-    cb('none');
+    cb("none");
   }
 };
 

@@ -13,16 +13,16 @@ class Record extends React.Component {
   }
   componentDidMount() {
     // const a = document.getElementsByTagName("audio")[0];
-    const b = document.querySelector("button");
-    const c = document.querySelector("button2");
+    const b = document.querySelector("#record");
+    const c = document.querySelector("#stop");
     let clicked = false;
     const chunks = [];
     const actx = Tone.context;
     // const ac = new AudioContext();
     const dest = actx.createMediaStreamDestination();
     const mediaRecorder = new MediaRecorder(dest.stream);
-    // const source = synth;
-    const source = chords;
+    const source = synth;
+    // const source = chords;
     source.connect(dest);
 
     b.addEventListener("click", function(e) {
@@ -60,11 +60,11 @@ class Record extends React.Component {
     return (
       <div>
         <div>
-          <button>Record</button>
+          <button id="record">Record</button>
           <audio controls />
         </div>
         <div>
-          <button2 Stop />
+          <button id="stop">Stop</button>
         </div>
       </div>
     );

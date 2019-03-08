@@ -31,7 +31,7 @@ var loops = new Tone.Players(
 ).toMaster();
 
 //custom synth sound
-export const synth = (new Tone.Synth().toMaster().oscillator.type = "sine");
+export const synth = new Tone.Synth().toMaster();
 
 //volume adjustments on individual clips
 loops.get("bass").volume.value = -8;
@@ -40,18 +40,18 @@ loops.get("hat").volume.value = -4;
 //starts the beat counter
 function go() {
   Tone.Transport.scheduleRepeat(function(time) {
-    console.log(time);
+    // console.log(time);
   }, "1m");
   Tone.Transport.start();
 }
 //loops wav files together on beat
 export function startLoop(name, cb) {
   if (loops.get(name).state === "started") {
-    console.log("stop", name);
+    // console.log("stop", name);
     loops.get(name).stop(Tone.Transport.nextSubdivision("1n"));
     cb(name, false);
   } else {
-    console.log("start", name);
+    // console.log("start", name);
     loops.get(name).loop = true;
     loops.get(name).start(Tone.Transport.nextSubdivision("1n"));
     cb(name, true);
