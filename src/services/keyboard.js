@@ -1,11 +1,11 @@
-// play Synth notes based on key-point (partNum) position
+// play chords based on key-point (partNum) position
 
 const keyboard = async (pose, cb) => {
   let Y = pose.y;
   let X = pose.x;
 
   //only trigger within region of keyboard
-  let withinKB = function() {
+  let withinKB = function () {
     if (X >= 540 && X <= 640 && (Y >= 40 && Y <= 440)) {
       return true;
     } else {
