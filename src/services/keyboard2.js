@@ -42,40 +42,6 @@ const keyboard = async (pose, cb) => {
         // console.log('none');
         cb('none');
     }
-<<<<<<< HEAD
   };
-
-  if (withinKB() && Y <= 60) {
-    console.log('mega_chord1');
-    cb('mega_chord1');
-    // TODO: Update Color of the C key on the DOM
-  } else if (withinKB() && Y <= 120 && Y >= 61) {
-    console.log('mega_chord2');
-    cb('mega_chord2');
-  } else if (withinKB() && Y <= 180 && Y >= 121) {
-    console.log('mega_chord3');
-    cb('mega_chord3');
-  } else if (withinKB() && Y <= 240 && Y >= 181) {
-    console.log('mega_chord4');
-    cb('mega_chord4');
-  } else if (withinKB() && Y <= 300 && Y >= 241) {
-    console.log('mega_chord5');
-    cb('mega_chord4');
-  } else if (withinKB() && Y <= 360 && Y >= 301) {
-    console.log('mega_chord6');
-    cb('mega_chord4');
-  } else if (withinKB() && Y <= 420 && Y >= 361) {
-    console.log('mega_chord7');
-    cb('mega_chord4');
-  } else if (withinKB() && Y <= 480 && Y >= 421) {
-    console.log('mega_chord8');
-    cb('mega_chord4');
-  } else {
-    // console.log('none');
-    cb('none');
-  }
-=======
->>>>>>> 24d505ea9ec7fca7a6cba749dc0e4fc6e6a380af
-};
 
 export default keyboard;
