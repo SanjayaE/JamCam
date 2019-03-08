@@ -1,6 +1,6 @@
 const Tone = require('tone');
 
-var chords = new Tone.Players(
+export const chords = new Tone.Players(
     {
         chord1:
             process.env.PUBLIC_URL +
@@ -18,7 +18,7 @@ var chords = new Tone.Players(
     go
 ).toMaster();
 
-var loops = new Tone.Players(
+export const loops = new Tone.Players(
     {
         kick: './camjam_samples/kickdrum_loop120.wav',
         bass: './camjam_samples/arg_bass_line_fmin120.wav',
@@ -31,7 +31,7 @@ var loops = new Tone.Players(
 ).toMaster();
 
 //custom synth sound
-var synth = (new Tone.Synth().toMaster().oscillator.type = 'sine');
+export const synth = (new Tone.Synth().toMaster().oscillator.type = 'sine');
 
 //volume adjustments on individual clips
 loops.get('bass').volume.value = -8;
@@ -73,7 +73,6 @@ export function stopAudio() {
     loops.stopAll("8n")
     chords.stopAll("8n")
 }
-
 
 //start audio context incase it stops to prevent chrome from stopping sounds
 // function audioContext() {
