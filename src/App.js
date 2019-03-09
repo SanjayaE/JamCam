@@ -109,6 +109,7 @@ class App extends Component {
 
   //Toggle between regular and mega-jam modes
   toggleMode = () => {
+    stopAudio()
     if (this.state.mode == 1) {
       this.setState({ mode: 2 });
     } else {
@@ -187,8 +188,8 @@ class App extends Component {
                 <div className={this.defineClass('keys', 'chord4')}>4</div>
               </div>
             ) : (
-              <KeyBoard2 cb={this.defineClass} />
-            )}
+                <KeyBoard2 cb={this.defineClass} />
+              )}
 
             <div id="loops_container">
               <div className={this.defineClass('loops', 'kick')}>Kick</div>
@@ -205,8 +206,8 @@ class App extends Component {
               {this.state.mode == 1 ? (
                 <p>ACTIVATE MEGA JAM</p>
               ) : (
-                <p> DE-ACTIVATE MEGA JAM</p>
-              )}
+                  <p> DE-ACTIVATE MEGA JAM</p>
+                )}
             </h3>
             <label className="switch">
               <input type="checkbox" onClick={this.toggleMode} />
