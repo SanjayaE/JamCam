@@ -1,4 +1,4 @@
-.button1 {
+.beat1 {
   color: yellow;
   position: absolute;
   text-align: center;
@@ -11,7 +11,7 @@
   background-color: #ff004c;
   z-index: 3;
 }
-.button2 {
+.beat2 {
   color: yellow;
   position: absolute;
   text-align: center;
@@ -24,7 +24,7 @@
   background-color: #ff004c;
   z-index: 3;
 }
-.button3 {
+.beat3 {
   color: yellow;
   position: absolute;
   text-align: center;
@@ -37,7 +37,7 @@
   background-color: #ff004c;
   z-index: 3;
 }
-.button4 {
+.bassline1 {
   color: white;
   position: absolute;
   text-align: center;
@@ -50,7 +50,7 @@
   background-color: #0126f5;
   z-index: 3;
 }
-.button5 {
+.bassline2 {
   color: white;
   position: absolute;
   text-align: center;
@@ -63,7 +63,7 @@
   background-color: #0126f5;
   z-index: 3;
 }
-.button6 {
+.bassline3 {
   color: white;
   position: absolute;
   text-align: center;
