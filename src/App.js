@@ -66,7 +66,8 @@ class App extends Component {
       },
       mode: 1,
       previousChordKey: 'none',
-      previousLoopKey: 'none'
+      previousLoopKey: 'none',
+      previousNote: 'none'
     };
   }
 
@@ -129,6 +130,7 @@ class App extends Component {
       if (active2) {
         keys2[active2].active = false;
       }
+      this.setState({ previousNote: "none" });
     }
   };
 
