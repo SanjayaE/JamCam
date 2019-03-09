@@ -13,29 +13,29 @@ const keyboard2 = async (pose, cb) => {
         }
     };
 
-    if (withinKB() && Y <= 80) {
+    if (withinKB() && Y <= 60) {
         console.log('a2');
         cb('a2');
         // TODO: Update Color of the C key on the DOM
-    } else if (withinKB() && Y <= 160 && Y >= 81) {
+    } else if (withinKB() && Y <= 120 && Y >= 61) {
         console.log('b2');
         cb('b2');
-    } else if (withinKB() && Y <= 240 && Y >= 161) {
+    } else if (withinKB() && Y <= 180 && Y >= 121) {
         console.log('c3');
         cb('c3');
-    } else if (withinKB() && Y <= 320 && Y >= 241) {
+    } else if (withinKB() && Y <= 240 && Y >= 181) {
         console.log('d3');
         cb('d3');
-    } else if (withinKB() && Y <= 400 && Y >= 321) {
+    } else if (withinKB() && Y <= 300 && Y >= 241) {
         console.log('e3');
         cb('e3');
-    } else if (withinKB() && Y <= 480 && Y >= 401) {
+    } else if (withinKB() && Y <= 360 && Y >= 301) {
         console.log('f3');
         cb('f3');
-    } else if (withinKB() && Y <= 560 && Y >= 481) {
+    } else if (withinKB() && Y <= 420 && Y >= 361) {
         console.log('g3');
         cb('g3');
-    } else if (withinKB() && Y <= 640 && Y >= 561) {
+    } else if (withinKB() && Y <= 480 && Y >= 421) {
         console.log('a3');
         cb('a3');
     } else {

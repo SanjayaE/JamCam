@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import capture from './services/capture.js';
 import keyboard from './services/keyboard.js';
 import keyboard2 from './services/keyboard2.js';
-import KeyBoard2 from './views/_keyboard2.jsx';
 import loopsSection from './services/loops.js';
-import Tracks from './views/_tracks.jsx';
 import tracks from './services/tracks.js';
 import Mode1 from './views/_mode1.jsx';
-import Record from "./services/record";
-
-import { playOnce, startLoop, stopAudio, playNote } from "./services/tone_manager.js";
-import { CameraStart, CameraStop } from "./services/camera.js";
+import Mode2 from './views/_mode2.jsx';
+import Record from './services/record';
+import { playOnce, startLoop, stopAudio, playNote } from './services/tone_manager.js';
+import { CameraStart, CameraStop } from './services/camera.js';
 
 class App extends Component {
   constructor(props) {
@@ -81,14 +79,14 @@ class App extends Component {
     keys.chord4.active = false;
     keys[key].active = true;
     if (
-      key !== "none" &&
-      key !== "movedOut" &&
+      key !== 'none' &&
+      key !== 'movedOut' &&
       this.state.previousChordKey !== key
     ) {
       playOnce(key);
       this.setState({ previousChordKey: key, keys });
-    } else if (key === "movedOut") {
-      this.setState({ previousChordKey: "none" });
+    } else if (key === 'movedOut') {
+      this.setState({ previousChordKey: 'none' });
     }
   };
 
@@ -105,46 +103,36 @@ class App extends Component {
     keys2.a3.active = false;
     keys2[key].active = true;
     if (
-      key !== "none" &&
-      key !== "movedOut" &&
+      key !== 'none' &&
+      key !== 'movedOut' &&
       this.state.previousNote !== key
     ) {
       playNote(key);
       this.setState({ previousNote: key, keys2 });
-    } else if (key === "movedOut") {
-      this.setState({ previousNote: "none" });
+    } else if (key === 'movedOut') {
+      this.setState({ previousNote: 'none' });
     }
   };
 
-
+  //MODE1
   //Callback provided to LoopsSection. Passes state to loopCheck & calls startLoop function
   receiveLoopPress = loop => {
     if (
-      loop !== "none" &&
-      loop !== "movedOut" &&
+      loop !== 'none' &&
+      loop !== 'movedOut' &&
       this.state.previousLoopKey !== loop
     ) {
       let loops = { ...this.state.loops };
       startLoop(loop, this.loopCheck);
       this.setState({ previousLoopKey: loop, loops });
-    } else if (loop === "movedOut") {
-      this.setState({ previousLoopKey: "none" });
+    } else if (loop === 'movedOut') {
+      this.setState({ previousLoopKey: 'none' });
     }
   };
 
   //MODE 2: 
   receiveTracksPress = track => {
-    if (
-      track !== "none" &&
-      track !== "movedOut" &&
-      this.state.previousTrack !== track
-    ) {
-      let tracks = { ...this.state.tracks };
-      startLoop(track, this.loopCheck);
-      this.setState({ previousTrack: track, tracks });
-    } else if (track === "movedOut") {
-      this.setState({ previousTrack: "none" });
-    }
+
   };
 
   //Checks if loop active, then updates the state of loops
@@ -157,9 +145,9 @@ class App extends Component {
   //Determines CSS for active or inactive states
   defineClass = (type, input) => {
     if (this.state[type][input].active) {
-      return input + " active";
+      return input + ' active';
     } else {
-      return input + " inactive";
+      return input + ' inactive';
     }
   };
 
@@ -179,7 +167,7 @@ class App extends Component {
   };
 
   componentDidMount = async () => {
-    console.log("did mount");
+    console.log('did mount');
     //Start Camera
     CameraStart();
     //Start Capture and Provide Callback
@@ -205,14 +193,6 @@ class App extends Component {
             this.state.bodyPartLocation.leftWrist,
             this.receiveKeyBoardPress
           );
-          keyboard(
-            this.state.bodyPartLocation.rightWrist,
-            this.receiveKeyBoardPress
-          );
-          loopsSection(
-            this.state.bodyPartLocation.leftWrist,
-            this.receiveLoopPress
-          );
           loopsSection(
             this.state.bodyPartLocation.rightWrist,
             this.receiveLoopPress
@@ -222,10 +202,7 @@ class App extends Component {
             this.state.bodyPartLocation.leftWrist,
             this.receiveKeyBoard2Press
           );
-          keyboard2(
-            this.state.bodyPartLocation.rightWrist,
-            this.receiveKeyBoard2Press
-          );
+          //insert Tracks section here
         }
       }
     );
@@ -239,14 +216,13 @@ class App extends Component {
               <Mode1 cb={this.defineClass} />
             ) : (
                 <div>
-                  <KeyBoard2 cb={this.defineClass} />
-                  <Tracks cb={this.defineClass} />
+                  <Mode2 cb={this.defineClass} />
                 </div>
               )}
 
             <video id="video" width="640" height="480" controls autoPlay />
             <canvas id="overlay" />
-            < Record />
+            <Record />
             <br />
             <h3>
               {this.state.mode === 1 ? (
@@ -277,8 +253,8 @@ class App extends Component {
                 </p>
               </div>
             ) : (
-              <p>This is no body data at the moment, go dance</p>
-            )}
+                <p>This is no body data at the moment, go dance</p>
+              )}
           </div> */}
         </div>
       </div>
