@@ -37,7 +37,8 @@ class Record extends React.Component {
         this.setState({ recording: true });
       } else {
         mediaRecorder.stop();
-        e.target.disabled = true;
+        // e.target.disabled = true;
+        e.target.innerHTML = 'Record';
       }
     });
 
@@ -62,6 +63,9 @@ class Record extends React.Component {
       var link = document.getElementById('download');
       link.href = url;
       link.download = 'JamCam_audio.wav';
+      // evt.target.innerHTML = 'Record';
+      // evt.target.disabled = false;
+
       console.log('after record;', this.state);
     };
   }
