@@ -18,7 +18,7 @@ export const chords = new Tone.Players(
   go
 ).toMaster();
 
-var loops = new Tone.Players(
+export var loops = new Tone.Players(
   {
     kick: "./camjam_samples/kickdrum_loop120.wav",
     bass: "./camjam_samples/arg_bass_line_fmin120.wav",

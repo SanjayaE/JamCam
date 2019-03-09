@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { synth, chords } from "./tone_manager.js";
+import { synth, chords, loops } from "./tone_manager.js";
 import { stopAudio } from "./tone_manager.js";
 const Tone = require("tone");
 
@@ -21,8 +21,8 @@ class Record extends React.Component {
     // const ac = new AudioContext();
     const dest = actx.createMediaStreamDestination();
     const mediaRecorder = new MediaRecorder(dest.stream);
-    const source = synth;
-    // const source = chords;
+    // const source = synth;
+    const source = Tone.Master;
     source.connect(dest);
 
     b.addEventListener("click", function(e) {
@@ -50,8 +50,12 @@ class Record extends React.Component {
 
     mediaRecorder.onstop = function(evt) {
       // Make blob out of our blobs, and open it.
-      var blob = new Blob(chunks, { type: "audio/mpeg-3" });
+      let blob = new Blob(chunks, { type: "audio/mpeg-3" });
       document.querySelector("audio").src = URL.createObjectURL(blob);
+      var url = document.querySelector("audio").src;
+      var link = document.getElementById("download");
+      link.href = url;
+      link.download = "audio.wav";
     };
   }
 
@@ -61,6 +65,9 @@ class Record extends React.Component {
       <div>
         <div>
           <button id="record">Record</button>
+          <div>
+            <a id="download"> Download</a>
+          </div>
           <audio controls />
         </div>
         <div>
