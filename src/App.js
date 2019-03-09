@@ -67,7 +67,8 @@ class App extends Component {
       mode: 1,
       previousChordKey: 'none',
       previousLoopKey: 'none',
-      previousNote: 'none'
+      previousNote: 'none',
+      previousTrack: 'none'
     };
   }
 
@@ -131,7 +132,20 @@ class App extends Component {
     }
   };
 
-  receiveTracksPress = track => { };
+  //MODE 2: 
+  receiveTracksPress = track => {
+    if (
+      track !== "none" &&
+      track !== "movedOut" &&
+      this.state.previousTrack !== track
+    ) {
+      let tracks = { ...this.state.tracks };
+      startLoop(track, this.loopCheck);
+      this.setState({ previousTrack: track, tracks });
+    } else if (track === "movedOut") {
+      this.setState({ previousTrack: "none" });
+    }
+  };
 
   //Checks if loop active, then updates the state of loops
   loopCheck = (loop, state) => {
@@ -173,10 +187,8 @@ class App extends Component {
   };
 
   componentWillUnmount = () => {
-    //find a way to stop capturing and tone.js
     console.log("unmount");
-    //this will reload the homepage and stop process , not a great way to stop, temp fix.
-    // window.location.reload();
+    //turn off camera and audio when you switch from the video page
     CameraStop();
     stopAudio();
   };
