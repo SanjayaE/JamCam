@@ -1,0 +1,78 @@
+.button1 {
+  color: yellow;
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 40px;
+  left: 540px;
+  width: 100px;
+  height: 60px;
+  background-color: #ff004c;
+  z-index: 3;
+}
+.button2 {
+  color: yellow;
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 100px;
+  left: 540px;
+  width: 100px;
+  height: 60px;
+  background-color: #ff004c;
+  z-index: 3;
+}
+.button3 {
+  color: yellow;
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 160px;
+  left: 540px;
+  width: 100px;
+  height: 60px;
+  background-color: #ff004c;
+  z-index: 3;
+}
+.button4 {
+  color: white;
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 280px;
+  left: 540px;
+  width: 100px;
+  height: 60px;
+  background-color: #0126f5;
+  z-index: 3;
+}
+.button5 {
+  color: white;
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 340px;
+  left: 540px;
+  width: 100px;
+  height: 60px;
+  background-color: #0126f5;
+  z-index: 3;
+}
+.button6 {
+  color: white;
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 400px;
+  left: 540px;
+  width: 100px;
+  height: 60px;
+  background-color: #0126f5;
+  z-index: 3;
+}
