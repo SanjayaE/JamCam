@@ -1,5 +1,7 @@
+// import { start } from "repl";
+
 // open the camera stream
-const Camera = async () => {
+export const CameraStart = async () => {
   navigator.getUserMedia(
     // constraints
     {
@@ -22,4 +24,15 @@ const Camera = async () => {
   );
 };
 
-export default Camera;
+//stoping camera
+export const CameraStop = async () => {
+  const video = document.querySelector("video");
+  let stream = video.srcObject;
+  let tracks = stream.getTracks();
+
+  tracks.forEach(function(track) {
+    track.stop();
+  });
+
+  video.srcObject = null;
+};

@@ -9,26 +9,26 @@ const keyboard = async (pose, cb) => {
     if (X >= 540 && X <= 640 && (Y >= 40 && Y <= 440)) {
       return true;
     } else {
-      cb('movedOut');
+      cb("movedOut");
     }
   };
 
   if (withinKB() && Y <= 140) {
-    console.log('chord1');
-    cb('chord1');
+    // console.log('chord1');
+    cb("chord1");
     // TODO: Update Color of the C key on the DOM
   } else if (withinKB() && Y <= 240 && Y >= 141) {
-    console.log('chord2');
-    cb('chord2');
+    // console.log('chord2');
+    cb("chord2");
   } else if (withinKB() && Y <= 340 && Y >= 241) {
-    console.log('chord3');
-    cb('chord3');
+    // console.log('chord3');
+    cb("chord3");
   } else if (withinKB() && Y <= 440 && Y >= 341) {
-    console.log('chord4');
-    cb('chord4');
+    // console.log('chord4');
+    cb("chord4");
   } else {
     // console.log('none');
-    cb('none');
+    cb("none");
   }
 };
 
