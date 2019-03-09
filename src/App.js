@@ -72,7 +72,8 @@ class App extends Component {
       mode: 1,
       previousChordKey: 'none',
       previousLoopKey: 'none',
-      previousNote: 'none'
+      previousNote: 'none',
+      previousTrackButton: 'none'
     };
   }
 
@@ -255,7 +256,7 @@ class App extends Component {
 
           {/* >>>>>>> Debug info <<<<<<<<<< */}
 
-          <div className="bodypart-info">
+          {/* <div className="bodypart-info">
             <p>Current Body Part Location</p>
             {this.state.bodyPartLocation ? (
               <div>
@@ -271,7 +272,7 @@ class App extends Component {
             ) : (
               <p>This is no body data at the moment, go dance</p>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     );
