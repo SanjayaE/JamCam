@@ -1,4 +1,4 @@
-const Tone = require("tone");
+const Tone = require('tone');
 
 export const chords = new Tone.Players(
   {
@@ -14,7 +14,9 @@ export const chords = new Tone.Players(
     chord4:
       process.env.PUBLIC_URL +
       '/camjam_samples/chord_hits/4th_chord_fmin120.wav'
-  }, go).toMaster();
+  },
+  go
+).toMaster();
 
 export const loops = new Tone.Players(
   {
@@ -24,7 +26,9 @@ export const loops = new Tone.Players(
     hat: './camjam_samples/newhatloop_120.wav',
     perc: './camjam_samples/percloop_grainy120.wav',
     vocal: './camjam_samples/vocals_let_me_see_you_move120.wav'
-  }, go).toMaster();
+  },
+  go
+).toMaster();
 
 export const tracks = new Tone.Players(
   {
@@ -34,46 +38,55 @@ export const tracks = new Tone.Players(
     bassline1: './camjam_samples/bassline1_120.wav',
     bassline2: './camjam_samples/bassline2_120.wav',
     bassline3: './camjam_samples/perc2_120.wav'
-  }, go).toMaster();
+  },
+  go
+).toMaster();
 
 //custom synth sound
-var synth = new Tone.Synth().toMaster()
+var synth = new Tone.Synth().toMaster();
 // synth.oscillator.type = 'sine';
 
 //volume adjustments on individual clips
-loops.get("bass").volume.value = -8;
-loops.get("hat").volume.value = -4;
+loops.get('bass').volume.value = -8;
+loops.get('hat').volume.value = -4;
 
 //starts the beat counter
 function go() {
-  Tone.Transport.scheduleRepeat(function (time) {
-  }, '1m');
+  Tone.Transport.scheduleRepeat(function(time) {}, '1m');
   Tone.Transport.start();
 }
 //loops wav files together on beat
 export function startLoop(name, cb) {
-  if (loops.get(name).state === "started") {
-    loops.get(name).stop(Tone.Transport.nextSubdivision("1n"));
-    cb(name, false);
+  let type = '';
+  let loops = ['kick', 'bass', 'clap', 'hat', 'perc', 'vocal'];
+  let tracks = ['beat1', 'beat2', 'beat3'];
+  if (loops.includes(name)) {
+    type = 'loops';
+  } else if (tracks.includes(name)) {
+    type = 'tracks';
+  }
+  if (loops.get(name).state === 'started') {
+    loops.get(name).stop(Tone.Transport.nextSubdivision('1n'));
+    cb(type, name, false);
   } else {
     loops.get(name).loop = true;
-    loops.get(name).start(Tone.Transport.nextSubdivision("1n"));
-    cb(name, true);
+    loops.get(name).start(Tone.Transport.nextSubdivision('1n'));
+    cb(type, name, true);
   }
 }
 //plays sound once on beat
 export function playOnce(name) {
   chords.get(name).volume.value = -6;
-  chords.get(name).start(Tone.Transport.nextSubdivision("1n"));
+  chords.get(name).start(Tone.Transport.nextSubdivision('1n'));
 }
 
 //play synth note
 export function playNote(note) {
-  synth.triggerAttackRelease(note, "8n");
+  synth.triggerAttackRelease(note, '8n');
 }
 
 //noise kill switch
 export function stopAudio() {
-  loops.stopAll("8n");
-  chords.stopAll("8n");
+  loops.stopAll('8n');
+  chords.stopAll('8n');
 }

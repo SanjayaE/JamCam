@@ -181,10 +181,11 @@ class App extends Component {
   //MODE 2:
 
   //Checks if loop active, then updates the state of loops
-  loopCheck = (loop, state) => {
+  loopCheck = (type, loop, state) => {
     let loops = { ...this.state.loops };
-    loops[loop].active = state;
-    this.setState({ loops });
+    let tracks = { ...this.state.tracks };
+    [type][loop].active = state;
+    this.setState({ loops, tracks });
   };
 
   //Determines CSS for active or inactive states
