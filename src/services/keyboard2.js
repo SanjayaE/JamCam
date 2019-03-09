@@ -39,7 +39,6 @@ const keyboard2 = async (pose, cb) => {
         console.log('a3');
         cb('a3');
     } else {
-        // console.log('none');
         cb('none');
     }
 };

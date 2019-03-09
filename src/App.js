@@ -94,45 +94,27 @@ class App extends Component {
   //MODE 2 KEYBOARD
   receiveKeyBoard2Press = key => {
     let keys2 = { ...this.state.keys2 };
-    let active1, active2;
-
-    //goes through keys2 and finds active notes (2 max)
-    for (let note in keys2) {
-      if (note !== 'none' && note !== 'movedOut' && keys2[note].active) {
-        if (keys2[note].active === 1) {
-          active1 = note;
-        } else if (keys2[note].active === 2) {
-          active2 = note;
-        }
-      }
-    }
-
-    if (key !== 'none' && key !== 'movedOut') {
+    keys2.a2.active = false;
+    keys2.b2.active = false;
+    keys2.c3.active = false;
+    keys2.d3.active = false;
+    keys2.e3.active = false;
+    keys2.f3.active = false;
+    keys2.g3.active = false;
+    keys2.a3.active = false;
+    keys2[key].active = true;
+    if (
+      key !== "none" &&
+      key !== "movedOut" &&
+      this.state.previousNote !== key
+    ) {
       playNote(key);
-      //if both notes are active, drop old note and set new key to active
-      if (active2 && active1) {
-        keys2[key].active = 2;
-        keys2[active1].active = false;
-        keys2[active2].active = 1;
-        //if only one note is active, set old active note to 2 and new to 1
-      } else if (active2) {
-        keys2[active2].active = 1;
-        keys2[key].active = 2;
-        //if no notes are active, set new key to 2
-      } else {
-        keys2[key].active = 2;
-      }
-      //set all to false if there are no active keys
-    } else if (key === 'movedOut') {
-      if (active1) {
-        keys2[active1].active = false;
-      }
-      if (active2) {
-        keys2[active2].active = false;
-      }
+      this.setState({ previousNote: key, keys2 });
+    } else if (key === "movedOut") {
       this.setState({ previousNote: "none" });
     }
   };
+
 
   //Callback provided to LoopsSection. Passes state to loopCheck & calls startLoop function
   receiveLoopPress = loop => {
