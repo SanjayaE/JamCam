@@ -4,7 +4,7 @@ const loopsSection = async (pose, cb) => {
   let X = pose.x;
 
   //only trigger within region of loops section
-  let within = function() {
+  let within = function () {
     if (X >= 1 && X <= 100 && (Y >= 40 && Y <= 442)) {
       return true;
     } else {

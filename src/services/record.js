@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { synth, chords, loops } from "./tone_manager.js";
 import { stopAudio } from "./tone_manager.js";
 const Tone = require("tone");
 
-class Record extends React.Component {
+class Record extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,20 +11,17 @@ class Record extends React.Component {
     };
   }
   componentDidMount() {
-    // const a = document.getElementsByTagName("audio")[0];
     const b = document.querySelector("#record");
     const c = document.querySelector("#stop");
     let clicked = false;
     const chunks = [];
     const actx = Tone.context;
-    // const ac = new AudioContext();
     const dest = actx.createMediaStreamDestination();
     const mediaRecorder = new MediaRecorder(dest.stream);
-    // const source = synth;
     const source = Tone.Master;
     source.connect(dest);
 
-    b.addEventListener("click", function(e) {
+    b.addEventListener("click", function (e) {
       if (!clicked) {
         mediaRecorder.start();
         e.target.innerHTML = "Stop recording";
@@ -36,7 +32,7 @@ class Record extends React.Component {
       }
     });
 
-    c.addEventListener("click", function(e) {
+    c.addEventListener("click", function (e) {
       if (clicked) {
         stopAudio();
       }
@@ -48,7 +44,7 @@ class Record extends React.Component {
       chunks.push(evt.data);
     };
 
-    mediaRecorder.onstop = function(evt) {
+    mediaRecorder.onstop = function (evt) {
       // Make blob out of our blobs, and open it.
       let blob = new Blob(chunks, { type: "audio/mpeg-3" });
       document.querySelector("audio").src = URL.createObjectURL(blob);
@@ -66,7 +62,7 @@ class Record extends React.Component {
         <div>
           <button id="record">Record</button>
           <div>
-            <a id="download"> Download</a>
+            <a href id="download"> Download</a>
           </div>
           <audio controls />
         </div>

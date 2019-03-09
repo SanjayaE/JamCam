@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import capture from './services/capture.js';
 import keyboard from './services/keyboard.js';
 import keyboard2 from './services/keyboard2.js';
-import KeyBoard2 from './views/_keyboard2.jsx';
 import loopsSection from './services/loops.js';
-import Tracks from './views/_tracks.jsx';
 import tracks from './services/tracks.js';
 import Mode1 from './views/_mode1.jsx';
+import Mode2 from './views/_mode2.jsx';
 import Record from './services/record';
-
 import {
   playOnce,
   startLoop,
@@ -121,6 +119,7 @@ class App extends Component {
     }
   };
 
+  //MODE1
   //Callback provided to LoopsSection. Passes state to loopCheck & calls startLoop function
   receiveLoopPress = loop => {
     if (
@@ -136,7 +135,50 @@ class App extends Component {
     }
   };
 
-  receiveTracksPress = track => {};
+  receiveTrackPress = button => {
+    let tracks = { ...this.state.tracks };
+    console.log('button is: ', button);
+    if (
+      button !== 'none' &&
+      button !== 'movedOut' &&
+      this.state.previousTrackButton !== button
+    ) {
+      if (button === 'beat1' || button === 'beat2' || button === 'beat3') {
+        if (
+          tracks[button].active === true &&
+          this.state.previousTrackButton != button
+        ) {
+          tracks[button].active = false;
+        } else if (
+          !tracks[button].active &&
+          this.state.previousTrackButton != button
+        ) {
+          tracks.beat1.active = false;
+          tracks.beat2.active = false;
+          tracks.beat3.active = false;
+          tracks[button].active = true;
+        }
+      } else if (
+        button === 'bassline1' ||
+        button === 'baseline2' ||
+        button === 'baseline3'
+      ) {
+        if (tracks[button].active) {
+          tracks[button].active = false;
+        } else if (!tracks[button].active) {
+          tracks.bassline1.active = false;
+          tracks.bassline2.active = false;
+          tracks.bassline3.active = false;
+          tracks[button].active = true;
+        }
+      }
+    } else if (button === 'movedOut') {
+      tracks.previousTrackButton = 'none';
+    }
+    this.setState();
+  };
+
+  //MODE 2:
 
   //Checks if loop active, then updates the state of loops
   loopCheck = (loop, state) => {
@@ -178,10 +220,8 @@ class App extends Component {
   };
 
   componentWillUnmount = () => {
-    //find a way to stop capturing and tone.js
     console.log('unmount');
-    //this will reload the homepage and stop process , not a great way to stop, temp fix.
-    // window.location.reload();
+    //turn off camera and audio when you switch from the video page
     CameraStop();
     stopAudio();
   };
@@ -198,14 +238,6 @@ class App extends Component {
             this.state.bodyPartLocation.leftWrist,
             this.receiveKeyBoardPress
           );
-          keyboard(
-            this.state.bodyPartLocation.rightWrist,
-            this.receiveKeyBoardPress
-          );
-          loopsSection(
-            this.state.bodyPartLocation.leftWrist,
-            this.receiveLoopPress
-          );
           loopsSection(
             this.state.bodyPartLocation.rightWrist,
             this.receiveLoopPress
@@ -215,9 +247,9 @@ class App extends Component {
             this.state.bodyPartLocation.leftWrist,
             this.receiveKeyBoard2Press
           );
-          keyboard2(
+          tracks(
             this.state.bodyPartLocation.rightWrist,
-            this.receiveKeyBoard2Press
+            this.receiveTrackPress
           );
         }
       }
@@ -232,8 +264,7 @@ class App extends Component {
               <Mode1 cb={this.defineClass} />
             ) : (
               <div>
-                <KeyBoard2 cb={this.defineClass} />
-                <Tracks cb={this.defineClass} />
+                <Mode2 cb={this.defineClass} />
               </div>
             )}
 
