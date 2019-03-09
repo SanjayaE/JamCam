@@ -171,11 +171,17 @@ class App extends Component {
 
   //Toggle between regular and mega-jam modes
   toggleMode = () => {
+    stopAudio();
     if (this.state.mode === 1) {
       this.setState({ mode: 2 });
     } else {
       this.setState({ mode: 1 });
     }
+    let loops = { ...this.state.loops };
+    for (let loop in loops) {
+      loops[loop].active = false;
+    }
+    this.setState({ loops });
   };
 
   componentDidMount = async () => {
