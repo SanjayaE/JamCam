@@ -69,13 +69,12 @@ class App extends Component {
         }
       },
       mode: 1,
-      view: 'default',
       previousChordKey: 'none',
       previousLoopKey: 'none'
     };
   }
 
-  //Callback provided to Keyboard. Controls chord active states & calls playOnce function
+  //Callback provided to MODE 1 Keyboard. Controls chord active states & calls playOnce function
   receiveKeyBoardPress = key => {
     let keys = { ...this.state.keys };
     keys.chord1.active = false;
@@ -92,6 +91,48 @@ class App extends Component {
       this.setState({ previousChordKey: key, keys });
     } else if (key === 'movedOut') {
       this.setState({ previousChordKey: 'none' });
+    }
+  };
+
+  //MODE 2 KEYBOARD
+  receiveKeyBoard2Press = key => {
+    let keys2 = { ...this.state.keys2 };
+    let active1, active2;
+
+    //goes through keys2 and finds active notes (2 max)
+    for (let note in keys2) {
+      if (note !== 'none' && note !== 'movedOut' && keys2[note].active) {
+        if (keys2[note].active === 1) {
+          active1 = note;
+        } else if (keys2[note].active === 2) {
+          active2 = note;
+        }
+      }
+    }
+
+    if (key !== 'none' && key !== 'movedOut') {
+      playNote(key);
+      //if both notes are active, drop old note and set new key to active
+      if (active2 && active1) {
+        keys2[key].active = 2;
+        keys2[active1].active = false;
+        keys2[active2].active = 1;
+        //if only one note is active, make old active note to 2 and new to 1
+      } else if (active2) {
+        keys2[active2].active = 1;
+        keys2[key].active = 2;
+        //if no notes are active, set new key to 2
+      } else {
+        keys2[key].active = 2;
+      }
+      //set all to false if there are active keys
+    } else if (key === 'movedOut') {
+      if (active1) {
+        keys2[active1].active = false;
+      }
+      if (active2) {
+        keys2[active2].active = false;
+      }
     }
   };
 
@@ -149,7 +190,7 @@ class App extends Component {
     //find a way to stop capturing and tone.js
     console.log('unmount');
     //this will reload the homepage and stop process , not a great way to stop, temp fix.
-    window.location.reload();
+    // window.location.reload();
   };
 
   //Takes in body part locations and maps to keyboard and loops
@@ -179,20 +220,11 @@ class App extends Component {
         } else {
           keyboard2(
             this.state.bodyPartLocation.leftWrist,
-            this.receiveKeyBoardPress
+            this.receiveKeyBoard2Press
           );
           keyboard2(
             this.state.bodyPartLocation.rightWrist,
-            this.receiveKeyBoardPress
-          );
-
-          tracks(
-            this.state.bodyPartLocation.leftWrist,
-            this.receiveTracksPress
-          );
-          tracks(
-            this.state.bodyPartLocation.rightWrist,
-            this.receiveTracksPress
+            this.receiveKeyBoard2Press
           );
         }
       }
