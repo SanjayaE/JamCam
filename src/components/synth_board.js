@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Synth from './Synth'
+import Synth from './synth'
 import { uniqueID } from '../services/helpers';
 import { playNote } from '../services/tone_manager.js';
 import synthTriggerAreas from '../services/keyboard_trigger_areas.js';
