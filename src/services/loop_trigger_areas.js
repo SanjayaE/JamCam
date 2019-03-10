@@ -1,5 +1,5 @@
 // play loops based on key-point (partNum) position
-const loopsSection = async (pose, receiveLoopPress) => {
+const loopTriggerAreas = async (pose, receiveLoopPress) => {
   let Y = pose.y;
   let X = pose.x;
 
@@ -35,4 +35,4 @@ const loopsSection = async (pose, receiveLoopPress) => {
   }
 };
 
-export default loopsSection;
+export default loopTriggerAreas;

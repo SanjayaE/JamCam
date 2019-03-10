@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+import { defineClass } from '../services/helpers';
 
 class Key extends Component {
     capitalize = (word) => {
         return word.charAt(0).toUpperCase() + word.slice(1)
     }
 
-    defineClass(name, keyState) {
-        if (keyState === true) {
+    //Determines CSS for active or inactive states
+    defineClass(name, activeState) {
+        if (activeState === true) {
             return name + ' active';
         }
         else {
@@ -16,7 +18,7 @@ class Key extends Component {
 
     render() {
         return (
-            <div className={this.defineClass(this.props.name, this.props.keyState)}>{this.capitalize(this.props.name)}</div>
+            <div className={defineClass(this.props.name, this.props.keyState)}>{this.capitalize(this.props.name)}</div>
         );
     }
 }

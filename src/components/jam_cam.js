@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import InteractiveWindow from './interactive_window';
 import Panel from './panel';
 import keyboardTriggerAreas from '../services/keyboard_trigger_areas.js';
-import loopsSection from '../services/loops.js';
+// import loopsSection from '../services/loops.js';
 import { playOnce, startLoop, stopAudio, playNote } from '../services/tone_manager.js';
 import capture from '../services/capture';
 import { CameraStart, CameraStop } from '../services/camera';
@@ -136,7 +136,7 @@ class JamCam extends Component {
     render() {
         return (
             <div className="container">
-                < InteractiveWindow leftWrist={this.state.bodyPartLocation.leftWrist} />
+                < InteractiveWindow leftWrist={this.state.bodyPartLocation.leftWrist} rightWrist={this.state.bodyPartLocation.rightWrist} />
                 <video id="video" width="640" height="480" controls autoPlay />
                 <canvas id="overlay" />
                 < Panel />

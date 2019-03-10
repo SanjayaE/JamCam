@@ -22,7 +22,6 @@ class KeyBoard extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        console.log("keyboard did mount")
         if (this.props.leftWrist !== prevProps.leftWrist) {
             keyboardTriggerAreas(this.props.leftWrist, this.receiveKeyBoardPress)
         }
@@ -45,15 +44,6 @@ class KeyBoard extends Component {
             this.setState({ previousChordKey: key, keys });
         } else if (key === 'movedOut') {
             this.setState({ previousChordKey: 'none' });
-        }
-    };
-
-    //Determines CSS for active or inactive states
-    defineClass = (type, input) => {
-        if (this.state[type][input].active) {
-            return input + ' active';
-        } else {
-            return input + ' inactive';
         }
     };
 
