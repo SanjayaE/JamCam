@@ -6,7 +6,6 @@ import capture from '../services/capture';
 import { CameraStart, CameraStop } from '../services/camera';
 
 class JamCam extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -20,7 +19,7 @@ class JamCam extends Component {
                     y: 0
                 }
             },
-            mode: 1,
+            mode: 1
         };
     }
 
@@ -38,19 +37,34 @@ class JamCam extends Component {
     };
 
     //Takes in body part locations and maps to keyboard and loops
-    receiveNewBodyPartLocation = (bodyPartLocation) => {
-        this.setState(
-            { bodyPartLocation }
-        );
+    receiveNewBodyPartLocation = bodyPartLocation => {
+        this.setState({
+            bodyPartLocation
+        });
+    };
+
+    toggleMode = () => {
+        let mode;
+        console.log('Mode is: ', this.state.mode);
+        if (this.state.mode === 1) {
+            mode = 2;
+        } else {
+            mode = 1;
+        }
+        this.setState({ mode });
     };
 
     render() {
         return (
             <div className="container">
-                < InteractiveWindow leftWrist={this.state.bodyPartLocation.leftWrist} rightWrist={this.state.bodyPartLocation.rightWrist} />
+                <InteractiveWindow
+                    leftWrist={this.state.bodyPartLocation.leftWrist}
+                    rightWrist={this.state.bodyPartLocation.rightWrist}
+                    mode={this.state.mode}
+                />
                 <video id="video" width="640" height="480" controls autoPlay />
                 <canvas id="overlay" />
-                < Panel />
+                <Panel mode={this.state.mode} toggleMode={this.toggleMode} />
             </div>
         );
     }

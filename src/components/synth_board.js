@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Synth from './synth'
 import { uniqueID } from '../services/helpers';
 import { playNote } from '../services/tone_manager.js';
-import synthTriggerAreas from '../services/keyboard_trigger_areas.js';
+import synthTriggerAreas from '../services/synth_trigger_areas.js';
 
 class SynthBoard extends Component {
     constructor(props) {
@@ -21,19 +21,20 @@ class SynthBoard extends Component {
                 none: { active: true },
                 movedOut: { active: false }
             },
-            previousNote: 'none',
+            previousNote: 'none'
         };
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.leftWrist !== prevProps.leftWrist) {
-            synthTriggerAreas(this.props.leftWrist, this.receiveSynthPress)
+            synthTriggerAreas(this.props.leftWrist, this.receiveSynthPress);
         }
-    };
+    }
 
     //Callback provided to MODE 1 Keyboard. Controls chord active states & calls playOnce function
     receiveSynthPress = key => {
         let keys = { ...this.state.keys };
+        console.log('keys is:', keys)
         keys.a2.active = false;
         keys.b2.active = false;
         keys.c3.active = false;
@@ -58,7 +59,13 @@ class SynthBoard extends Component {
     render() {
         return (
             <div id="keys_container">
-                {this.state.keyNames.map(e => (<Synth key={uniqueID()} name={e} keyState={this.state.keys[e].active} />))}
+                {this.state.keyNames.map(e => (
+                    <Synth
+                        key={uniqueID()}
+                        name={e}
+                        keyState={this.state.keys[e].active}
+                    />
+                ))}
             </div>
         );
     }
