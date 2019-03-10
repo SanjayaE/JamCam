@@ -45,7 +45,6 @@ class JamCam extends Component {
 
     toggleMode = () => {
         let mode;
-        console.log('Mode is: ', this.state.mode);
         if (this.state.mode === 1) {
             mode = 2;
         } else {

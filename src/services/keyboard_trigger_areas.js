@@ -15,16 +15,12 @@ const keyboardTriggerAreas = async (pose, receiveKeyBoardPress) => {
 
   if (withinKB() && Y <= 140) {
     receiveKeyBoardPress("chord1");
-    console.log("chord1")
   } else if (withinKB() && Y <= 240 && Y >= 141) {
     receiveKeyBoardPress("chord2");
-    console.log("chord2")
   } else if (withinKB() && Y <= 340 && Y >= 241) {
     receiveKeyBoardPress("chord3");
-    console.log("chord3")
   } else if (withinKB() && Y <= 440 && Y >= 341) {
     receiveKeyBoardPress("chord4");
-    console.log("chord4")
   } else {
     receiveKeyBoardPress("none");
   }
