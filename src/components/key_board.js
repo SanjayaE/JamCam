@@ -30,11 +30,11 @@ class KeyBoard extends Component {
     //Callback provided to MODE 1 Keyboard. Controls chord active states & calls playOnce function
     receiveKeyBoardPress = key => {
         let keys = { ...this.state.keys };
-        keys.chord1.active = false;
-        keys.chord2.active = false;
-        keys.chord3.active = false;
-        keys.chord4.active = false;
+        for (var k in keys) {
+            keys[k].active = false;
+        }
         keys[key].active = true;
+
         if (
             key !== 'none' &&
             key !== 'movedOut' &&

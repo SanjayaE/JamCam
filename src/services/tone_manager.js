@@ -60,6 +60,22 @@ export function startLoop(name, loopCheck) {
     loopCheck(name, true);
   }
 }
+
+//Turns off other two tracks when one track is playing in a unit of 3
+export function switchOthersOff(name) {
+  if (name === 'beat1') {
+    loops.get('beat2').stop()
+    loops.get('beat3').stop()
+  } else if (name === 'beat2') {
+    loops.get('beat1').stop()
+    loops.get('beat3').stop()
+  } else if (name === 'beat3') {
+    loops.get('beat1').stop()
+    loops.get('beat2').stop()
+  }
+}
+
+
 //plays sound once on beat
 export function playOnce(name) {
   chords.get(name).volume.value = -6;

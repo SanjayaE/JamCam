@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Track from './track';
 import { uniqueID } from '../services/helpers';
-import { startLoop } from '../services/tone_manager.js';
+import { startLoop, switchOthersOff } from '../services/tone_manager.js';
 import trackTriggerAreas from '../services/track_trigger_areas.js';
 
 class TrackBoard extends Component {
@@ -16,6 +16,7 @@ class TrackBoard extends Component {
                 bassline1: { active: false },
                 bassline2: { active: false },
                 bassline3: { active: false },
+                none: { active: true }
             },
             previousTrack: 'none'
         };
@@ -35,7 +36,9 @@ class TrackBoard extends Component {
             this.state.previousTrack !== loop
         ) {
             let loops = { ...this.state.loops };
+            switchOthersOff(loop)
             startLoop(loop, this.loopCheck);
+
             this.setState({ previousTrack: loop, loops });
         } else if (loop === 'movedOut') {
             this.setState({ previousTrack: 'none' });
@@ -48,6 +51,7 @@ class TrackBoard extends Component {
         loops[loop].active = state;
         this.setState({ loops });
     };
+
 
     render() {
         return (
