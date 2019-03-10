@@ -7,7 +7,7 @@ class Loop extends Component {
     }
     render() {
         return (
-            <div className={this.props.defineClass('loops', this.props.name)}>{this.capitalize(this.props.name)}</div>
+            <div> {this.capitalize(this.props.name)}</div>
         );
     }
 }

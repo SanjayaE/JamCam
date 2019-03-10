@@ -7,8 +7,8 @@ class InteractiveWindow extends Component {
     render() {
         return (
             <div className="container">
-                < KeyBoard defineClass={this.props.defineClass} />
-                < LoopBoard defineClass={this.props.defineClass} />
+                < KeyBoard leftWrist={this.props.leftWrist} />
+                < LoopBoard />
             </div>
         );
     }

@@ -10,10 +10,11 @@ class LoopBoard extends Component {
         };
     }
 
+
     render() {
         return (
             <div id="loops_container">
-                {this.state.loops.map(e => (<Loop key={uniqueID()} name={e} defineClass={this.props.defineClass} />))}
+                {this.state.loops.map(e => (<Loop key={uniqueID()} name={e} />))}
             </div>
         );
     }
