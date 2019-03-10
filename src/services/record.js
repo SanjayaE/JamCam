@@ -62,7 +62,7 @@ class Record extends Component {
         <div>
           <button id="record">Record</button>
           <div>
-            <a href id="download"> Download</a>
+            <a id="download"> Download</a>
           </div>
           <audio controls />
         </div>

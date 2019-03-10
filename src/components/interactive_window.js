@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import KeyBoard from './key_board';
 import LoopBoard from './loop_board';
-import Video from './video';
 
 class InteractiveWindow extends Component {
 
