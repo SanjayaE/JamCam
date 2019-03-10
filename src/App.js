@@ -12,21 +12,6 @@ class App extends Component {
         };
     }
 
-
-    // componentDidMount = async () => {
-    //     //Start Camera
-    //     CameraStart();
-    //     //Start Capture and Provide Callback
-    //     capture(this.receiveNewBodyPartLocation);
-    // };
-
-    // componentWillUnmount = () => {
-    //     //turn off camera and audio when you switch from the video page
-    //     CameraStop();
-    //     stopAudio();
-    // };
-
-
     render() {
         return (
             <div className="container">
