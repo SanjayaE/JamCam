@@ -62,22 +62,14 @@ function go() {
   Tone.Transport.start();
 }
 //loops wav files together on beat
-export function startLoop(name, cb) {
-  let type = '';
-  let loops = ['kick', 'bass', 'clap', 'hat', 'perc', 'vocal'];
-  let tracks = ['beat1', 'beat2', 'beat3'];
-  if (loops.includes(name)) {
-    type = 'loops';
-  } else if (tracks.includes(name)) {
-    type = 'tracks';
-  }
+export function startLoop(name, loopCheck) {
   if (loops.get(name).state === 'started') {
     loops.get(name).stop(Tone.Transport.nextSubdivision('1n'));
-    cb(type, name, false);
+    loopCheck(name, false);
   } else {
     loops.get(name).loop = true;
     loops.get(name).start(Tone.Transport.nextSubdivision('1n'));
-    cb(type, name, true);
+    loopCheck(name, true);
   }
 }
 //plays sound once on beat
