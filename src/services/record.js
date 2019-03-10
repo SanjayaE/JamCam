@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import { synth, chords, loops } from './tone_manager.js';
-import { stopAudio } from './tone_manager.js';
-const Tone = require('tone');
+import React, { Component } from "react";
+import { stopAudio } from "./tone_manager.js";
+const Tone = require("tone");
 
-class Record extends React.Component {
+class Record extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,17 +11,13 @@ class Record extends React.Component {
     };
   }
   componentDidMount() {
-    console.log('state:', this.state);
-    // const a = document.getElementsByTagName("audio")[0];
-    const b = document.querySelector('#record');
-    const c = document.querySelector('#stop');
-    // let clicked = false;
+    const b = document.querySelector("#record");
+    const c = document.querySelector("#stop");
+    let clicked = false;
     const chunks = [];
     const actx = Tone.context;
-    // const ac = new AudioContext();
     const dest = actx.createMediaStreamDestination();
     const mediaRecorder = new MediaRecorder(dest.stream);
-    // const source = synth;
     const source = Tone.Master;
     source.connect(dest);
 
@@ -43,7 +38,7 @@ class Record extends React.Component {
     });
 
     // just to stop tone.js playback
-    c.addEventListener('click', function(e) {
+    c.addEventListener('click', function (e) {
       stopAudio();
     });
 

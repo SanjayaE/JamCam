@@ -2,19 +2,12 @@ import React, { Component } from 'react';
 import capture from './services/capture.js';
 import keyboard from './services/keyboard.js';
 import keyboard2 from './services/keyboard2.js';
-import KeyBoard2 from './views/_keyboard2.jsx';
 import loopsSection from './services/loops.js';
-import Tracks from './views/_tracks.jsx';
 import tracks from './services/tracks.js';
 import Mode1 from './views/_mode1.jsx';
+import Mode2 from './views/_mode2.jsx';
 import Record from './services/record';
-
-import {
-  playOnce,
-  startLoop,
-  stopAudio,
-  playNote
-} from './services/tone_manager.js';
+import { playOnce, startLoop, stopAudio, playNote } from './services/tone_manager.js';
 import { CameraStart, CameraStop } from './services/camera.js';
 import Loading from './views/loading.js';
 
@@ -49,17 +42,24 @@ class App extends Component {
         hat: { active: false },
         perc: { active: false },
         vocal: { active: false },
+        // beat1: { active: false },
+        // beat2: { active: false },
+        // beat3: { active: false },
+        // bassline1: { active: false },
+        // bassline2: { active: false },
+        // bassline3: { active: false },
         none: { active: true }
       },
       tracks: {
-        button1: { active: false },
-        button2: { active: false },
-        button3: { active: false },
-        button4: { active: false },
-        button5: { active: false },
-        button6: { active: false },
+        beat1: { active: false },
+        beat2: { active: false },
+        beat3: { active: false },
+        bassline1: { active: false },
+        bassline2: { active: false },
+        bassline3: { active: false },
         none: { active: true }
       },
+
       bodyPartLocation: {
         leftWrist: {
           x: 0,
@@ -73,6 +73,8 @@ class App extends Component {
       mode: 1,
       previousChordKey: 'none',
       previousLoopKey: 'none',
+      previousNote: 'none',
+      previousTrack: 'none',
       isLoading: true
     };
   }
@@ -100,45 +102,28 @@ class App extends Component {
   //MODE 2 KEYBOARD
   receiveKeyBoard2Press = key => {
     let keys2 = { ...this.state.keys2 };
-    let active1, active2;
-
-    //goes through keys2 and finds active notes (2 max)
-    for (let note in keys2) {
-      if (note !== 'none' && note !== 'movedOut' && keys2[note].active) {
-        if (keys2[note].active === 1) {
-          active1 = note;
-        } else if (keys2[note].active === 2) {
-          active2 = note;
-        }
-      }
-    }
-
-    if (key !== 'none' && key !== 'movedOut') {
+    keys2.a2.active = false;
+    keys2.b2.active = false;
+    keys2.c3.active = false;
+    keys2.d3.active = false;
+    keys2.e3.active = false;
+    keys2.f3.active = false;
+    keys2.g3.active = false;
+    keys2.a3.active = false;
+    keys2[key].active = true;
+    if (
+      key !== 'none' &&
+      key !== 'movedOut' &&
+      this.state.previousNote !== key
+    ) {
       playNote(key);
-      //if both notes are active, drop old note and set new key to active
-      if (active2 && active1) {
-        keys2[key].active = 2;
-        keys2[active1].active = false;
-        keys2[active2].active = 1;
-        //if only one note is active, make old active note to 2 and new to 1
-      } else if (active2) {
-        keys2[active2].active = 1;
-        keys2[key].active = 2;
-        //if no notes are active, set new key to 2
-      } else {
-        keys2[key].active = 2;
-      }
-      //set all to false if there are active keys
+      this.setState({ previousNote: key, keys2 });
     } else if (key === 'movedOut') {
-      if (active1) {
-        keys2[active1].active = false;
-      }
-      if (active2) {
-        keys2[active2].active = false;
-      }
+      this.setState({ previousNote: 'none' });
     }
   };
 
+  //MODE1
   //Callback provided to LoopsSection. Passes state to loopCheck & calls startLoop function
   receiveLoopPress = loop => {
     if (
@@ -153,8 +138,6 @@ class App extends Component {
       this.setState({ previousLoopKey: 'none' });
     }
   };
-
-  receiveTracksPress = track => {};
 
   //Checks if loop active, then updates the state of loops
   loopCheck = (loop, state) => {
@@ -201,7 +184,7 @@ class App extends Component {
     CameraStart();
     setTimeout(() => {
       this.setState({ isLoading: false });
-    }, 1000);
+    }, 2000);
     //Start Capture and Provide Callback
     capture(this.receiveNewBodyPartLocation);
   };
@@ -228,14 +211,6 @@ class App extends Component {
             this.state.bodyPartLocation.leftWrist,
             this.receiveKeyBoardPress
           );
-          keyboard(
-            this.state.bodyPartLocation.rightWrist,
-            this.receiveKeyBoardPress
-          );
-          loopsSection(
-            this.state.bodyPartLocation.leftWrist,
-            this.receiveLoopPress
-          );
           loopsSection(
             this.state.bodyPartLocation.rightWrist,
             this.receiveLoopPress
@@ -245,14 +220,29 @@ class App extends Component {
             this.state.bodyPartLocation.leftWrist,
             this.receiveKeyBoard2Press
           );
-          keyboard2(
+          loopsSection(
             this.state.bodyPartLocation.rightWrist,
-            this.receiveKeyBoard2Press
+            this.receiveLoopPress
           );
         }
       }
     );
   };
+
+  componentDidMount = async () => {
+    //Start Camera
+    CameraStart();
+    //Start Capture and Provide Callback
+    capture(this.receiveNewBodyPartLocation);
+  };
+
+  componentWillUnmount = () => {
+    //turn off camera and audio when you switch from the video page
+    CameraStop();
+    stopAudio();
+  };
+
+
   render() {
     return (
       <div className="container">
@@ -261,13 +251,13 @@ class App extends Component {
             {this.state.mode === 1 ? (
               <Mode1 cb={this.defineClass} />
             ) : (
-              <div>
-                <KeyBoard2 cb={this.defineClass} />
-                <Tracks cb={this.defineClass} />
-              </div>
-            )}
+                <div>
+                  <Mode2 cb={this.defineClass} />
+                </div>
+              )}
+
             <video id="video" width="640" height="480" controls autoPlay />
-            <Loading visible={this.state.isLoading} />
+            {/* <Loading visible={this.state.isLoading} /> */}
             <canvas id="overlay" />
             <Record />
             <br />
@@ -275,8 +265,8 @@ class App extends Component {
               {this.state.mode === 1 ? (
                 <p>ACTIVATE MEGA JAM</p>
               ) : (
-                <p> DE-ACTIVATE MEGA JAM</p>
-              )}
+                  <p> DE-ACTIVATE MEGA JAM</p>
+                )}
             </h3>
             <label className="switch">
               <input type="checkbox" onClick={this.toggleMode} />
@@ -286,7 +276,7 @@ class App extends Component {
 
           {/* >>>>>>> Debug info <<<<<<<<<< */}
 
-          {/* <div className="bodypart-info">
+          <div className="bodypart-info">
             <p>Current Body Part Location</p>
             {this.state.bodyPartLocation ? (
               <div>
@@ -300,9 +290,9 @@ class App extends Component {
                 </p>
               </div>
             ) : (
-              <p>This is no body data at the moment, go dance</p>
-            )}
-          </div> */}
+                <p>This is no body data at the moment, go dance</p>
+              )}
+          </div>
         </div>
       </div>
     );
