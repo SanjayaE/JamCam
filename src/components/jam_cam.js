@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import InteractiveWindow from './interactive_window';
 import Panel from './panel';
-import { stopAudio, playNote } from '../services/tone_manager.js';
+import { stopAudio } from '../services/tone_manager.js';
 import capture from '../services/capture';
 import { CameraStart, CameraStop } from '../services/camera';
 

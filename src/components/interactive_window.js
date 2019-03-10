@@ -17,7 +17,7 @@ class InteractiveWindow extends Component {
       return (
         <div className="container">
           <SynthBoard leftWrist={this.props.leftWrist} />
-          <TrackBoard rightWrist={this.props.rightWrist} />
+          {/* <TrackBoard rightWrist={this.props.rightWrist} /> */}
         </div>
       );
     }

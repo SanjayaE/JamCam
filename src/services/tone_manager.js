@@ -26,12 +26,6 @@ export const loops = new Tone.Players(
     hat: './camjam_samples/newhatloop_120.wav',
     perc: './camjam_samples/percloop_grainy120.wav',
     vocal: './camjam_samples/vocals_let_me_see_you_move120.wav'
-    // beat1: './camjam_samples/drumbeat1_120.wav',
-    // beat2: './camjam_samples/drumbeat2_120.wav',
-    // beat3: './camjam_samples/drumbeat3_120.wav',
-    // bassline1: './camjam_samples/bassline1_120.wav',
-    // bassline2: './camjam_samples/bassline2_120.wav',
-    // bassline3: './camjam_samples/perc2_120.wav'
   },
   go
 ).toMaster();
