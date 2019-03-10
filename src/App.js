@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import capture from './services/capture.js';
-import { stopAudio } from './services/tone_manager.js';
-import { CameraStart, CameraStop } from './services/camera.js';
 import JamCam from './components/jam_cam.js';
 
 class App extends Component {

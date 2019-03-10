@@ -84,7 +84,6 @@ export function switchOtherSoundOff(name) {
   }
 }
 
-
 //plays sound once on beat
 export function playOnce(name) {
   chords.get(name).volume.value = -6;

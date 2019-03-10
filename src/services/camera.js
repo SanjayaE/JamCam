@@ -1,5 +1,3 @@
-// import { start } from "repl";
-
 // open the camera stream
 export const CameraStart = async () => {
   navigator.getUserMedia(
@@ -10,13 +8,13 @@ export const CameraStart = async () => {
     },
 
     // successCallback
-    function(stream) {
+    function (stream) {
       const video = document.querySelector("video");
       video.srcObject = stream;
     },
 
     // errorCallback
-    function(stream) {
+    function (stream) {
       const errorMessage =
         "This browser does not support video capture, or this device does not have a camera";
       alert(errorMessage);
@@ -30,7 +28,7 @@ export const CameraStop = async () => {
   let stream = video.srcObject;
   let tracks = stream.getTracks();
 
-  tracks.forEach(function(track) {
+  tracks.forEach(function (track) {
     track.stop();
   });
 
