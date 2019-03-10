@@ -9,6 +9,7 @@ import Mode2 from './views/_mode2.jsx';
 import Record from './services/record';
 import { playOnce, startLoop, stopAudio, playNote } from './services/tone_manager.js';
 import { CameraStart, CameraStop } from './services/camera.js';
+import Loading from './views/loading.js';
 
 class App extends Component {
   constructor(props) {
@@ -73,7 +74,8 @@ class App extends Component {
       previousChordKey: 'none',
       previousLoopKey: 'none',
       previousNote: 'none',
-      previousTrack: 'none'
+      previousTrack: 'none',
+      isLoading: true
     };
   }
 
@@ -168,6 +170,35 @@ class App extends Component {
     this.setState({ loops });
   };
 
+  componentDidMount = async () => {
+    console.log('did mount');
+
+    this.hideLoader();
+    //Start Camera
+    // CameraStart();
+    // //Start Capture and Provide Callback
+    // capture(this.receiveNewBodyPartLocation);
+  };
+
+  hideLoader = () => {
+    CameraStart();
+    setTimeout(() => {
+      this.setState({ isLoading: false });
+    }, 2000);
+    //Start Capture and Provide Callback
+    capture(this.receiveNewBodyPartLocation);
+  };
+
+  componentWillUnmount = () => {
+    //find a way to stop capturing and tone.js
+    console.log('unmount');
+    //this will reload the homepage and stop process , not a great way to stop, temp fix.
+    // window.location.reload();
+
+    CameraStop();
+    stopAudio();
+  };
+
   //Takes in body part locations and maps to keyboard and loops
   receiveNewBodyPartLocation = bodyPartLocation => {
     this.setState(
@@ -226,6 +257,7 @@ class App extends Component {
               )}
 
             <video id="video" width="640" height="480" controls autoPlay />
+            {/* <Loading visible={this.state.isLoading} /> */}
             <canvas id="overlay" />
             <Record />
             <br />
