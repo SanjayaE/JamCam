@@ -1,6 +1,6 @@
 // play Synth notes based on key-point (partNum) position
 
-const keyboard = async (pose, cb) => {
+const keyboard = async (pose, receiveKeyBoardPress) => {
   let Y = pose.y;
   let X = pose.x;
 
@@ -9,20 +9,20 @@ const keyboard = async (pose, cb) => {
     if (X >= 540 && X <= 640 && (Y >= 40 && Y <= 440)) {
       return true;
     } else {
-      cb("movedOut");
+      receiveKeyBoardPress("movedOut");
     }
   };
 
   if (withinKB() && Y <= 140) {
-    cb("chord1");
+    receiveKeyBoardPress("chord1");
   } else if (withinKB() && Y <= 240 && Y >= 141) {
-    cb("chord2");
+    receiveKeyBoardPress("chord2");
   } else if (withinKB() && Y <= 340 && Y >= 241) {
-    cb("chord3");
+    receiveKeyBoardPress("chord3");
   } else if (withinKB() && Y <= 440 && Y >= 341) {
-    cb("chord4");
+    receiveKeyBoardPress("chord4");
   } else {
-    cb("none");
+    receiveKeyBoardPress("none");
   }
 };
 

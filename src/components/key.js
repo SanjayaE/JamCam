@@ -7,7 +7,7 @@ class Key extends Component {
 
     render() {
         return (
-            <div className={this.props.cb('keys', this.props.name)}>{this.capitalize(this.props.name)}</div>
+            <div className={this.props.defineClass('keys', this.props.name)}>{this.capitalize(this.props.name)}</div>
         );
     }
 }

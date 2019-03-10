@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Loop from './loop'
+import { uniqueID } from '../services/helpers';
 
 class LoopBoard extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class LoopBoard extends Component {
     render() {
         return (
             <div id="loops_container">
-                {this.state.loops.map(e => (<Loop name={e} cb={this.props.cb} />))}
+                {this.state.loops.map(e => (<Loop key={uniqueID()} name={e} defineClass={this.props.defineClass} />))}
             </div>
         );
     }

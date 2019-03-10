@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Key from './key'
+import { uniqueID } from '../services/helpers';
 
 class KeyBoard extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class KeyBoard extends Component {
     render() {
         return (
             <div id="keys_container">
-                {this.state.keys.map(e => (<Key name={e} cb={this.props.cb} />))}
+                {this.state.keys.map(e => (<Key key={uniqueID()} name={e} defineClass={this.props.defineClass} />))}
             </div>
         );
     }

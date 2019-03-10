@@ -7,7 +7,7 @@ const LEFT_WRIST_KEYPOINT = 9;
 const RIGHT_WRIST_KEYPOINT = 10;
 
 //send video to posenet and estimate poses
-const Capture = async cb => {
+const Capture = async receiveNewBodyPartLocation => {
   const canvas = document.getElementById('overlay');
   const video = document.getElementById('video');
   const ctx = canvas.getContext('2d');
@@ -46,7 +46,7 @@ const Capture = async cb => {
           y: p.keypoints[RIGHT_WRIST_KEYPOINT].position.y
         }
       };
-      cb(bodyPartLocation);
+      receiveNewBodyPartLocation(bodyPartLocation);
     }
 
     await tensorflow.nextFrame();

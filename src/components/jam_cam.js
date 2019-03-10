@@ -135,7 +135,7 @@ class JamCam extends Component {
     render() {
         return (
             <div className="container">
-                < InteractiveWindow cb={this.defineClass} />
+                < InteractiveWindow defineClass={this.defineClass} />
                 <video id="video" width="640" height="480" controls autoPlay />
                 <canvas id="overlay" />
                 < Panel />
