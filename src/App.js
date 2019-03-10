@@ -7,15 +7,16 @@ import loopsSection from './services/loops.js';
 import Tracks from './views/_tracks.jsx';
 import tracks from './services/tracks.js';
 import Mode1 from './views/_mode1.jsx';
-import Record from "./services/record";
+import Record from './services/record';
 
 import {
   playOnce,
   startLoop,
   stopAudio,
   playNote
-} from "./services/tone_manager.js";
-import { CameraStart, CameraStop } from "./services/camera.js";
+} from './services/tone_manager.js';
+import { CameraStart, CameraStop } from './services/camera.js';
+import Loading from './views/loading.js';
 
 class App extends Component {
   constructor(props) {
@@ -71,11 +72,12 @@ class App extends Component {
       },
       mode: 1,
       previousChordKey: 'none',
-      previousLoopKey: 'none'
+      previousLoopKey: 'none',
+      isLoading: true
     };
   }
 
- //Callback provided to MODE 1 Keyboard. Controls chord active states & calls playOnce function
+  //Callback provided to MODE 1 Keyboard. Controls chord active states & calls playOnce function
   receiveKeyBoardPress = key => {
     let keys = { ...this.state.keys };
     keys.chord1.active = false;
@@ -84,14 +86,14 @@ class App extends Component {
     keys.chord4.active = false;
     keys[key].active = true;
     if (
-      key !== "none" &&
-      key !== "movedOut" &&
+      key !== 'none' &&
+      key !== 'movedOut' &&
       this.state.previousChordKey !== key
     ) {
       playOnce(key);
       this.setState({ previousChordKey: key, keys });
-    } else if (key === "movedOut") {
-      this.setState({ previousChordKey: "none" });
+    } else if (key === 'movedOut') {
+      this.setState({ previousChordKey: 'none' });
     }
   };
 
@@ -140,15 +142,15 @@ class App extends Component {
   //Callback provided to LoopsSection. Passes state to loopCheck & calls startLoop function
   receiveLoopPress = loop => {
     if (
-      loop !== "none" &&
-      loop !== "movedOut" &&
+      loop !== 'none' &&
+      loop !== 'movedOut' &&
       this.state.previousLoopKey !== loop
     ) {
       let loops = { ...this.state.loops };
       startLoop(loop, this.loopCheck);
       this.setState({ previousLoopKey: loop, loops });
-    } else if (loop === "movedOut") {
-      this.setState({ previousLoopKey: "none" });
+    } else if (loop === 'movedOut') {
+      this.setState({ previousLoopKey: 'none' });
     }
   };
 
@@ -164,9 +166,9 @@ class App extends Component {
   //Determines CSS for active or inactive states
   defineClass = (type, input) => {
     if (this.state[type][input].active) {
-      return input + " active";
+      return input + ' active';
     } else {
-      return input + " inactive";
+      return input + ' inactive';
     }
   };
 
@@ -186,19 +188,30 @@ class App extends Component {
   };
 
   componentDidMount = async () => {
-    console.log("did mount");
+    console.log('did mount');
+
+    this.hideLoader();
     //Start Camera
+    // CameraStart();
+    // //Start Capture and Provide Callback
+    // capture(this.receiveNewBodyPartLocation);
+  };
+
+  hideLoader = () => {
     CameraStart();
+    setTimeout(() => {
+      this.setState({ isLoading: false });
+    }, 1000);
     //Start Capture and Provide Callback
     capture(this.receiveNewBodyPartLocation);
   };
 
   componentWillUnmount = () => {
     //find a way to stop capturing and tone.js
-    console.log("unmount");
+    console.log('unmount');
     //this will reload the homepage and stop process , not a great way to stop, temp fix.
     // window.location.reload();
-    
+
     CameraStop();
     stopAudio();
   };
@@ -253,10 +266,10 @@ class App extends Component {
                 <Tracks cb={this.defineClass} />
               </div>
             )}
-
             <video id="video" width="640" height="480" controls autoPlay />
+            <Loading visible={this.state.isLoading} />
             <canvas id="overlay" />
-             < Record />
+            <Record />
             <br />
             <h3>
               {this.state.mode === 1 ? (
