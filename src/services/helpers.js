@@ -68,3 +68,18 @@ export function drawSkeleton(keypoints, minConfidence, ctx, scale = 1) {
     );
   });
 }
+
+//Generate unique KEYID
+export function uniqueID() {
+  return '_' + Math.random().toString(36).substr(2, 6);
+}
+
+//Determines CSS for active or inactive states
+export function defineClass(name, activeState) {
+  if (activeState === true) {
+    return name + ' active';
+  }
+  else {
+    return name + ' inactive'
+  }
+}

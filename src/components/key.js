@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { defineClass } from '../services/helpers';
 
 class Key extends Component {
     capitalize = (word) => {
@@ -7,7 +8,7 @@ class Key extends Component {
 
     render() {
         return (
-            <div className={this.props.cb('keys', this.props.name)}>{this.capitalize(this.props.name)}</div>
+            <div className={defineClass(this.props.name, this.props.keyState)}>{this.capitalize(this.props.name)}</div>
         );
     }
 }

@@ -57,14 +57,14 @@ function go() {
   Tone.Transport.start();
 }
 //loops wav files together on beat
-export function startLoop(name, cb) {
+export function startLoop(name, loopCheck) {
   if (loops.get(name).state === "started") {
     loops.get(name).stop(Tone.Transport.nextSubdivision("1n"));
-    cb(name, false);
+    loopCheck(name, false);
   } else {
     loops.get(name).loop = true;
     loops.get(name).start(Tone.Transport.nextSubdivision("1n"));
-    cb(name, true);
+    loopCheck(name, true);
   }
 }
 //plays sound once on beat
