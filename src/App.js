@@ -14,6 +14,7 @@ import {
   playNote
 } from './services/tone_manager.js';
 import { CameraStart, CameraStop } from './services/camera.js';
+import Loading from './views/loading.js';
 
 class App extends Component {
   constructor(props) {
@@ -46,6 +47,12 @@ class App extends Component {
         hat: { active: false },
         perc: { active: false },
         vocal: { active: false },
+        // beat1: { active: false },
+        // beat2: { active: false },
+        // beat3: { active: false },
+        // bassline1: { active: false },
+        // bassline2: { active: false },
+        // bassline3: { active: false },
         none: { active: true }
       },
       tracks: {
@@ -57,6 +64,7 @@ class App extends Component {
         bassline3: { active: false },
         none: { active: true }
       },
+
       bodyPartLocation: {
         leftWrist: {
           x: 0,
@@ -71,7 +79,8 @@ class App extends Component {
       previousChordKey: 'none',
       previousLoopKey: 'none',
       previousNote: 'none',
-      previousTrackButton: 'none'
+      previousTrack: 'none',
+      isLoading: true
     };
   }
 
@@ -135,51 +144,6 @@ class App extends Component {
     }
   };
 
-  receiveTrackPress = button => {
-    let tracks = { ...this.state.tracks };
-    console.log('button is: ', button);
-    if (
-      button !== 'none' &&
-      button !== 'movedOut' &&
-      this.state.previousTrackButton !== button
-    ) {
-      if (button === 'beat1' || button === 'beat2' || button === 'beat3') {
-        if (
-          tracks[button].active === true &&
-          this.state.previousTrackButton != button
-        ) {
-          tracks[button].active = false;
-        } else if (
-          !tracks[button].active &&
-          this.state.previousTrackButton != button
-        ) {
-          tracks.beat1.active = false;
-          tracks.beat2.active = false;
-          tracks.beat3.active = false;
-          tracks[button].active = true;
-        }
-      } else if (
-        button === 'bassline1' ||
-        button === 'baseline2' ||
-        button === 'baseline3'
-      ) {
-        if (tracks[button].active) {
-          tracks[button].active = false;
-        } else if (!tracks[button].active) {
-          tracks.bassline1.active = false;
-          tracks.bassline2.active = false;
-          tracks.bassline3.active = false;
-          tracks[button].active = true;
-        }
-      }
-    } else if (button === 'movedOut') {
-      tracks.previousTrackButton = 'none';
-    }
-    this.setState();
-  };
-
-  //MODE 2:
-
   //Checks if loop active, then updates the state of loops
   loopCheck = (type, loop, state) => {
     let loops = { ...this.state.loops };
@@ -214,15 +178,29 @@ class App extends Component {
 
   componentDidMount = async () => {
     console.log('did mount');
+
+    this.hideLoader();
     //Start Camera
+    // CameraStart();
+    // //Start Capture and Provide Callback
+    // capture(this.receiveNewBodyPartLocation);
+  };
+
+  hideLoader = () => {
     CameraStart();
+    setTimeout(() => {
+      this.setState({ isLoading: false });
+    }, 2000);
     //Start Capture and Provide Callback
     capture(this.receiveNewBodyPartLocation);
   };
 
   componentWillUnmount = () => {
+    //find a way to stop capturing and tone.js
     console.log('unmount');
-    //turn off camera and audio when you switch from the video page
+    //this will reload the homepage and stop process , not a great way to stop, temp fix.
+    // window.location.reload();
+
     CameraStop();
     stopAudio();
   };
@@ -248,14 +226,28 @@ class App extends Component {
             this.state.bodyPartLocation.leftWrist,
             this.receiveKeyBoard2Press
           );
-          tracks(
+          loopsSection(
             this.state.bodyPartLocation.rightWrist,
-            this.receiveTrackPress
+            this.receiveLoopPress
           );
         }
       }
     );
   };
+
+  componentDidMount = async () => {
+    //Start Camera
+    CameraStart();
+    //Start Capture and Provide Callback
+    capture(this.receiveNewBodyPartLocation);
+  };
+
+  componentWillUnmount = () => {
+    //turn off camera and audio when you switch from the video page
+    CameraStop();
+    stopAudio();
+  };
+
   render() {
     return (
       <div className="container">
@@ -270,6 +262,7 @@ class App extends Component {
             )}
 
             <video id="video" width="640" height="480" controls autoPlay />
+            {/* <Loading visible={this.state.isLoading} /> */}
             <canvas id="overlay" />
             <Record />
             <br />
@@ -288,7 +281,7 @@ class App extends Component {
 
           {/* >>>>>>> Debug info <<<<<<<<<< */}
 
-          {/* <div className="bodypart-info">
+          <div className="bodypart-info">
             <p>Current Body Part Location</p>
             {this.state.bodyPartLocation ? (
               <div>
@@ -304,7 +297,7 @@ class App extends Component {
             ) : (
               <p>This is no body data at the moment, go dance</p>
             )}
-          </div> */}
+          </div>
         </div>
       </div>
     );
