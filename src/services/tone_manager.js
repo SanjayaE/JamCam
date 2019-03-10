@@ -25,13 +25,7 @@ export const loops = new Tone.Players(
     clap: './camjam_samples/drum_loop_claps120.wav',
     hat: './camjam_samples/newhatloop_120.wav',
     perc: './camjam_samples/percloop_grainy120.wav',
-    vocal: './camjam_samples/vocals_let_me_see_you_move120.wav'
-  },
-  go
-).toMaster();
-
-export const tracks = new Tone.Players(
-  {
+    vocal: './camjam_samples/vocals_let_me_see_you_move120.wav',
     beat1: './camjam_samples/drumbeat1_120.wav',
     beat2: './camjam_samples/drumbeat2_120.wav',
     beat3: './camjam_samples/drumbeat3_120.wav',
@@ -41,6 +35,18 @@ export const tracks = new Tone.Players(
   },
   go
 ).toMaster();
+
+// export const tracks = new Tone.Players(
+//   {
+//     beat1: './camjam_samples/drumbeat1_120.wav',
+//     beat2: './camjam_samples/drumbeat2_120.wav',
+//     beat3: './camjam_samples/drumbeat3_120.wav',
+//     bassline1: './camjam_samples/bassline1_120.wav',
+//     bassline2: './camjam_samples/bassline2_120.wav',
+//     bassline3: './camjam_samples/perc2_120.wav'
+//   },
+//   go
+// ).toMaster();
 
 //custom synth sound
 var synth = new Tone.Synth().toMaster();
@@ -52,7 +58,7 @@ loops.get('hat').volume.value = -4;
 
 //starts the beat counter
 function go() {
-  Tone.Transport.scheduleRepeat(function(time) {}, '1m');
+  Tone.Transport.scheduleRepeat(function (time) { }, '1m');
   Tone.Transport.start();
 }
 //loops wav files together on beat

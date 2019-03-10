@@ -44,7 +44,7 @@ class TrackBoard extends Component {
 
     //Checks if loop active, then updates the state of loops
     loopCheck = (loop, state) => {
-        let loops = { ...this.state.tracks };
+        let loops = { ...this.state.loops };
         loops[loop].active = state;
         this.setState({ loops });
     };
