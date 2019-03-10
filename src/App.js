@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import capture from './services/capture.js';
+<<<<<<< HEAD
 import keyboard from './services/keyboard.js';
 import keyboard2 from './services/keyboard2.js';
 import loopsSection from './services/loops.js';
@@ -13,137 +14,29 @@ import {
   stopAudio,
   playNote
 } from './services/tone_manager.js';
+=======
+import { stopAudio } from './services/tone_manager.js';
+>>>>>>> 0bf23a61dea359056eec0802b82f04d6cdea814d
 import { CameraStart, CameraStop } from './services/camera.js';
-import Loading from './views/loading.js';
+import JamCam from './components/jam_cam.js';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      keys: {
-        chord1: { active: false },
-        chord2: { active: false },
-        chord3: { active: false },
-        chord4: { active: false },
-        none: { active: true },
-        movedOut: { active: false }
-      },
-      keys2: {
-        a2: { active: false },
-        b2: { active: false },
-        c3: { active: false },
-        d3: { active: false },
-        e3: { active: false },
-        f3: { active: false },
-        g3: { active: false },
-        a3: { active: false },
-        none: { active: true },
-        movedOut: { active: false }
-      },
-      loops: {
-        kick: { active: false },
-        bass: { active: false },
-        clap: { active: false },
-        hat: { active: false },
-        perc: { active: false },
-        vocal: { active: false },
-        // beat1: { active: false },
-        // beat2: { active: false },
-        // beat3: { active: false },
-        // bassline1: { active: false },
-        // bassline2: { active: false },
-        // bassline3: { active: false },
-        none: { active: true }
-      },
-      tracks: {
-        beat1: { active: false },
-        beat2: { active: false },
-        beat3: { active: false },
-        bassline1: { active: false },
-        bassline2: { active: false },
-        bassline3: { active: false },
-        none: { active: true }
-      },
-
-      bodyPartLocation: {
-        leftWrist: {
-          x: 0,
-          y: 0
-        },
-        rightWrist: {
-          x: 0,
-          y: 0
-        }
-      },
-      mode: 1,
-      previousChordKey: 'none',
-      previousLoopKey: 'none',
-      previousNote: 'none',
-      previousTrack: 'none',
-      isLoading: true
-    };
-  }
-
-  //Callback provided to MODE 1 Keyboard. Controls chord active states & calls playOnce function
-  receiveKeyBoardPress = key => {
-    let keys = { ...this.state.keys };
-    keys.chord1.active = false;
-    keys.chord2.active = false;
-    keys.chord3.active = false;
-    keys.chord4.active = false;
-    keys[key].active = true;
-    if (
-      key !== 'none' &&
-      key !== 'movedOut' &&
-      this.state.previousChordKey !== key
-    ) {
-      playOnce(key);
-      this.setState({ previousChordKey: key, keys });
-    } else if (key === 'movedOut') {
-      this.setState({ previousChordKey: 'none' });
+    constructor(props) {
+        super(props);
+        this.state = {
+            a: 1
+        };
     }
-  };
 
-  //MODE 2 KEYBOARD
-  receiveKeyBoard2Press = key => {
-    let keys2 = { ...this.state.keys2 };
-    keys2.a2.active = false;
-    keys2.b2.active = false;
-    keys2.c3.active = false;
-    keys2.d3.active = false;
-    keys2.e3.active = false;
-    keys2.f3.active = false;
-    keys2.g3.active = false;
-    keys2.a3.active = false;
-    keys2[key].active = true;
-    if (
-      key !== 'none' &&
-      key !== 'movedOut' &&
-      this.state.previousNote !== key
-    ) {
-      playNote(key);
-      this.setState({ previousNote: key, keys2 });
-    } else if (key === 'movedOut') {
-      this.setState({ previousNote: 'none' });
-    }
-  };
 
-  //MODE1
-  //Callback provided to LoopsSection. Passes state to loopCheck & calls startLoop function
-  receiveLoopPress = loop => {
-    if (
-      loop !== 'none' &&
-      loop !== 'movedOut' &&
-      this.state.previousLoopKey !== loop
-    ) {
-      let loops = { ...this.state.loops };
-      startLoop(loop, this.loopCheck);
-      this.setState({ previousLoopKey: loop, loops });
-    } else if (loop === 'movedOut') {
-      this.setState({ previousLoopKey: 'none' });
-    }
-  };
+    // componentDidMount = async () => {
+    //     //Start Camera
+    //     CameraStart();
+    //     //Start Capture and Provide Callback
+    //     capture(this.receiveNewBodyPartLocation);
+    // };
 
+<<<<<<< HEAD
   //Checks if loop active, then updates the state of loops
   loopCheck = (type, loop, state) => {
     let loops = { ...this.state.loops };
@@ -151,24 +44,23 @@ class App extends Component {
     [type][loop].active = state;
     this.setState({ loops, tracks });
   };
+=======
+    // componentWillUnmount = () => {
+    //     //turn off camera and audio when you switch from the video page
+    //     CameraStop();
+    //     stopAudio();
+    // };
+>>>>>>> 0bf23a61dea359056eec0802b82f04d6cdea814d
 
-  //Determines CSS for active or inactive states
-  defineClass = (type, input) => {
-    if (this.state[type][input].active) {
-      return input + ' active';
-    } else {
-      return input + ' inactive';
-    }
-  };
 
-  //Toggle between regular and mega-jam modes
-  toggleMode = () => {
-    stopAudio();
-    if (this.state.mode === 1) {
-      this.setState({ mode: 2 });
-    } else {
-      this.setState({ mode: 1 });
+    render() {
+        return (
+            <div className="container">
+                < JamCam />
+            </div>
+        )
     }
+<<<<<<< HEAD
     let loops = { ...this.state.loops };
     for (let loop in loops) {
       loops[loop].active = false;
@@ -302,5 +194,7 @@ class App extends Component {
       </div>
     );
   }
+=======
+>>>>>>> 0bf23a61dea359056eec0802b82f04d6cdea814d
 }
 export default App;
