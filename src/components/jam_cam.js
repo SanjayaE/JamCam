@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import InteractiveWindow from './interactive_window';
 import Panel from './panel';
-import { stopAudio, playNote } from '../services/tone_manager.js';
+import { stopAudio } from '../services/tone_manager.js';
 import capture from '../services/capture';
 import { CameraStart, CameraStop } from '../services/camera';
 
@@ -40,9 +40,7 @@ class JamCam extends Component {
     //Takes in body part locations and maps to keyboard and loops
     receiveNewBodyPartLocation = (bodyPartLocation) => {
         this.setState(
-            {
-                bodyPartLocation
-            }
+            { bodyPartLocation }
         );
     };
 
