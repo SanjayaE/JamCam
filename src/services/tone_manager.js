@@ -36,18 +36,6 @@ export const loops = new Tone.Players(
   go
 ).toMaster();
 
-// export const tracks = new Tone.Players(
-//   {
-//     beat1: './camjam_samples/drumbeat1_120.wav',
-//     beat2: './camjam_samples/drumbeat2_120.wav',
-//     beat3: './camjam_samples/drumbeat3_120.wav',
-//     bassline1: './camjam_samples/bassline1_120.wav',
-//     bassline2: './camjam_samples/bassline2_120.wav',
-//     bassline3: './camjam_samples/perc2_120.wav'
-//   },
-//   go
-// ).toMaster();
-
 //custom synth sound
 var synth = new Tone.Synth().toMaster();
 // synth.oscillator.type = 'sine';
