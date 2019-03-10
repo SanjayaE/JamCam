@@ -51,6 +51,7 @@ class JamCam extends Component {
         } else {
             mode = 1;
         }
+        stopAudio()
         this.setState({ mode });
     };
 

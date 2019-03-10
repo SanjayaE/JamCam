@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Track from './track';
 import { uniqueID } from '../services/helpers';
-import { startLoop, switchOthersOff } from '../services/tone_manager.js';
+import { startLoop, switchOtherSoundOff } from '../services/tone_manager.js';
 import trackTriggerAreas from '../services/track_trigger_areas.js';
 
 class TrackBoard extends Component {
@@ -28,6 +28,32 @@ class TrackBoard extends Component {
         }
     }
 
+    //Only let 1/3 beats or basslines be active at once for mode 2
+    switchOtherLightsOff(loop) {
+        let loops = { ...this.state.loops }
+        if (loop === 'beat1') {
+            loops['beat2'].active = false
+            loops['beat3'].active = false
+        } else if (loop === 'beat2') {
+            loops['beat1'].active = false
+            loops['beat3'].active = false
+        } else if (loop === 'beat3') {
+            loops['beat1'].active = false
+            loops['beat2'].active = false
+        } else if (loop === 'bassline1') {
+            loops['bassline2'].active = false
+            loops['bassline3'].active = false
+        } else if (loop === 'bassline2') {
+            loops['bassline1'].active = false
+            loops['bassline3'].active = false
+        } else if (loop === 'bassline3') {
+            loops['bassline1'].active = false
+            loops['bassline2'].active = false
+        }
+        this.setState({ loops });
+    }
+
+
     //Callback provided to LoopsSection. Passes state to loopCheck & calls startLoop function
     receiveLoopPress = loop => {
         if (
@@ -36,9 +62,9 @@ class TrackBoard extends Component {
             this.state.previousTrack !== loop
         ) {
             let loops = { ...this.state.loops };
-            switchOthersOff(loop)
+            switchOtherSoundOff(loop)
+            this.switchOtherLightsOff(loop)
             startLoop(loop, this.loopCheck);
-
             this.setState({ previousTrack: loop, loops });
         } else if (loop === 'movedOut') {
             this.setState({ previousTrack: 'none' });

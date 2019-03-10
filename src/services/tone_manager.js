@@ -61,8 +61,8 @@ export function startLoop(name, loopCheck) {
   }
 }
 
-//Turns off other two tracks when one track is playing in a unit of 3
-export function switchOthersOff(name) {
+//Only let 1/3 beats or basslines play at once for mode 2
+export function switchOtherSoundOff(name) {
   if (name === 'beat1') {
     loops.get('beat2').stop()
     loops.get('beat3').stop()
@@ -72,6 +72,15 @@ export function switchOthersOff(name) {
   } else if (name === 'beat3') {
     loops.get('beat1').stop()
     loops.get('beat2').stop()
+  } else if (name === 'bassline1') {
+    loops.get('bassline2').stop()
+    loops.get('bassline3').stop()
+  } else if (name === 'bassline2') {
+    loops.get('bassline1').stop()
+    loops.get('bassline3').stop()
+  } else if (name === 'bassline3') {
+    loops.get('bassline1').stop()
+    loops.get('bassline2').stop()
   }
 }
 
