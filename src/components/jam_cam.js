@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import InteractiveWindow from './interactive_window';
 import Panel from './panel';
-import { stopAudio } from '../services/tone_manager.js';
+import { stopAudio } from '../services/tone_manager';
 import capture from '../services/capture';
 import { CameraStart, CameraStop } from '../services/camera';
 
@@ -36,7 +36,7 @@ class JamCam extends Component {
         stopAudio();
     };
 
-    //Takes in body part locations and maps to keyboard and loops
+    //receives body part locations from capture and updates state
     receiveNewBodyPartLocation = bodyPartLocation => {
         this.setState({
             bodyPartLocation
