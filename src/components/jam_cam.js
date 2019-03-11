@@ -5,6 +5,7 @@ import { stopAudio } from '../services/tone_manager.js';
 import capture from '../services/capture';
 import { CameraStart, CameraStop } from '../services/camera';
 import Loading from './loading.js';
+const Tone = require('tone');
 var timer;
 
 class JamCam extends Component {
@@ -19,6 +20,9 @@ class JamCam extends Component {
         rightWrist: {
           x: 0,
           y: 0
+        },
+        nose: {
+          score: 0
         }
       },
       mode: 1,
@@ -38,6 +42,7 @@ class JamCam extends Component {
 
     if (this.state.isLoading === false) {
       this.hideLoader();
+      //   this.toneVol();
     }
   }
 
@@ -46,6 +51,15 @@ class JamCam extends Component {
     CameraStop();
     stopAudio();
   };
+
+  //   toneVol = () => {
+  //     if (this.state.bodyPartLocation.nose.score < 0.9) {
+  //       this.toneVolumeDown();
+  //     }
+  //     if (this.state.bodyPartLocation.nose.score > 0.99) {
+  //       this.toneVolumeUp();
+  //     }
+  //   };
 
   //Takes in body part locations and maps to keyboard and loops
   receiveNewBodyPartLocation = bodyPartLocation => {
@@ -65,12 +79,20 @@ class JamCam extends Component {
     clearTimeout(timer);
   };
 
+  //   toneVolumeUp = () => {
+  //     console.log('Nose detected');
+  //   };
+  //   toneVolumeDown = () => {
+  //     console.log('No Nose ');
+  //   };
+
   render() {
     return (
       <div className="container">
         <InteractiveWindow
           leftWrist={this.state.bodyPartLocation.leftWrist}
           rightWrist={this.state.bodyPartLocation.rightWrist}
+          //   noseScore={this.state.nose.score}
         />
         <video id="video" width="640" height="480" controls autoPlay />
         <Loading visible={this.state.isLoading} />

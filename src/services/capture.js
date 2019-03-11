@@ -5,6 +5,7 @@ import pose from './pose.js';
 
 const LEFT_WRIST_KEYPOINT = 9;
 const RIGHT_WRIST_KEYPOINT = 10;
+const NOSE_KEYPOINT = 0;
 
 //send video to posenet and estimate poses
 const Capture = async receiveNewBodyPartLocation => {
@@ -27,6 +28,8 @@ const Capture = async receiveNewBodyPartLocation => {
       outputStride
     );
 
+    // console.log(p.keypoints[0].score);
+
     //continuously set poses through video and pass points into drawImage function
     pose.set(p);
     ctx.drawImage(video, 0, 0, video.width, video.height);
@@ -44,6 +47,9 @@ const Capture = async receiveNewBodyPartLocation => {
         rightWrist: {
           x: p.keypoints[RIGHT_WRIST_KEYPOINT].position.x,
           y: p.keypoints[RIGHT_WRIST_KEYPOINT].position.y
+        },
+        nose: {
+          score: p.keypoints[NOSE_KEYPOINT].score
         }
       };
       receiveNewBodyPartLocation(bodyPartLocation);
