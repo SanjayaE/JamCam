@@ -27,7 +27,7 @@ class LoopBoard extends Component {
         }
     };
 
-    //Callback provided to LoopsSection. Passes state to loopCheck & calls startLoop function
+    //Callback provided to loopTriggerAreas. Passes state to loopCheck & calls startLoop function
     receiveLoopPress = loop => {
         if (
             loop !== 'none' &&
@@ -42,7 +42,7 @@ class LoopBoard extends Component {
         }
     };
 
-    //Checks if loop active, then updates the state of loops
+    //Checks if loop is active, then updates the state of loops
     loopCheck = (loop, state) => {
         let loops = { ...this.state.loops };
         loops[loop].active = state;

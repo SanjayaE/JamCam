@@ -31,7 +31,7 @@ class SynthBoard extends Component {
         }
     }
 
-    //Callback provided to MODE 1 Keyboard. Controls chord active states & calls playOnce function
+    //Callback provided to synthTriggerAreas. Controls chord active states & calls playOnce function
     receiveSynthPress = key => {
         let keys = { ...this.state.keys };
         for (var k in keys) {
