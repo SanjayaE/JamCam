@@ -1,11 +1,22 @@
 nav {
   display: flex;
-  justify-content: center;
-  height: 50px;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 70px;
   margin-bottom: 10px;
+  background-color: yellow;
 }
-nav > img {
-  display: block;
-  width: auto;
-  height: auto;
+
+.logo {
+  display: inline-flex;
+  margin: 20px 25px;
+}
+
+.links {
+  display: inline-flex;
+  list-style-type: none;
+}
+
+li {
+  padding: 10px;
 }

@@ -3,13 +3,13 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import "./Nav.css";
-import logo from "./logo.jpg";
+// import logo from "./logo.jpg";
 
 const Nav = () => (
   <nav>
-    <h1>Jam Cam</h1>
-    <img src={logo} alt="" />
-    <ul>
+    <h1 class="logo">Jam Cam</h1>
+    {/* <img src={logo} alt="" /> */}
+    <ul class="links">
       <li>
         <Link to="/">Home</Link>
       </li>
