@@ -22,7 +22,8 @@ class JamCam extends Component {
         }
       },
       mode: 1,
-      isLoading: true
+      isLoading: true,
+      isChecked: false
     };
   }
 
@@ -36,7 +37,7 @@ class JamCam extends Component {
   componentDidUpdate() {
     // Typical usage (don't forget to compare props):
 
-    if (this.state.isLoading === false) {
+    if (this.state.isLoading === false && this.state.isChecked === false) {
       this.hideLoader();
     }
   }
@@ -54,15 +55,36 @@ class JamCam extends Component {
     });
   };
 
+  //Takes in body part locations and maps to keyboard and loops
+  receiveNewBodyPartLocation = bodyPartLocation => {
+    this.setState({
+      bodyPartLocation
+    });
+  };
+
+  toggleMode = () => {
+    let mode;
+    if (this.state.mode === 1) {
+      mode = 2;
+    } else {
+      mode = 1;
+    }
+    stopAudio();
+    this.setState({ mode });
+  };
+
   showLoader = () => {
     CameraStart();
     timer = setTimeout(() => {
       this.setState({ isLoading: false });
+      console.log('timer start');
     }, 1000);
   };
 
   hideLoader = () => {
     clearTimeout(timer);
+    console.log('timer off');
+    this.setState({ isChecked: true });
   };
 
   render() {
@@ -71,11 +93,12 @@ class JamCam extends Component {
         <InteractiveWindow
           leftWrist={this.state.bodyPartLocation.leftWrist}
           rightWrist={this.state.bodyPartLocation.rightWrist}
+          mode={this.state.mode}
         />
         <video id="video" width="640" height="480" controls autoPlay />
         <Loading visible={this.state.isLoading} />
         <canvas id="overlay" />
-        <Panel />
+        <Panel mode={this.state.mode} toggleMode={this.toggleMode} />
       </div>
     );
   }
