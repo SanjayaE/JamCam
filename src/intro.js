@@ -1,23 +1,30 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import backgroundImage from "./img/90s2.png";
 
 class Intro extends React.Component {
   // …
   render() {
     return (
-      <span>
-        <h3>Instructions: </h3>
-        <li>Grant access to your webcam </li>
-        <li>
-          Stand about 2 meters back so that the webcam can see your face and
+      <div id="main">
+        <div class="text_container">
+          <div class="text">
+            <h3>Instructions: </h3>
+            <p>Grant access to your webcam </p>
+            <p>
+              Stand about 2 meters back so that the webcam can see your face and
           limbs{" "}
-        </li>
-        <li>
-          Do your best dance moves, as your movements and likeness are
-          ✨:magically✨ transferred to music.
-        </li>
-      </span>
+            </p>
+            <p>
+              Do your best dance moves, as your movements and likeness are
+              ✨magically✨ transferred to music.
+         </p>
+            <button id="start_button" type="button">Start Jamming</button>
+          </div>
+        </div>
+        <div class="img_container">
+          <img class="logo_img" src={backgroundImage} alt="90s_baby" />
+        </div>
+      </div>
     );
   }
 }

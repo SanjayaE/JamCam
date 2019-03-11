@@ -4,7 +4,13 @@ nav {
   justify-content: space-between;
   height: 70px;
   margin-bottom: 10px;
-  background-color: yellow;
+  background-color: #4dbfbc;
+}
+.logo-img {
+  display: inline-flex;
+  width: 145px;
+  margin: 4px 20px;
+  width: 155px;
 }
 
 .logo {
@@ -15,8 +21,20 @@ nav {
 .links {
   display: inline-flex;
   list-style-type: none;
+  font-weight: bold;
 }
 
 li {
+  padding: 12px 5px;
+}
+
+li a {
   padding: 10px;
+  text-decoration: none;
+  font-family: "PT Mono", monospace;
+  color: black;
+}
+
+li a:hover {
+  color: #6500b4;
 }
