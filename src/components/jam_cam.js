@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import InteractiveWindow from './interactive_window';
 import Panel from './panel';
-import { stopAudio } from '../services/tone_manager.js';
+import { stopAudio } from '../services/tone_manager';
 import capture from '../services/capture';
 import { CameraStart, CameraStop } from '../services/camera';
 import Loading from './loading.js';
@@ -29,9 +29,15 @@ class JamCam extends Component {
 
   componentDidMount = async () => {
     this.showLoader();
-
     //Start Capture and Provide Callback
     capture(this.receiveNewBodyPartLocation);
+  };
+
+  //receives body part locations from capture and updates state
+  receiveNewBodyPartLocation = bodyPartLocation => {
+    this.setState({
+      bodyPartLocation
+    });
   };
 
   componentDidUpdate() {
