@@ -4,6 +4,10 @@
 @import "./keyboard2.css";
 @import "./tracks.css";
 @import "./slider.css";
+
+p {
+  font-family: "PT Mono", monospace;
+}
 .App {
   text-align: center;
 }
@@ -49,7 +53,7 @@
 
 .videojam_container {
   margin: 8% 10%;
-  height: 700px;
+  height: 660px;
   width: 642px;
   background-color: #6500b4;
   padding: 3% 2.5%;
@@ -101,10 +105,6 @@
   cursor: pointer;
 }
 
-.logo_img {
-  display: inline-flex;
-}
-
 .text_container {
   position: absolute;
   background-color: white;
@@ -126,4 +126,8 @@
 .logo_img {
   width: 100%;
   z-index: -1;
+}
+
+.panel {
+  display: block;
 }

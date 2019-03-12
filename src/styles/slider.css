@@ -4,7 +4,10 @@
   position: relative;
   display: inline-block;
   width: 60px;
-  height: 34px;
+  height: 36px;
+  left: 241px;
+  top: -66px;
+  border: none;
 }
 
 .switch input {
@@ -20,7 +23,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #000000;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -53,9 +56,66 @@ input:checked + .slider:before {
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 0px;
 }
 
 .slider.round:before {
-  border-radius: 50%;
+  border-radius: 0%;
+}
+
+/* other stuff in panel (download, stop, start recording, etc) */
+.mega {
+  display: inline-block;
+}
+
+#record {
+  background-color: black;
+  color: white;
+  font-family: "PT Mono", monospace;
+  cursor: pointer;
+  padding: 10px 14px;
+  font-size: 15px;
+  border-style: none;
+  position: relative;
+  display: inline-block;
+  top: -102px;
+  left: 473px;
+}
+
+#record:hover {
+  background-color: #4dbfbc;
+  color: white;
+}
+
+#stop {
+  background-color: black;
+  color: white;
+  font-family: "PT Mono", monospace;
+  cursor: pointer;
+  padding: 10px 14px;
+  font-size: 15px;
+  border-style: none;
+  position: relative;
+  display: inline-block;
+  top: -215px;
+  left: 346px;
+}
+
+#stop:hover {
+  background-color: #4dbfbc;
+  color: white;
+}
+
+#download {
+  color: white;
+  font-family: "PT Mono", monospace;
+  position: relative;
+  display: inline-block;
+  top: -12px;
+}
+
+#audio_player {
+  position: relative;
+  display: inline-block;
+  top: -96px;
 }
