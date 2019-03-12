@@ -12,10 +12,10 @@ class Intro extends React.Component {
             <p>Grant access to your webcam </p>
             <p>
               Stand about 2 meters back so that the webcam can see your face and
-          limbs{" "}
+          limbs.
             </p>
             <p>
-              Do your best dance moves, as your movements and likeness are
+              Do your best dance moves, as your movements are
               ✨magically✨ transferred to music.
             </p>
             <a href="/app"><button id="start_button" type="button">Start Jamming</button></a>
