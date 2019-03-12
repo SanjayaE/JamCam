@@ -3,12 +3,15 @@
   position: absolute;
   text-align: center;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 22px;
   top: 40px;
   left: 540px;
-  width: 100px;
-  height: 60px;
-  background-color: #ff004c;
+  width: 95px;
+  height: 54px;
+  background-color: #000000;
+  font-family: "PT Mono", monospace;
+  color: white;
+  border-style: solid;
   z-index: 3;
 }
 .beat2 {
@@ -16,12 +19,15 @@
   position: absolute;
   text-align: center;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 22px;
   top: 100px;
   left: 540px;
-  width: 100px;
-  height: 60px;
-  background-color: #ff004c;
+  width: 95px;
+  height: 54px;
+  background-color: #000000;
+  font-family: "PT Mono", monospace;
+  color: white;
+  border-style: solid;
   z-index: 3;
 }
 .beat3 {
@@ -29,12 +35,15 @@
   position: absolute;
   text-align: center;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 22px;
   top: 160px;
   left: 540px;
-  width: 100px;
-  height: 60px;
-  background-color: #ff004c;
+  width: 95px;
+  height: 54px;
+  background-color: #000000;
+  font-family: "PT Mono", monospace;
+  color: white;
+  border-style: solid;
   z-index: 3;
 }
 .bassline1 {
@@ -42,12 +51,15 @@
   position: absolute;
   text-align: center;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 17px;
   top: 280px;
   left: 540px;
-  width: 100px;
-  height: 60px;
-  background-color: #0126f5;
+  width: 95px;
+  height: 54px;
+  background-color: #000000;
+  font-family: "PT Mono", monospace;
+  color: white;
+  border-style: solid;
   z-index: 3;
 }
 .bassline2 {
@@ -55,12 +67,15 @@
   position: absolute;
   text-align: center;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 17px;
   top: 340px;
   left: 540px;
-  width: 100px;
-  height: 60px;
-  background-color: #0126f5;
+  width: 95px;
+  height: 54px;
+  background-color: #000000;
+  font-family: "PT Mono", monospace;
+  color: white;
+  border-style: solid;
   z-index: 3;
 }
 .bassline3 {
@@ -68,11 +83,14 @@
   position: absolute;
   text-align: center;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 17px;
   top: 400px;
   left: 540px;
-  width: 100px;
-  height: 60px;
-  background-color: #0126f5;
+  width: 95px;
+  height: 54px;
+  background-color: #000000;
+  font-family: "PT Mono", monospace;
+  color: white;
+  border-style: solid;
   z-index: 3;
 }

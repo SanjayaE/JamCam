@@ -43,6 +43,18 @@
   position: relative;
 }
 
+.video_container {
+  margin: 10%;
+}
+
+.videojam_container {
+  margin: 8% 10%;
+  height: 700px;
+  width: 642px;
+  background-color: #6500b4;
+  padding: 3% 2.5%;
+}
+
 #video {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
@@ -86,15 +98,12 @@
 
 #start_button:hover {
   background-color: #6500b4;
+  cursor: pointer;
 }
 
 .logo_img {
   display: inline-flex;
 }
-
-/* .main {
-  display: inline;
-} */
 
 .text_container {
   position: absolute;
@@ -111,12 +120,9 @@
 }
 
 .text {
-  margin: 10%;
+  margin: 15% 12%;
 }
 
-/* .img_container {
-  display: inline-block;
-} */
 .logo_img {
   width: 100%;
   z-index: -1;

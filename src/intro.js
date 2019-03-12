@@ -17,8 +17,8 @@ class Intro extends React.Component {
             <p>
               Do your best dance moves, as your movements and likeness are
               ✨magically✨ transferred to music.
-         </p>
-            <button id="start_button" type="button">Start Jamming</button>
+            </p>
+            <a href="/app"><button id="start_button" type="button">Start Jamming</button></a>
           </div>
         </div>
         <div class="img_container">

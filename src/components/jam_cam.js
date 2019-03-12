@@ -95,7 +95,7 @@ class JamCam extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="videojam_container">
                 <InteractiveWindow
                     leftWrist={this.state.bodyPartLocation.leftWrist}
                     rightWrist={this.state.bodyPartLocation.rightWrist}
