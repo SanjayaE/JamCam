@@ -1,68 +1,49 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Readme
 
-## Available Scripts
+**JamCam** lets you control beats and sounds with your body, by just using your webcam. This React frontend app lets you make music via the position of your body detected by your webcam and even download them to play offline later.
+Just like the music JamCam makes is a beautiful harmony, our design philosophy is a harmony of two core principles:
 
-In the project directory, you can run:
+1. **Minimalistic and simple :** easy to understand and make music, Users can pick up and play without any prior knowledge of making music (or even rhythm) to make something that sounds cool right away.
+2. **Joyful and addictive :** introducing a very interactive and fun way to make music, no instruments to master, no jargon, just move your body and make cool music.
 
-### `npm start`
+### JamCam team
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Matt** Esteves
+- **Julia** Romanowski
+- **Dushantha** Ekanayake
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### Technology
 
-### `npm test`
+JamCam is built in Node.Js and powered by the front end library React with various other npm modules (see the dependencies section). We used **TensorFlow-js**, a paradigm-shifting JavaScript library that bridges the gap between frontend web developers and the formerly cumbersome process of training and taming AIs.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+In the past, many of the best Machine Learning (ML) and Deep Learning (DL) frameworks required fluency in Python and its associated library ecosystem. Efficient training of ML models required the use of special-purpose hardware and software, such as NVIDIA GPUs and CUDA. Besides allowing you to code in JavaScript, the real-game changer with TensorFlow.js is that it lets you do everything client-side , with the comfort of your own favourite browser!
 
-### `npm run build`
+**PoseNet** is a pre-trained TensorFlow.js model (developed by the Google creative labs) which performs real-time estimation of 17 key body point positions.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+For the purpose of our JamCam app, we are using Posenet single pose algorithm that can detect only one person in an image/video.In the first step of pose estimation, an image is fed through a pre-trained model corresponding to a MobileNet v1 architecture with default multiplier(0.75). Single pose estimation is the simpler and faster of the two PoseNet algorithms. Its ideal use case is capturing the pose of a single person in an image or video. The disadvantage is that if there are multiple people in an image/video, keypoints from both people will likely be estimated as being part of the same single pose —meaning, for example, that person #1’s left arm and person #2’s right knee might be conflated by the algorithm as belonging to the same pose.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+After feeding the video data, posenet returns pose with a confidence score and an array of keypoints indexed by body part id, each with a score based on the algorithm's confidence that it has accurately captured that keypoint, and each keypoint’s position. We used this data to map the areas of screen to detect the specific user input.
+**Tone.js** is a framework for creating interactive music in the browser. It provides advanced scheduling capabilities, synths and effects, and intuitive musical abstractions built on top of the Web Audio API.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Development
 
-### `npm run eject`
+- Install Node.js
+- Clone and Run `npm install`
+- Then start the app with `npm run`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Dependencies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- tensorflow-models/posenet
+- tensorflow/tfjs,
+- react
+- react-dom
+- react-router-dom
+- react-scripts
+- tone
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Acknowledgements
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- [PoseNet](https://github.com/tensorflow/tfjs-models/tree/master/posenet)
+- [Tensorflow](https://github.com/tensorflow)
+- [ToneJs](https://tonejs.github.io/)
+- Lighthouse Labs
