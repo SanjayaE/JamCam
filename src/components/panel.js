@@ -21,7 +21,7 @@ class Panel extends Component {
     const source = Tone.Master;
     source.connect(dest);
 
-    b.addEventListener('click', function (e) {
+    b.addEventListener('click', function(e) {
       if (!clicked) {
         mediaRecorder.start();
         e.target.innerHTML = 'Stop recording';
@@ -29,10 +29,11 @@ class Panel extends Component {
       } else {
         mediaRecorder.stop();
         e.target.disabled = true;
+        e.target.innerHTML = 'Record';
       }
     });
 
-    c.addEventListener('click', function (e) {
+    c.addEventListener('click', function(e) {
       if (clicked) {
         stopAudio();
       }
@@ -44,7 +45,7 @@ class Panel extends Component {
       chunks.push(evt.data);
     };
 
-    mediaRecorder.onstop = function (evt) {
+    mediaRecorder.onstop = function(evt) {
       // Make blob out of our blobs, and open it.
       let blob = new Blob(chunks, { type: 'audio/mpeg-3' });
       document.querySelector('audio').src = URL.createObjectURL(blob);
@@ -62,8 +63,8 @@ class Panel extends Component {
           {this.props.mode === 1 ? (
             <p className="mega">ACTIVATE MEGA JAM</p>
           ) : (
-              <p className="mega"> DE-ACTIVATE MEGA JAM</p>
-            )}
+            <p className="mega"> DE-ACTIVATE MEGA JAM</p>
+          )}
         </h3>
         <label className="switch">
           <input type="checkbox" onClick={this.props.toggleMode} />
