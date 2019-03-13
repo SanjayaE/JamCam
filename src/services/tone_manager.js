@@ -31,7 +31,7 @@ export const loops = new Tone.Players(
     beat3: './camjam_samples/drumbeat3_120.wav',
     bassline1: './camjam_samples/bassline1_120.wav',
     bassline2: './camjam_samples/bassline2_120.wav',
-    bassline3: './camjam_samples/perc2_120.wav'
+    bassline3: './camjam_samples/bassline3_120.wav'
   },
   go
 ).toMaster();
@@ -43,6 +43,7 @@ var synth = new Tone.Synth().toMaster();
 //volume adjustments on individual clips
 loops.get('bass').volume.value = -8;
 loops.get('hat').volume.value = -4;
+loops.get('bassline3').volume.value = +16;
 
 //starts the beat counter
 function go() {
