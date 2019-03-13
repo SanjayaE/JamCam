@@ -1,4 +1,4 @@
-## Readme
+## JamCam
 
 **JamCam** lets you control beats and sounds with your body, by just using your webcam. This React frontend app lets you make music via the position of your body detected by your webcam and even download them to play offline later.
 Just like the music JamCam makes is a beautiful harmony, our design philosophy is a harmony of two core principles:
@@ -30,6 +30,7 @@ After feeding the video data, posenet returns pose with a confidence score and a
 - Install Node.js
 - Clone and Run `npm install`
 - Then start the app with `npm run`
+- Open [http://localhost:3006](http://localhost:3000) to view it in the browser.
 
 ### Dependencies
 
@@ -44,6 +45,6 @@ After feeding the video data, posenet returns pose with a confidence score and a
 ### Acknowledgements
 
 - [PoseNet](https://github.com/tensorflow/tfjs-models/tree/master/posenet)
-- [Tensorflow](https://github.com/tensorflow)
+- [Tensorflowjs](https://www.tensorflow.org/js)
 - [ToneJs](https://tonejs.github.io/)
 - Lighthouse Labs
