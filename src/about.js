@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 
 class About extends Component {
-  componentDidMount() {}
+  componentDidMount() { }
 
   render() {
-    return <div>:)</div>;
+    return <div>
+      <h2>JamCam About page</h2>
+    </div>
   }
 }
 
