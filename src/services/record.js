@@ -78,7 +78,7 @@ class Record extends Component {
             <audio controls />
           </div>
           <div>
-            <button id="stop">Stop</button>
+            <button id="stop">Stop Music</button>
           </div>
         </div>
       );
@@ -87,11 +87,10 @@ class Record extends Component {
         <div>
           <div>
             <button id="record">Record</button>
-
             <audio controls />
           </div>
           <div>
-            <button id="stop">Stop</button>
+            <button id="stop">Stop Music</button>
           </div>
         </div>
       );

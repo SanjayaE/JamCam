@@ -2,62 +2,75 @@
   position: absolute;
   text-align: center;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 22px;
   top: 40px;
   left: 540px;
-  width: 100px;
-  height: 68px;
-  background-color: #ff004c;
+  width: 95px;
+  height: 66px;
+  background-color: #000000;
+  font-family: "PT Mono", monospace;
+  color: white;
+  border-style: solid;
   z-index: 3;
 }
 .bass {
-  color: white;
   position: absolute;
   text-align: center;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 22px;
   top: 108px;
   left: 540px;
-  width: 100px;
-  height: 67px;
-  background-color: #001488;
+  width: 95px;
+  height: 66px;
+  background-color: #000000;
+  font-family: "PT Mono", monospace;
+  color: white;
+  border-style: solid;
   z-index: 3;
 }
 .clap {
   position: absolute;
   text-align: center;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 22px;
   top: 175px;
   left: 540px;
-  width: 100px;
-  height: 67px;
-  background-color: #ff004c;
+  width: 95px;
+  height: 66px;
+  background-color: #000000;
+  font-family: "PT Mono", monospace;
+  color: white;
+  border-style: solid;
   z-index: 3;
 }
 .hat {
-  color: white;
   position: absolute;
   text-align: center;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 22px;
   top: 242px;
   left: 540px;
-  width: 100px;
-  height: 67px;
-  background-color: #001488;
+  width: 95px;
+  height: 66px;
+  background-color: #000000;
+  font-family: "PT Mono", monospace;
+  color: white;
+  border-style: solid;
   z-index: 3;
 }
 .perc {
   position: absolute;
   text-align: center;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 22px;
   top: 309px;
   left: 540px;
-  width: 100px;
-  height: 68px;
-  background-color: #ff004c;
+  width: 95px;
+  height: 66px;
+  background-color: #000000;
+  font-family: "PT Mono", monospace;
+  color: white;
+  border-style: solid;
   z-index: 3;
 }
 .vocal {
@@ -65,11 +78,14 @@
   position: absolute;
   text-align: center;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 22px;
   top: 376px;
   left: 540px;
-  width: 100px;
-  height: 67px;
-  background-color: #001488;
+  width: 95px;
+  height: 66px;
+  background-color: #000000;
+  font-family: "PT Mono", monospace;
+  color: white;
+  border-style: solid;
   z-index: 3;
 }
