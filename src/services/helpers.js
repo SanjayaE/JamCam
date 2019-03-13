@@ -20,7 +20,7 @@ import * as posenet from "@tensorflow-models/posenet";
 
 //setting colours for skeleton
 const color = "#4dbfbc";
-const color2 = "#6500b4";
+const color2 = "#FAD068";
 const lineWidth = 2;
 
 function toTuple({ y, x }) {
