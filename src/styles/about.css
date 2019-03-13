@@ -2,3 +2,11 @@
   width: 80%;
   margin: auto;
 }
+
+.info_card {
+  height: 250px;
+}
+.profile_pic {
+  float: right;
+  height: 100%;
+}

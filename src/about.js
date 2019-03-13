@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import matt from './img/matt.jpg';
 
 class About extends Component {
   componentDidMount() {}
@@ -23,15 +24,22 @@ class About extends Component {
         </p>
         <h3 />
         <h3> Who made this?</h3>
-        <div class="info-card">
+        <div class="info_card">
           <h5>Julia Romanowski, international Jam wrangler.</h5>
           <p>Write whatever the frig you want here.</p>
         </div>
-        <div class="info-card">
+        <div className="info_card">
+          <div className="profile_pic">
+            <img src={matt} height="200" />
+          </div>
           <h5>Matt Esteves, head of getting down.</h5>
-          <p />
+          <p>
+            Matt worked with machine learning and A.I. making chatbots for
+            years. Coming from an entertianment background, Matt has a passion
+            for making tech fun and engaging for everyone.
+          </p>
         </div>
-        <div class="info-card">
+        <div class="info_card">
           <h5>Dusantha Ekanayake, Chief Freshness Officer</h5>
           <p>Write whatever the frig you want here.</p>
         </div>
