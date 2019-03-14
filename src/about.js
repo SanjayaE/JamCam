@@ -56,7 +56,7 @@ class About extends Component {
         </div>
         <div class="info_card">
           <div class="card-text">
-            <h4>Dusantha Ekanayake, Chief Freshness Officer</h4>
+            <h4>Dushantha Ekanayake, Chief Freshness Officer</h4>
             <p>Write whatever the frig you want here.</p>
           </div>
         </div>
