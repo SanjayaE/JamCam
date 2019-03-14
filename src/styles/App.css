@@ -8,6 +8,7 @@
 
 p {
   font-family: "PT Mono", monospace;
+  line-height: 1.6;
 }
 .App {
   text-align: center;
