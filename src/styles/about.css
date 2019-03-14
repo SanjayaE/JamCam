@@ -9,4 +9,17 @@
 .profile_pic {
   float: right;
   height: 100%;
+  padding-left: 50px;
+}
+
+.card-text {
+  width: 65%;
+}
+
+.text_block {
+  margin: 7% 0%;
+}
+
+.about_title {
+  margin-top: 10%;
 }
