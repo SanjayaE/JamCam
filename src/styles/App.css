@@ -1,24 +1,37 @@
-@import './index.css';
-@import './keyboard.css';
-@import './loops.css';
-@import './keyboard2.css';
-@import './tracks.css';
-@import './slider.css';
-@import './about.css';
+@import "./index.css";
+@import "./keyboard.css";
+@import "./loops.css";
+@import "./keyboard2.css";
+@import "./tracks.css";
+@import "./slider.css";
+@import "./about.css";
 
 p {
-  font-family: 'PT Mono', monospace;
+  font-family: "PT Mono", monospace;
+  line-height: 1.6;
 }
 .App {
   text-align: center;
 }
 
 h1 {
-  font-family: 'PT Mono', monospace;
+  font-family: "PT Mono", monospace;
 }
 
 h2 {
-  font-family: 'PT Mono', monospace;
+  font-family: "PT Mono", monospace;
+}
+
+h3 {
+  font-family: "PT Mono", monospace;
+}
+
+h4 {
+  font-family: "PT Mono", monospace;
+}
+
+h5 {
+  font-family: "PT Mono", monospace;
 }
 
 .App-logo {
@@ -106,7 +119,7 @@ h2 {
   display: inline-block;
   font-size: 16px;
   margin-top: 40px;
-  font-family: 'PT Mono', monospace;
+  font-family: "PT Mono", monospace;
 }
 
 #start_button:hover {
@@ -119,7 +132,7 @@ h2 {
   background-color: white;
   width: 55%;
   height: 600px;
-  font-family: 'PT Mono', monospace;
+  font-family: "PT Mono", monospace;
 }
 
 @media only screen and (max-width: 600px) {
