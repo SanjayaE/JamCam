@@ -1,6 +1,6 @@
 {
-  "name": "JamCam",
-  "version": "0.6.0",
+  "name": "jamam",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@tensorflow-models/posenet": "^0.2.3",
@@ -12,6 +12,11 @@
     "react-scripts": "2.1.5",
     "tone": "^13.4.9"
   },
+  "contributors": [
+    "Matt Esteves",
+    "Julia Romanowski",
+    "Dushantha Ekanayake"
+  ],
   "scripts": {
     "start": "PORT=3006 react-scripts start",
     "build": "react-scripts build",

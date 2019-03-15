@@ -35,6 +35,7 @@ After feeding the video data, posenet returns pose with a confidence score and a
 ### Dependencies
 
 - tensorflow-models/posenet
+- Node-js
 - tensorflow/tfjs,
 - react
 - react-dom
