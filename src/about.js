@@ -61,7 +61,7 @@ class About extends Component {
             <img src={Dushantha} height="200" />
           </div>
           <div class="card-text">
-            <h4>Dushantha Ekanayake, Chief Freshness Officer</h4>
+            <h4>Dushantha Ekanayake, Chief Routing Officer.</h4>
             <p>
               Dusantha is a combination of a biologist and software developer.
               Avid reader, learner and entrepreneur.
