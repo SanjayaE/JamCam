@@ -4,7 +4,7 @@ import julia from './img/julia.png';
 import Dushantha from './img/de.jpg';
 
 class About extends Component {
-  componentDidMount() {}
+  componentDidMount() { }
 
   render() {
     return (
