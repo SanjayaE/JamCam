@@ -8,7 +8,6 @@ class TrackBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            trackNames: ['beat1', 'beat2', 'beat3', 'bassline1', 'bassline2', 'bassline3'],
             loops: {
                 beat1: { active: false },
                 beat2: { active: false },
@@ -82,13 +81,7 @@ class TrackBoard extends Component {
     render() {
         return (
             <div id="loops_container">
-                {this.state.trackNames.map(e => (
-                    <Track
-                        key={uniqueID()}
-                        name={e}
-                        loopState={this.state.loops[e].active}
-                    />
-                ))}
+                {Object.keys(this.state.loops).map(e => (<Track key={uniqueID()} name={e} loopState={this.state.loops[e].active} />))}
             </div>
         );
     }
