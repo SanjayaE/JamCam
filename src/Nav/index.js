@@ -6,8 +6,8 @@ import logo from "./logo2.png";
 const Nav = () => (
 
   <nav>
-    <img class="logo-img" src={logo} alt="" />
-    <ul class="links">
+    <img className="logo-img" src={logo} alt="" />
+    <ul className="links">
       <li>
         <Link to="/">Home</Link>
       </li>
