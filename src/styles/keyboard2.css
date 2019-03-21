@@ -113,3 +113,11 @@
   border-style: solid;
   z-index: 3;
 }
+
+.none {
+  display: none;
+}
+
+.movedOut {
+  display: none;
+}

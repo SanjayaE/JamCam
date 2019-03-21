@@ -4,7 +4,7 @@ import julia from './img/julia.png';
 import Dushantha from './img/de.jpg';
 
 class About extends Component {
-  componentDidMount() {}
+  componentDidMount() { }
 
   render() {
     return (
@@ -31,7 +31,7 @@ class About extends Component {
         <h3> Who made this?</h3>
         <div class="info_card">
           <div className="profile_pic">
-            <img src={julia} height="200" />
+            <img src={julia} alt="Julia" height="200" />
           </div>
           <div class="card-text">
             <h4>Julia Romanowski, international Jam wrangler.</h4>
@@ -45,7 +45,7 @@ class About extends Component {
         </div>
         <div className="info_card">
           <div className="profile_pic">
-            <img src={matt} height="200" />
+            <img src={matt} alt="Matt" height="200" />
           </div>
           <div class="card-text">
             <h4>Matt Esteves, head of getting down.</h4>
@@ -58,7 +58,7 @@ class About extends Component {
         </div>
         <div class="info_card">
           <div className="profile_pic">
-            <img src={Dushantha} height="200" />
+            <img src={Dushantha} alt="Dushantha" height="200" />
           </div>
           <div class="card-text">
             <h4>Dushantha Ekanayake, Chief Routing Officer.</h4>

@@ -8,7 +8,6 @@ class KeyBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            keyNames: ['chord1', 'chord2', 'chord3', 'chord4'],
             keys: {
                 chord1: { active: false },
                 chord2: { active: false },
@@ -50,7 +49,7 @@ class KeyBoard extends Component {
     render() {
         return (
             <div id="keys_container">
-                {this.state.keyNames.map(e => (<Key key={uniqueID()} name={e} keyState={this.state.keys[e].active} />))}
+                {Object.keys(this.state.keys).map(e => (<Key key={uniqueID()} name={e} keyState={this.state.keys[e].active} />))}
             </div>
         );
     }

@@ -8,7 +8,6 @@ class LoopBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loopNames: ['kick', 'bass', 'clap', 'hat', 'perc', 'vocal'],
             loops: {
                 kick: { active: false },
                 bass: { active: false },
@@ -53,7 +52,7 @@ class LoopBoard extends Component {
     render() {
         return (
             <div id="loops_container">
-                {this.state.loopNames.map(e => (<Loop key={uniqueID()} name={e} loopState={this.state.loops[e].active} />))}
+                {Object.keys(this.state.loops).map(e => (<Loop key={uniqueID()} name={e} loopState={this.state.loops[e].active} />))}
             </div>
         );
     }

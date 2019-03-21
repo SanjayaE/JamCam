@@ -8,7 +8,6 @@ class SynthBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            keyNames: ['a2', 'b2', 'c3', 'd3', 'e3', 'f3', 'g3', 'a3'],
             keys: {
                 a2: { active: false },
                 b2: { active: false },
@@ -54,13 +53,7 @@ class SynthBoard extends Component {
     render() {
         return (
             <div id="keys_container">
-                {this.state.keyNames.map(e => (
-                    <Synth
-                        key={uniqueID()}
-                        name={e}
-                        keyState={this.state.keys[e].active}
-                    />
-                ))}
+                {Object.keys(this.state.keys).map(e => (<Synth key={uniqueID()} name={e} keyState={this.state.keys[e].active} />))}
             </div>
         );
     }
