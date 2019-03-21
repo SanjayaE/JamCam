@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import backgroundImage from "./img/site-background.jpg";
 
-class Intro extends React.Component {
+class Intro extends Component {
   // …
   render() {
     return (

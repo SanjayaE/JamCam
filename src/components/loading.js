@@ -8,8 +8,7 @@ class Loading extends Component {
     }
     return (
       <div id="loading">
-        {/* <div className={this.props.isLoading}>1jhekhfwe.weljewlkr</div> */}
-        <img src={loading} alt="loading image" height="480" width="640" />
+        <img src={loading} alt="loading gif" height="480" width="640" />
       </div>
     );
   }

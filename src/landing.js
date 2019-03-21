@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Nav from "./Nav";
 import App from "./App";
 import About from "./about";
 import Intro from "./intro";
 
-class Landing extends React.Component {
+class Landing extends Component {
   // …
   render() {
     return (
