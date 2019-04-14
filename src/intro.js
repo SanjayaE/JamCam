@@ -13,7 +13,7 @@ class Intro extends Component {
             <h3>Instructions: </h3>
             <p>Grant access to your webcam </p>
             <p>
-              Stand about 2 meters back so that the webcam can see your face and
+              Stand about 3 meters back so that the webcam can see your face and
           limbs.
             </p>
             <p>
