@@ -1,5 +1,8 @@
 ## JamCam
 
+[![Build Status](https://dev.azure.com/dushantha0509/jamcam/_apis/build/status/JamCam-CI?branchName=master)](https://dev.azure.com/dushantha0509/jamcam/_build/latest?definitionId=4&branchName=master)
+[**Azure CI/CD link**](https://jamcamreact.azurewebsites.net)
+
 [**Demo link**](https://jamcam.ksatra.com)
 
 **JamCam** lets you control beats and sounds with your body, by just using your webcam. This React frontend app lets you make music via the position of your body detected by your webcam and even download them to play offline later.
